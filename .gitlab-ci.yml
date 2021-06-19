@@ -1,0 +1,27 @@
+stages:
+  - build
+  - publish
+
+react/build:
+  image: node:latest
+  stage: build
+  before_script:
+    - make npm/install
+  script:
+    - make npm/build
+  artifacts:
+    paths:
+      - build/*
+    expire_in: 1 day
+
+pages:
+  image: alpine
+  stage: publish
+  only:
+    - main
+  script:
+    - rm -r public/
+    - mv build/ public/
+  artifacts:
+    paths:
+      - public/

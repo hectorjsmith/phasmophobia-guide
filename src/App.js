@@ -3,8 +3,34 @@ import {Component} from "react";
 export default class App extends Component {
     constructor(props) {
         super(props)
-        this.state = { selectedGhost: "" }
+        this.state = {
+            selectedGhost: "",
+            evidence: this.props.evidence,
+            possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
+        }
+
+        this.onEvidenceToggle = this.onEvidenceToggle.bind(this)
     }
+
+    calcPossibleGhosts(evidence) {
+        return this.props.ghosts.filter(ghost => {
+            let selectedEvidence = evidence.filter(e => e.selected)
+            return selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
+        })
+    }
+
+    onEvidenceToggle(evidence) {
+        // state update inspired by: https://stackoverflow.com/questions/43638938/updating-an-object-with-setstate-in-react
+        const updatedEvidence = this.state.evidence.map(
+            el => el.name === evidence.name ? { ...el, selected: !el.selected }: el
+        )
+
+        this.setState({
+            evidence: updatedEvidence,
+            possibleGhosts: this.calcPossibleGhosts(updatedEvidence)
+        })
+    }
+
     render() {
         return (
             <div className="container">
@@ -13,10 +39,10 @@ export default class App extends Component {
 
                 <div className="columns">
                     <div className="column is-4">
-                        <LeftColumn />
+                        <LeftColumn evidence={this.state.evidence} onEvidenceToggle={this.onEvidenceToggle} />
                     </div>
                     <div className="column is-8">
-                        <RightColumn />
+                        <RightColumn evidence={this.state.evidence} ghosts={this.state.possibleGhosts} />
                     </div>
                 </div>
             </div>
@@ -61,7 +87,9 @@ class LeftColumn extends Component {
             <div className="has-text-centered">
                 <h2 className="subtitle">Observations</h2>
 
-                <ObservationToggle name="Fingerprints" />
+                {this.props.evidence.map((evidence) => {
+                    return <ObservationToggle key={evidence.name} evidence={evidence} onToggle={this.props.onEvidenceToggle} />
+                })}
             </div>
         )
     }
@@ -78,8 +106,9 @@ class RightColumn extends Component {
                         <GhostTableHeader />
                     </thead>
                     <tbody>
-                        <GhostTableRow name="Spirit" evidence={["Fingerprints", "Spirit Box", "Ghost Writing"]} />
-                        <GhostTableRow name="Wraith" evidence={["Fingerprints", "Spirit Box", "Freezing"]} />
+                        {this.props.ghosts.map((ghost) => {
+                            return <GhostTableRow key={ghost.name} evidence={this.props.evidence} ghost={ghost} />
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -101,19 +130,32 @@ class GhostTableHeader extends Component {
 }
 
 class GhostTableRow extends Component {
+    evidenceMarker(evidence) {
+        const isSelected = this.props.evidence.filter(e => e.selected).some(e => e.name === evidence)
+        if (isSelected) {
+            return (
+                <span className="icon has-text-success pull-right">
+                    <i className="fa fa-check" />
+                </span>
+            )
+        }
+        return ""
+    }
+
     render() {
         return (
             <tr>
                 <td>
-                    {this.props.name}
-                    <a className="icon has-text-info pull-right" onClick={console.log} href={`#${this.props.name}`}>
+                    {this.props.ghost.name}
+                    <a className="icon has-text-info pull-right" onClick={console.log} href={`#${this.props.ghost.name}`}>
                         <i className="fa fa-info-circle" />
                     </a>
                 </td>
-                {this.props.evidence.map((evidence) => {
+                {this.props.ghost.evidence.map((evidence) => {
                     return (
                         <td key={evidence}>
                             {evidence}
+                            {this.evidenceMarker(evidence)}
                         </td>)
                 })}
             </tr>
@@ -122,12 +164,21 @@ class GhostTableRow extends Component {
 }
 
 class ObservationToggle extends Component {
+    constructor(props) {
+        super(props)
+        this.onChange = this.onChange.bind(this)
+    }
+
+    onChange() {
+        this.props.onToggle(this.props.evidence)
+    }
+
     render() {
         return (
             <div className="has-text-centered">
                 <label className="checkbox">
-                    <input type="checkbox" />
-                    <p>{this.props.name}</p>
+                    <input type="checkbox" onChange={this.onChange} checked={this.props.evidence.selected} />
+                    <p>{this.props.evidence.name}</p>
                 </label>
             </div>
         );

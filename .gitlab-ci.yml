@@ -2,6 +2,9 @@ stages:
   - build
   - publish
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 react/build:
   image: node:latest
   stage: build

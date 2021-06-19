@@ -141,8 +141,33 @@ class RightColumn extends Component {
                         })}
                     </tbody>
                 </table>
+                <MissingEvidence evidence={this.props.evidence} ghosts={this.props.ghosts} />
             </div>
         )
+    }
+}
+
+class MissingEvidence extends Component {
+    render() {
+        const nonSelectedEvidence = this.props.evidence.filter(e => !e.selected)
+        if (nonSelectedEvidence.length === this.props.evidence.length) {
+            return ""
+        }
+        const missingEvidence = nonSelectedEvidence.filter(e => this.props.ghosts.some(g => g.evidence.some(ge => ge === e.name)))
+        return (
+            <div className="my-6">
+                <h2 className="subtitle">Missing Evidence</h2>
+                <div className="columns is-multiline">
+                    {missingEvidence.map((e) => {
+                        return (
+                            <div key={e.name} className="column is-6">
+                                <p>{e.name}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        );
     }
 }
 

@@ -10,12 +10,20 @@ export default class App extends Component {
         }
 
         this.onEvidenceToggle = this.onEvidenceToggle.bind(this)
+        this.onEvidenceReset = this.onEvidenceReset.bind(this)
     }
 
     calcPossibleGhosts(evidence) {
         return this.props.ghosts.filter(ghost => {
             let selectedEvidence = evidence.filter(e => e.selected)
             return selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
+        })
+    }
+
+    onEvidenceReset() {
+        this.setState({
+            evidence: this.props.evidence,
+            possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
         })
     }
 
@@ -39,7 +47,7 @@ export default class App extends Component {
 
                 <div className="columns">
                     <div className="column is-4">
-                        <LeftColumn evidence={this.state.evidence} onEvidenceToggle={this.onEvidenceToggle} />
+                        <LeftColumn evidence={this.state.evidence} onEvidenceToggle={this.onEvidenceToggle} onEvidenceReset={this.onEvidenceReset} />
                     </div>
                     <div className="column is-8">
                         <RightColumn evidence={this.state.evidence} ghosts={this.state.possibleGhosts} />
@@ -82,6 +90,23 @@ class GhostInfoModal extends Component {
 }
 
 class LeftColumn extends Component {
+    maxSelected = 3
+
+    countSelectedEvidence() {
+        return this.props.evidence.filter(e => e.selected).length
+    }
+
+    showWarning() {
+        if (this.countSelectedEvidence() > this.maxSelected) {
+            return (
+                <span className="icon has-text-warning" title="Too many observations selected">
+                    <i className="fa fa-2x fa-warning" />
+                </span>
+            )
+        }
+        return ""
+    }
+
     render() {
         return (
             <div className="has-text-centered">
@@ -90,6 +115,11 @@ class LeftColumn extends Component {
                 {this.props.evidence.map((evidence) => {
                     return <ObservationToggle key={evidence.name} evidence={evidence} onToggle={this.props.onEvidenceToggle} />
                 })}
+
+                <button className="button is-text my-4" onClick={this.props.onEvidenceReset} title="Reset all selected observations">reset</button>
+
+                <p className="heading mb-3">({this.countSelectedEvidence()} of {this.maxSelected})</p>
+                {this.showWarning()}
             </div>
         )
     }

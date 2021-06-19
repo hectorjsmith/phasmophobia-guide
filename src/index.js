@@ -10,25 +10,37 @@ import Evidence from "./Evidence"
 const fingerprints = "Fingerprints"
 const spiritBox = "Spirit Box"
 const ghostWriting = "Ghost Writing"
-const freezing = "Freezing Temperatures"
+const freezing = "Freezing"
 const emf = "EMF"
 const ghostOrb = "Ghost Orb"
 
 const collectEvidence = function() {
     return [
-        new Evidence(fingerprints, false),
-        new Evidence(spiritBox, false),
-        new Evidence(ghostWriting, false),
         new Evidence(freezing, false),
         new Evidence(emf, false),
         new Evidence(ghostOrb, false),
+        new Evidence(spiritBox, false),
+        new Evidence(ghostWriting, false),
+        new Evidence(fingerprints, false),
     ]
 }
 
 const collectGhostData = function() {
     return [
-        new Ghost("Spirit", [fingerprints, spiritBox, ghostWriting]),
-        new Ghost("Wraith", [fingerprints, spiritBox, freezing]),
+        new Ghost("Phantom", [freezing, emf, ghostOrb]),
+        new Ghost("Banshee", [freezing, emf, fingerprints]),
+        new Ghost("Mare", [freezing, ghostOrb, spiritBox]),
+        new Ghost("Yurei", [freezing, ghostOrb, ghostWriting]),
+        new Ghost("Demon", [freezing, spiritBox, ghostWriting]),
+        new Ghost("Wraith", [freezing, spiritBox, fingerprints]),
+        new Ghost("Jinn", [emf, ghostOrb, spiritBox]),
+        new Ghost("Shade", [emf, ghostOrb, ghostWriting]),
+        new Ghost("Oni", [emf, spiritBox, ghostWriting]),
+        new Ghost("Revenant", [emf, ghostWriting, fingerprints]),
+        new Ghost("Poltergeist", [ghostOrb, spiritBox, fingerprints]),
+        new Ghost("Spirit", [spiritBox, ghostWriting, fingerprints]),
+        new Ghost("Hantu", [ghostOrb, ghostWriting, fingerprints]),
+        new Ghost("Yokai", [ghostOrb, spiritBox, ghostWriting]),
     ]
 }
 

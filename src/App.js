@@ -80,7 +80,7 @@ export default class App extends Component {
         return (
             <div className="container">
                 <TopNav />
-                { this.state.selectedGhost != null ? <GhostInfoModal ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
+                { this.state.selectedGhost != null ? <GhostInfoModal evidence={this.state.evidence} ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
 
                 <div className="columns">
                     <div className="column is-4">
@@ -135,7 +135,7 @@ class GhostInfoModal extends Component {
                             {this.props.ghost.evidence.map((e) => {
                                 return (
                                     <div key={e} className="column is-4-mobile has-text-centered">
-                                        <span className="tag is-medium">{e}</span>
+                                        <EvidenceTag evidenceList={this.props.evidence} evidence={e} />
                                     </div>
                                 )
                             })}
@@ -247,7 +247,7 @@ class MissingEvidence extends Component {
                 {missingEvidence.map((e) => {
                     return (
                         <div key={e.name} className="column is-4-mobile has-text-centered">
-                            <span className="tag is-medium">{e.name}</span>
+                            <EvidenceTag evidence={e.name} />
                         </div>
                     )
                 })}
@@ -269,27 +269,38 @@ class MissingEvidence extends Component {
     }
 }
 
-class GhostTableRow extends Component {
-    isEvidenceSelected(evidence) {
-        return this.props.evidence.filter(e => e.selected).some(e => e.name === evidence)
+class EvidenceTag extends Component {
+    isEvidenceSelected() {
+        if (!this.props.evidenceList) {
+            return false
+        }
+        return this.props.evidenceList.filter(e => e.selected).some(e => e.name === this.props.evidence)
     }
 
+    render() {
+        return (
+            <span className={"tag is-medium" + (this.isEvidenceSelected() ? " is-selected" : "")}>{this.props.evidence}</span>
+        )
+    }
+}
+
+class GhostTableRow extends Component {
     render() {
         return (
             <div>
                 <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
                     <div className="column is-4-desktop is-12-mobile">
                         <p className="is-uppercase has-text-weight-light has-letter-spacing">
+                            {this.props.ghost.name}
                             <a className="icon has-text-info mx-4" onClick={() => this.props.onShowModal(this.props.ghost)} href={`#${this.props.ghost.name}`}>
                                 <i className="fa fa-info-circle" />
                             </a>
-                            {this.props.ghost.name}
                         </p>
                     </div>
                     {this.props.ghost.evidence.map((e) => {
                         return (
                             <div key={e} className="column is-4-mobile has-text-centered">
-                                <span className={"tag is-medium" + (this.isEvidenceSelected(e) ? " is-selected" : "")}>{e}</span>
+                                <EvidenceTag evidenceList={this.props.evidence} evidence={e} />
                             </div>
                         )
                     })}

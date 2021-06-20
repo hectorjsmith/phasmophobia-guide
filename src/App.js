@@ -122,6 +122,9 @@ class LeftColumn extends Component {
     countSelectedEvidence() {
         return this.props.evidence.filter(e => e.selected).length
     }
+    countRejectedEvidence() {
+        return this.props.evidence.filter(e => e.rejected).length
+    }
 
     showWarning() {
         if (this.countSelectedEvidence() > this.maxSelected) {
@@ -135,18 +138,25 @@ class LeftColumn extends Component {
     }
 
     render() {
+        let selectedEvidenceCount = this.countSelectedEvidence()
+        let rejectedEvidenceCount = this.countRejectedEvidence()
+        let selectionCount = selectedEvidenceCount + rejectedEvidenceCount
         return (
-            <div className="has-text-centered">
-                <h2 className="subtitle">Observations</h2>
+            <div>
+                <h2 className="subtitle has-text-centered">Observations</h2>
 
                 {this.props.evidence.map((evidence) => {
                     return <ObservationToggle key={evidence.name} evidence={evidence} onToggle={this.props.onEvidenceToggle} />
                 })}
 
-                <button className="button is-text my-4" onClick={this.props.onEvidenceReset} title="Reset all selected observations">reset</button>
+                <div className="has-text-centered">
+                    <button className={"button my-4 is-outlined" + (selectionCount > 0 ? " is-warning" : "")}
+                            onClick={(e) => {this.props.onEvidenceReset(); console.log(e.target)}}
+                            title="Reset all selected observations">reset</button>
 
-                <p className="heading mb-3">({this.countSelectedEvidence()} of {this.maxSelected})</p>
-                {this.showWarning()}
+                    <p className="heading mb-3">({selectedEvidenceCount} of {this.maxSelected})</p>
+                    {this.showWarning()}
+                </div>
             </div>
         )
     }
@@ -257,12 +267,27 @@ class ObservationToggle extends Component {
 
     render() {
         return (
-            <div className="has-text-centered">
-                <label className="checkbox">
-                    <input type="checkbox" onChange={() => this.onChange("selected")} checked={this.props.evidence.selected} />
-                    <input type="checkbox" onChange={() => this.onChange("rejected")} checked={this.props.evidence.rejected} />
-                    <p>{this.props.evidence.name}</p>
-                </label>
+            <div className="columns is-mobile is-vcentered">
+                <div className="column is-offset-2 is-narrow">
+                    <div className="buttons has-addons">
+                        <button className={"button" + (this.props.evidence.rejected ? " is-danger" : "")}
+                                onClick={() => this.onChange("rejected")}>
+                            <span className="icon is-small">
+                                <i className="fa fa-times" />
+                            </span>
+                        </button>
+
+                        <button className={"button" + (this.props.evidence.selected ? " is-success" : "")}
+                                onClick={() => this.onChange("selected")}>
+                            <span className="icon is-small">
+                                <i className="fa fa-check" />
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div className="column is-mobile">
+                    <span>{this.props.evidence.name}</span>
+                </div>
             </div>
         );
     }

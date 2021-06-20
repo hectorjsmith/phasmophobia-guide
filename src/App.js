@@ -163,14 +163,29 @@ class LeftColumn extends Component {
 }
 
 class RightColumn extends Component {
+    renderGhostTable() {
+        const ghosts = this.props.ghosts
+        if (ghosts.length === 0) {
+            return (
+                <p>No ghosts found for selected evidence</p>
+            )
+        }
+        return (
+            <div>
+                {ghosts.map((ghost) => {
+                    return <GhostTableRow key={ghost.name}
+                                          evidence={this.props.evidence}
+                                          ghost={ghost} />
+                })}
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className="has-text-centered">
                 <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Ghosts</h2>
-
-                {this.props.ghosts.map((ghost) => {
-                    return <GhostTableRow key={ghost.name} evidence={this.props.evidence} ghost={ghost} />
-                })}
+                {this.renderGhostTable()}
 
                 <MissingEvidence evidence={this.props.evidence} ghosts={this.props.ghosts} />
             </div>
@@ -179,24 +194,35 @@ class RightColumn extends Component {
 }
 
 class MissingEvidence extends Component {
+    renderMissingEvidence(nonSelectedEvidence) {
+        const missingEvidence = nonSelectedEvidence.filter(e => this.props.ghosts.some(g => g.evidence.some(ge => ge === e.name)))
+        if (missingEvidence.length === 0) {
+            return (
+                <p>All evidence collected</p>
+            )
+        }
+        return (
+            <div className="columns is-mobile is-multiline is-centered">
+                {missingEvidence.map((e) => {
+                    return (
+                        <div className="column is-4-mobile has-text-centered">
+                            <span className="tag is-medium">{e.name}</span>
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
+
     render() {
         const nonSelectedEvidence = this.props.evidence.filter(e => !e.selected && !e.rejected)
         if (nonSelectedEvidence.length === this.props.evidence.length) {
             return ""
         }
-        const missingEvidence = nonSelectedEvidence.filter(e => this.props.ghosts.some(g => g.evidence.some(ge => ge === e.name)))
         return (
             <div className="my-6">
                 <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Missing Evidence</h2>
-                <div className="columns is-mobile is-multiline is-centered">
-                    {missingEvidence.map((e) => {
-                        return (
-                            <div className="column is-4-mobile has-text-centered">
-                                <span className="tag is-medium">{e.name}</span>
-                            </div>
-                        )
-                    })}
-                </div>
+                {this.renderMissingEvidence(nonSelectedEvidence)}
             </div>
         );
     }

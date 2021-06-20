@@ -188,11 +188,11 @@ class MissingEvidence extends Component {
         return (
             <div className="my-6">
                 <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Missing Evidence</h2>
-                <div className="columns is-multiline">
+                <div className="columns is-mobile is-multiline is-centered">
                     {missingEvidence.map((e) => {
                         return (
-                            <div key={e.name} className="column is-6">
-                                <p>{e.name}</p>
+                            <div className="column is-4-mobile has-text-centered">
+                                <span className="tag is-medium">{e.name}</span>
                             </div>
                         )
                     })}

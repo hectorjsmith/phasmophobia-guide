@@ -1,0 +1,14 @@
+@import 'bulmaswatch/cyborg/bulmaswatch.scss';
+
+.tag {
+  border-bottom: $dark solid 5px;
+  border-top: $dark solid 5px;
+}
+
+.tag.is-selected {
+  border-bottom: $success solid 5px;
+}
+
+.has-letter-spacing {
+  letter-spacing: 3px;
+}

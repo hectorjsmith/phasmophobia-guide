@@ -143,7 +143,7 @@ class LeftColumn extends Component {
         let selectionCount = selectedEvidenceCount + rejectedEvidenceCount
         return (
             <div>
-                <h2 className="subtitle has-text-centered">Observations</h2>
+                <h2 className="mb-5 has-text-centered is-size-5 is-uppercase has-letter-spacing">Observations</h2>
 
                 {this.props.evidence.map((evidence) => {
                     return <ObservationToggle key={evidence.name} evidence={evidence} onToggle={this.props.onEvidenceToggle} />
@@ -166,18 +166,12 @@ class RightColumn extends Component {
     render() {
         return (
             <div className="has-text-centered">
-                <h2 className="subtitle">Guide</h2>
+                <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Ghosts</h2>
 
-                <table className="table is-striped is-fullwidth">
-                    <thead>
-                        <GhostTableHeader />
-                    </thead>
-                    <tbody>
-                        {this.props.ghosts.map((ghost) => {
-                            return <GhostTableRow key={ghost.name} evidence={this.props.evidence} ghost={ghost} />
-                        })}
-                    </tbody>
-                </table>
+                {this.props.ghosts.map((ghost) => {
+                    return <GhostTableRow key={ghost.name} evidence={this.props.evidence} ghost={ghost} />
+                })}
+
                 <MissingEvidence evidence={this.props.evidence} ghosts={this.props.ghosts} />
             </div>
         )
@@ -193,7 +187,7 @@ class MissingEvidence extends Component {
         const missingEvidence = nonSelectedEvidence.filter(e => this.props.ghosts.some(g => g.evidence.some(ge => ge === e.name)))
         return (
             <div className="my-6">
-                <h2 className="subtitle">Missing Evidence</h2>
+                <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Missing Evidence</h2>
                 <div className="columns is-multiline">
                     {missingEvidence.map((e) => {
                         return (
@@ -208,49 +202,34 @@ class MissingEvidence extends Component {
     }
 }
 
-class GhostTableHeader extends Component {
-    render() {
-        return (
-            <tr>
-                <th>Name</th>
-                <th/>
-                <th/>
-                <th/>
-            </tr>
-        )
-    }
-}
-
 class GhostTableRow extends Component {
-    evidenceMarker(evidence) {
-        const isSelected = this.props.evidence.filter(e => e.selected).some(e => e.name === evidence)
-        if (isSelected) {
-            return (
-                <span className="icon has-text-success pull-right">
-                    <i className="fa fa-check" />
-                </span>
-            )
-        }
-        return ""
+    isEvidenceSelected(evidence) {
+        return this.props.evidence.filter(e => e.selected).some(e => e.name === evidence)
     }
 
     render() {
         return (
-            <tr>
-                <td>
-                    {this.props.ghost.name}
-                    <a className="icon has-text-info pull-right" onClick={console.log} href={`#${this.props.ghost.name}`}>
-                        <i className="fa fa-info-circle" />
-                    </a>
-                </td>
-                {this.props.ghost.evidence.map((evidence) => {
-                    return (
-                        <td key={evidence}>
-                            {evidence}
-                            {this.evidenceMarker(evidence)}
-                        </td>)
-                })}
-            </tr>
+            <div>
+                <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
+                    <div className="column is-4-desktop is-12-mobile">
+                        <p className="is-uppercase has-text-weight-light has-letter-spacing">
+                            <a className="icon has-text-info mx-4" onClick={console.log} href={`#${this.props.ghost.name}`}>
+                                <i className="fa fa-info-circle" />
+                            </a>
+                            {this.props.ghost.name}
+                        </p>
+                    </div>
+                    {this.props.ghost.evidence.map((e) => {
+                        return (
+                            <div className="column is-4-mobile has-text-centered">
+                                <span className={"tag is-medium" + (this.isEvidenceSelected(e) ? " is-selected" : "")}>{e}</span>
+                            </div>
+                        )
+                    })}
+                </div>
+                <hr className="my-3" />
+            </div>
+
         )
     }
 }

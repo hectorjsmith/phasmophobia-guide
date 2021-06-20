@@ -4,13 +4,15 @@ export default class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedGhost: "",
+            selectedGhost: null,
             evidence: this.props.evidence,
             possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
         }
 
         this.onEvidenceToggle = this.onEvidenceToggle.bind(this)
         this.onEvidenceReset = this.onEvidenceReset.bind(this)
+        this.onShowModal = this.onShowModal.bind(this)
+        this.onCloseModal = this.onCloseModal.bind(this)
     }
 
     calcPossibleGhosts(evidence) {
@@ -66,18 +68,30 @@ export default class App extends Component {
         })
     }
 
+    onShowModal(ghost) {
+        this.setState({selectedGhost: ghost})
+    }
+
+    onCloseModal() {
+        this.setState({selectedGhost: null})
+    }
+
     render() {
         return (
             <div className="container">
                 <TopNav />
-                { this.state.selectedGhost !== "" ? <GhostInfoModal ghost={this.state.selectedGhost} /> : "" }
+                { this.state.selectedGhost != null ? <GhostInfoModal ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
 
                 <div className="columns">
                     <div className="column is-4">
-                        <LeftColumn evidence={this.state.evidence} onEvidenceToggle={this.onEvidenceToggle} onEvidenceReset={this.onEvidenceReset} />
+                        <LeftColumn evidence={this.state.evidence}
+                                    onEvidenceToggle={this.onEvidenceToggle}
+                                    onEvidenceReset={this.onEvidenceReset} />
                     </div>
                     <div className="column is-8">
-                        <RightColumn evidence={this.state.evidence} ghosts={this.state.possibleGhosts} />
+                        <RightColumn evidence={this.state.evidence}
+                                     ghosts={this.state.possibleGhosts}
+                                     onShowModal={this.onShowModal}/>
                     </div>
                 </div>
             </div>
@@ -87,28 +101,46 @@ export default class App extends Component {
 
 class GhostInfoModal extends Component {
     render() {
-        const evidence = ["Fingerprints", "Spirit Box", "Ghost Writing"]
         return (
             <div className="modal is-active">
-                <div className="modal-background" />
+                <div className="modal-background" onClick={this.props.onCloseModal} />
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">{this.props.ghost}</p>
-                        <button className="delete" aria-label="close" />
+                        <p className="modal-card-title">{this.props.ghost.name}</p>
+                        <button className="delete" aria-label="close" onClick={this.props.onCloseModal} />
                     </header>
-                    <section className="modal-card-body">
-                        <p>Some content about the spirit</p>
-
+                    <section className="modal-card-body has-text-centered">
+                        <h2 className="is-size-5 is-uppercase has-letter-spacing">Description</h2>
+                        <p>(TODO)</p>
                         <div className="my-5 columns">
-                            {evidence.map((e) => {
+                            <div className="column is-6-mobile">
+                                <h2 className="is-size-6 is-uppercase has-letter-spacing">Strengths</h2>
+                                <p>(TODO)</p>
+                            </div>
+                            <div className="column is-6-mobile">
+                                <h2 className="is-size-6 is-uppercase has-letter-spacing">Weaknesses</h2>
+                                <p>(TODO)</p>
+                            </div>
+                        </div>
+                        <h2 className="has-text-centered is-size-5 is-uppercase has-letter-spacing">Evidence</h2>
+                        <div className="my-5 columns">
+                            {this.props.ghost.evidence.map((e) => {
                                 return (
-                                    <div key={e} className="column has-text-centered">
-                                        <p>{e}</p>
-                                        { e.length > 10 ? "X" : "" }
+                                    <div key={e} className="column is-4-mobile has-text-centered">
+                                        <span className="tag is-medium">{e}</span>
                                     </div>
                                 )
                             })}
                         </div>
+                        <a className="button is-outlined is-info"
+                           href="https://example.com"
+                           target="_blank"
+                           rel="noreferrer">
+                            <span className="icon mr-3">
+                                <i className="fa fa-book" />
+                            </span>
+                            wiki
+                        </a>
                     </section>
                 </div>
             </div>
@@ -175,7 +207,8 @@ class RightColumn extends Component {
                 {ghosts.map((ghost) => {
                     return <GhostTableRow key={ghost.name}
                                           evidence={this.props.evidence}
-                                          ghost={ghost} />
+                                          ghost={ghost}
+                                          onShowModal={this.props.onShowModal} />
                 })}
             </div>
         )
@@ -205,7 +238,7 @@ class MissingEvidence extends Component {
             <div className="columns is-mobile is-multiline is-centered">
                 {missingEvidence.map((e) => {
                     return (
-                        <div className="column is-4-mobile has-text-centered">
+                        <div key={e.name} className="column is-4-mobile has-text-centered">
                             <span className="tag is-medium">{e.name}</span>
                         </div>
                     )
@@ -239,7 +272,7 @@ class GhostTableRow extends Component {
                 <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
                     <div className="column is-4-desktop is-12-mobile">
                         <p className="is-uppercase has-text-weight-light has-letter-spacing">
-                            <a className="icon has-text-info mx-4" onClick={console.log} href={`#${this.props.ghost.name}`}>
+                            <a className="icon has-text-info mx-4" onClick={() => this.props.onShowModal(this.props.ghost)} href={`#${this.props.ghost.name}`}>
                                 <i className="fa fa-info-circle" />
                             </a>
                             {this.props.ghost.name}
@@ -247,7 +280,7 @@ class GhostTableRow extends Component {
                     </div>
                     {this.props.ghost.evidence.map((e) => {
                         return (
-                            <div className="column is-4-mobile has-text-centered">
+                            <div key={e} className="column is-4-mobile has-text-centered">
                                 <span className={"tag is-medium" + (this.isEvidenceSelected(e) ? " is-selected" : "")}>{e}</span>
                             </div>
                         )

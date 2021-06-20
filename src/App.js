@@ -14,9 +14,20 @@ export default class App extends Component {
     }
 
     calcPossibleGhosts(evidence) {
+        let selectedEvidence = evidence.filter(e => e.selected)
+        let rejectedEvidence = evidence.filter(e => e.rejected)
+
+        if (selectedEvidence.length === 0 && rejectedEvidence.length === 0) {
+            return this.props.ghosts
+        }
+
         return this.props.ghosts.filter(ghost => {
-            let selectedEvidence = evidence.filter(e => e.selected)
-            return selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
+            let ghostHasSelectedEvidence = selectedEvidence.length === 0
+                || selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
+            let ghostHasRejectedEvidence = rejectedEvidence.length > 0
+                && rejectedEvidence.some(rejected => ghost.evidence.some(ghostEvidence => ghostEvidence === rejected.name))
+
+            return ghostHasSelectedEvidence && !ghostHasRejectedEvidence
         })
     }
 
@@ -27,10 +38,26 @@ export default class App extends Component {
         })
     }
 
-    onEvidenceToggle(evidence) {
+    onEvidenceToggle(evidence, field) {
         // state update inspired by: https://stackoverflow.com/questions/43638938/updating-an-object-with-setstate-in-react
+        let selectedToggle = (el) => el.selected
+        let rejectedToggle = (el) => el.rejected
+
+        if (field === "selected") {
+            selectedToggle = (el) => !el.selected
+            rejectedToggle = () => false
+        }
+        if (field === "rejected") {
+            selectedToggle = () => false
+            rejectedToggle = (el) => !el.rejected
+        }
+
         const updatedEvidence = this.state.evidence.map(
-            el => el.name === evidence.name ? { ...el, selected: !el.selected }: el
+            el => el.name === evidence.name ? {
+                ...el,
+                selected: selectedToggle(el),
+                rejected: rejectedToggle(el)
+            }: el
         )
 
         this.setState({
@@ -149,7 +176,7 @@ class RightColumn extends Component {
 
 class MissingEvidence extends Component {
     render() {
-        const nonSelectedEvidence = this.props.evidence.filter(e => !e.selected)
+        const nonSelectedEvidence = this.props.evidence.filter(e => !e.selected && !e.rejected)
         if (nonSelectedEvidence.length === this.props.evidence.length) {
             return ""
         }
@@ -224,15 +251,16 @@ class ObservationToggle extends Component {
         this.onChange = this.onChange.bind(this)
     }
 
-    onChange() {
-        this.props.onToggle(this.props.evidence)
+    onChange(field) {
+        this.props.onToggle(this.props.evidence, field)
     }
 
     render() {
         return (
             <div className="has-text-centered">
                 <label className="checkbox">
-                    <input type="checkbox" onChange={this.onChange} checked={this.props.evidence.selected} />
+                    <input type="checkbox" onChange={() => this.onChange("selected")} checked={this.props.evidence.selected} />
+                    <input type="checkbox" onChange={() => this.onChange("rejected")} checked={this.props.evidence.rejected} />
                     <p>{this.props.evidence.name}</p>
                 </label>
             </div>

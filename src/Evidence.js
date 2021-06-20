@@ -2,13 +2,11 @@
 export default class Evidence {
     constructor(
         name,
-        selected
+        selected,
+        rejected,
     ) {
         this.name = name
         this.selected = selected
-    }
-
-    toggle = function() {
-        this.selected = !this.selected
+        this.rejected = rejected
     }
 }

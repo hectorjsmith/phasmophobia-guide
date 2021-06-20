@@ -203,11 +203,32 @@ class LeftColumn extends Component {
 }
 
 class RightColumn extends Component {
+    showSuccessMessage() {
+        if (this.props.ghosts.length === 1) {
+            return (
+                <div className="box has-text-centered">
+                    <span className="icon has-text-success">
+                        <i className="fa fa-2x fa-check" />
+                    </span>
+                    <p className="my-3 is-uppercase has-letter-spacing">Ghost identified!</p>
+                    <p>Don't forget to update the in-game journal.</p>
+                </div>
+            )
+        }
+        return ""
+    }
+
     renderGhostTable() {
         const ghosts = this.props.ghosts
         if (ghosts.length === 0) {
             return (
-                <p>No ghosts found for selected evidence</p>
+                <div className="box has-text-centered">
+                    <span className="icon has-text-warning">
+                        <i className="fa fa-2x fa-times" />
+                    </span>
+                    <p className="my-3 is-uppercase has-letter-spacing">None found</p>
+                    <p>No ghosts found that match selected evidence</p>
+                </div>
             )
         }
         return (
@@ -218,6 +239,7 @@ class RightColumn extends Component {
                                           ghost={ghost}
                                           onShowModal={this.props.onShowModal} />
                 })}
+                {this.showSuccessMessage()}
             </div>
         )
     }

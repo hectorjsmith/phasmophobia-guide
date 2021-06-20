@@ -16,12 +16,12 @@ const ghostOrb = "Ghost Orb"
 
 const collectEvidence = function() {
     return [
-        new Evidence(freezing, false),
-        new Evidence(emf, false),
-        new Evidence(ghostOrb, false),
-        new Evidence(spiritBox, false),
-        new Evidence(ghostWriting, false),
-        new Evidence(fingerprints, false),
+        new Evidence(freezing, false, false),
+        new Evidence(emf, false, false),
+        new Evidence(ghostOrb, false, false),
+        new Evidence(spiritBox, false, false),
+        new Evidence(ghostWriting, false, false),
+        new Evidence(fingerprints, false, false),
     ]
 }
 

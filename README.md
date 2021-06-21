@@ -1,6 +1,6 @@
-# Paranormal Guide
+# Phasmophobia - Paranormal Guide
 
-Simple javascript app to help identify ghosts in the Phasmophobia game.
+App to help identify ghosts in the Phasmophobia game.
 
 ## Available Scripts
 

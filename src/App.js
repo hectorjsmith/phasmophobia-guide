@@ -1,4 +1,5 @@
 import {Component} from "react";
+import headerImg from "./img/header.png";
 
 export default class App extends Component {
     constructor(props) {
@@ -375,9 +376,11 @@ class ObservationToggle extends Component {
 class TopNav extends Component {
     render() {
         return (
-            <div className="my-6 has-text-centered">
-                <h1 className="title">Paranormal Guide</h1>
-            </div>
+            <nav className="level">
+                <p className="level-item has-text-centered">
+                    <img src={headerImg} alt="Phasmophobia paranormal guide" style={{height: "150px"}} />
+                </p>
+            </nav>
         )
     }
 }

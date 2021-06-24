@@ -2,29 +2,56 @@
 
 App to help identify ghosts in the Phasmophobia game.
 
-## Available Scripts
+Access the app here: **[LINK](https://hectorjsmith.gitlab.io/phasmophobia-guide/)**
 
-In the project directory, you can run:
+![App screenshot](docs/screenshot.png)
 
-### `npm start`
+## How to use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**1.** Select which evidence you have identified (or rulled out)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Screenshot of observations section](docs/observations.png)
 
-### `npm test`
+**2.** See which ghosts could match that evidence
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*The table on the right will automatically update to only show ghosts that match those observations*
 
-### `npm run build`
+![Screenshot of ghosts section](docs/ghosts.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**3.** Look for the missing evidence
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Screenshot of missing evidence section](docs/missingEvidence.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*The missing evidence section allows you to rule out evidence that is incompatible*
+
+**4.** Get more information on each ghost
+
+*Click on the blue "i" next to the ghost name to get more info*
+
+![Screenshot of ghost info](docs/ghostInfo.png)
+
+## Running Locally
+
+Use the following commands to build and run the project locally. This assumes you have a working Javascript/ReactJS development environment.
+
+Note that while installation may require an internet connection to download dependencies, the app **is fully functional** when running locally or without an internet connection. This is because the app does not rely on any external files or data, all necessary data is available locally.
+
+**1.** `npm install`
+
+This installs all the necessary dependencies.
+
+**2.** `npm start`
+
+This runs the app locally. Once it has started, you can access the app at [http://localhost:3000/phasmophobia-guide](http://localhost:3000/phasmophobia-guide).
+
+## Disclaimers
+
+This project is a fun little weekend project to experiment building an app with Javascript and ReactJS. This project is in no way affiliated with the Phasmophobia game or its developers. All trademarks are the property of their respective owners.
+
+The font used for the page heading image is "October Crow" by Sinister Fonts ([link](https://www.dafont.com/october-crow.font)).
+
+This project also makes use of the following open-source tools:
+- [ReactJS](https://reactjs.org/)
+- [Bulma CSS](https://bulma.io/)
+
+The project is currently hosted using Gitlab Pages. While the app itself does not collect, process, or transmit any user information or make use of any cookies, Gitlab may have access to certain information about users of the app. Please refer to [Gitab's Privacy Policy](https://about.gitlab.com/privacy/) for more information.

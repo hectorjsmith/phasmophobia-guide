@@ -178,6 +178,21 @@ class LeftColumn extends Component {
         return ""
     }
 
+    showVersion() {
+        let version = process.env.REACT_APP_VERSION
+        let buildTime = process.env.REACT_APP_BUILD_TIME
+
+        if (version === "" && buildTime === "") {
+            return ""
+        }
+        return (
+            <div className="mt-4">
+                <p className="heading">{version}</p>
+                <p className="heading">{buildTime}</p>
+            </div>
+        )
+    }
+
     render() {
         let selectedEvidenceCount = this.countSelectedEvidence()
         let rejectedEvidenceCount = this.countRejectedEvidence()
@@ -197,6 +212,7 @@ class LeftColumn extends Component {
 
                     <p className="heading mb-3">({selectedEvidenceCount} of {this.maxSelected})</p>
                     {this.showWarning()}
+                    {this.showVersion()}
                 </div>
             </div>
         )

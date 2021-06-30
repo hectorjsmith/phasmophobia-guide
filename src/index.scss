@@ -16,3 +16,13 @@
 .has-hover-text-link-dark:hover {
   @extend .has-text-link-dark;
 }
+
+.content-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content-main {
+  flex: 1;
+}

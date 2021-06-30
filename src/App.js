@@ -189,6 +189,12 @@ class LeftColumn extends Component {
             <div className="mt-4">
                 <p className="heading">{version}</p>
                 <p className="heading">{buildTime}</p>
+                <p className="heading has-text-centered">
+                    <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
+                        <span className="icon mr-1"><i className="fa fa-gitlab"/></span>
+                        Gitlab
+                    </a>
+                </p>
             </div>
         )
     }

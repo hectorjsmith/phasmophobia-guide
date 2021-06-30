@@ -12,3 +12,7 @@
 .has-letter-spacing {
   letter-spacing: 3px;
 }
+
+.has-hover-text-link-dark:hover {
+  @extend .has-text-link-dark;
+}

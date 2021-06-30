@@ -79,21 +79,23 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>
-                <div className="container">
-                    <TopNav />
-                    { this.state.selectedGhost != null ? <GhostInfoModal evidence={this.state.evidence} ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
+            <div className="content-wrapper">
+                <div className="content-main">
+                    <div className="container">
+                        <TopNav />
+                        { this.state.selectedGhost != null ? <GhostInfoModal evidence={this.state.evidence} ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
 
-                    <div className="columns">
-                        <div className="column is-4">
-                            <LeftColumn evidence={this.state.evidence}
-                                        onEvidenceToggle={this.onEvidenceToggle}
-                                        onEvidenceReset={this.onEvidenceReset} />
-                        </div>
-                        <div className="column is-8">
-                            <RightColumn evidence={this.state.evidence}
-                                        ghosts={this.state.possibleGhosts}
-                                        onShowModal={this.onShowModal}/>
+                        <div className="columns">
+                            <div className="column is-4">
+                                <LeftColumn evidence={this.state.evidence}
+                                            onEvidenceToggle={this.onEvidenceToggle}
+                                            onEvidenceReset={this.onEvidenceReset} />
+                            </div>
+                            <div className="column is-8">
+                                <RightColumn evidence={this.state.evidence}
+                                            ghosts={this.state.possibleGhosts}
+                                            onShowModal={this.onShowModal}/>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -79,23 +79,59 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="container">
-                <TopNav />
-                { this.state.selectedGhost != null ? <GhostInfoModal evidence={this.state.evidence} ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
+            <div>
+                <div className="container">
+                    <TopNav />
+                    { this.state.selectedGhost != null ? <GhostInfoModal evidence={this.state.evidence} ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
 
-                <div className="columns">
-                    <div className="column is-4">
-                        <LeftColumn evidence={this.state.evidence}
-                                    onEvidenceToggle={this.onEvidenceToggle}
-                                    onEvidenceReset={this.onEvidenceReset} />
-                    </div>
-                    <div className="column is-8">
-                        <RightColumn evidence={this.state.evidence}
-                                     ghosts={this.state.possibleGhosts}
-                                     onShowModal={this.onShowModal}/>
+                    <div className="columns">
+                        <div className="column is-4">
+                            <LeftColumn evidence={this.state.evidence}
+                                        onEvidenceToggle={this.onEvidenceToggle}
+                                        onEvidenceReset={this.onEvidenceReset} />
+                        </div>
+                        <div className="column is-8">
+                            <RightColumn evidence={this.state.evidence}
+                                        ghosts={this.state.possibleGhosts}
+                                        onShowModal={this.onShowModal}/>
+                        </div>
                     </div>
                 </div>
+                <Footer />
             </div>
+        )
+    }
+}
+
+class Footer extends Component {
+    showVersion() {
+        let version = process.env.REACT_APP_VERSION
+        let buildTime = process.env.REACT_APP_BUILD_TIME
+
+        if ((version === undefined || version === "") && (buildTime === undefined || buildTime === "")) {
+            return ""
+        }
+        return (
+            <div className="columns is-mobile is-centered">
+            <div className="column is-2-desktop is-6-mobile heading">{version}</div>
+                <div className="column is-2-desktop is-6-mobile heading">built on: {buildTime}</div>
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <footer class="footer py-4">
+                <div class="content has-text-centered">
+                    <p className="heading has-text-centered my-2">
+                        <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
+                            <span className="icon"><i className="fa fa-gitlab"/></span>
+                            Code on Gitlab
+                        </a>
+                    </p>
+                    {this.showVersion()}
+                </div>
+            </footer>
         )
     }
 }
@@ -178,27 +214,6 @@ class LeftColumn extends Component {
         return ""
     }
 
-    showVersion() {
-        let version = process.env.REACT_APP_VERSION
-        let buildTime = process.env.REACT_APP_BUILD_TIME
-
-        if (version === "" && buildTime === "") {
-            return ""
-        }
-        return (
-            <div className="mt-4">
-                <p className="heading">{version}</p>
-                <p className="heading">{buildTime}</p>
-                <p className="heading has-text-centered">
-                    <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
-                        <span className="icon mr-1"><i className="fa fa-gitlab"/></span>
-                        Gitlab
-                    </a>
-                </p>
-            </div>
-        )
-    }
-
     render() {
         let selectedEvidenceCount = this.countSelectedEvidence()
         let rejectedEvidenceCount = this.countRejectedEvidence()
@@ -218,7 +233,6 @@ class LeftColumn extends Component {
 
                     <p className="heading mb-3">({selectedEvidenceCount} of {this.maxSelected})</p>
                     {this.showWarning()}
-                    {this.showVersion()}
                 </div>
             </div>
         )

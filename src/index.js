@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import 'bulmaswatch/cyborg/bulmaswatch.scss';
-import './index.scss';
-import './fa/scss/fork-awesome.scss';
-import Ghost from "./Ghost";
-import Evidence from "./Evidence"
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import 'bulmaswatch/cyborg/bulmaswatch.scss'
+import './index.scss'
+import './fa/scss/fork-awesome.scss'
+import Ghost from "./data/Ghost"
+import Evidence from "./data/Evidence"
 
 // Evidence name constants
 const fingerprints = "Fingerprints"

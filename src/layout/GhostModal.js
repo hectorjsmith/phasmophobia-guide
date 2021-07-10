@@ -8,7 +8,7 @@ export default class GhostInfoModal extends Component {
                 <div className="modal-background" onClick={this.props.onCloseModal} />
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title is-uppercase has-letter-spacing">{this.props.ghost.name}</p>
+                        <p className="modal-card-title is-uppercase has-letter-spacing has-crow-font">{this.props.ghost.name}</p>
                         <button className="delete" aria-label="close" onClick={this.props.onCloseModal} />
                     </header>
                     <section className="modal-card-body has-text-centered">

@@ -1,4 +1,8 @@
 @import 'bulmaswatch/cyborg/bulmaswatch.scss';
+@font-face {
+  font-family: 'October Crow';
+  src: url(./fonts/october_crow.ttf) format('truetype');
+}
 
 .tag {
   border-bottom: $dark solid 5px;
@@ -25,4 +29,9 @@
 
 .content-main {
   flex: 1;
+}
+
+.has-crow-font {
+  font-family: "October Crow";
+  font-size: 2.2rem !important;
 }

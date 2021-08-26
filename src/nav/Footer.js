@@ -18,8 +18,8 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <footer class="footer py-4">
-                <div class="content has-text-centered">
+            <footer className="footer py-4">
+                <div className="content has-text-centered">
                     <p className="heading has-text-centered my-2">
                         <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
                             <span className="icon"><i className="fa fa-gitlab"/></span>

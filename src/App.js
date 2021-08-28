@@ -92,13 +92,14 @@ export default class App extends Component {
                         <div className="columns">
                             <div className="column is-4">
                                 <LeftColumn evidence={this.state.evidence}
+                                            possibleGhosts={this.state.possibleGhosts}
                                             onEvidenceToggle={this.onEvidenceToggle}
                                             onEvidenceReset={this.onEvidenceReset} />
                             </div>
                             <div className="column is-8">
                                 <RightColumn evidence={this.state.evidence}
-                                            ghosts={this.state.possibleGhosts}
-                                            onShowModal={this.onShowModal}/>
+                                             ghosts={this.state.possibleGhosts}
+                                             onShowModal={this.onShowModal}/>
                             </div>
                         </div>
                     </div>

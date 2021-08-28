@@ -1,4 +1,5 @@
 import {Component} from "react"
+import { compareStringsAsc } from "../util/stringSort"
 import EvidenceTag from "./EvidenceTag"
 
 export default class GhostInfoModal extends Component {
@@ -34,7 +35,7 @@ export default class GhostInfoModal extends Component {
                         </div>
                         <h2 className="has-text-centered is-size-5 is-uppercase has-letter-spacing">Evidence</h2>
                         <div className="mb-3 mt-1 columns is-mobile is-vcentered">
-                            {this.props.ghost.evidence.map((e) => {
+                            {this.props.ghost.evidence.sort((a, b) => compareStringsAsc(a, b)).map((e) => {
                                 return (
                                     <div key={e} className="column is-4-mobile has-text-centered">
                                         <EvidenceTag evidenceList={this.props.evidence} evidence={e} />

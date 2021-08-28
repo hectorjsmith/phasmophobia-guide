@@ -1,4 +1,5 @@
 import {Component} from "react"
+import { compareStringsAsc } from "../util/stringSort"
 import EvidenceTag from "./EvidenceTag"
 
 export default class GhostTableRow extends Component {
@@ -14,7 +15,7 @@ export default class GhostTableRow extends Component {
                             </a>
                         </p>
                     </div>
-                    {this.props.ghost.evidence.map((e) => {
+                    {this.props.ghost.evidence.sort((a, b) => compareStringsAsc(a, b)).map((e) => {
                         return (
                             <div key={e} className="column is-4-mobile has-text-centered">
                                 <EvidenceTag evidenceList={this.props.evidence} evidence={e} />

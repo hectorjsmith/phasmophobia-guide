@@ -1,4 +1,5 @@
 import {Component} from "react"
+import { compareStringsAsc } from "../util/stringSort"
 import ObservationToggle from "./ObservationToggle"
 
 export default class LeftColumn extends Component {
@@ -30,7 +31,7 @@ export default class LeftColumn extends Component {
             <div>
                 <h2 className="mb-5 has-text-centered is-size-5 is-uppercase has-letter-spacing">Observations</h2>
 
-                {this.props.evidence.map((evidence) => {
+                {this.props.evidence.sort((a, b) => compareStringsAsc(a.name, b.name)).map((evidence) => {
                     return <ObservationToggle key={evidence.name} evidence={evidence} onToggle={this.props.onEvidenceToggle} />
                 })}
 

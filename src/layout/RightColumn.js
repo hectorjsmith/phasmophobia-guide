@@ -1,6 +1,7 @@
 import {Component} from "react"
 import MissingEvidence from "./MissingEvidence"
 import GhostTableRow from "./GhostTableRow"
+import { compareStringsAsc } from "../util/stringSort"
 
 export default class RightColumn extends Component {
     showSuccessMessage() {
@@ -33,7 +34,7 @@ export default class RightColumn extends Component {
         }
         return (
             <div>
-                {ghosts.map((ghost) => {
+                {ghosts.sort((a, b) => compareStringsAsc(a.name, b.name)).map((ghost) => {
                     return <GhostTableRow key={ghost.name}
                                           evidence={this.props.evidence}
                                           ghost={ghost}

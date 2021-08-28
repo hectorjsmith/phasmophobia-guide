@@ -32,7 +32,10 @@ export default class LeftColumn extends Component {
                 <h2 className="mb-5 has-text-centered is-size-5 is-uppercase has-letter-spacing">Observations</h2>
 
                 {this.props.evidence.sort((a, b) => compareStringsAsc(a.name, b.name)).map((evidence) => {
-                    return <ObservationToggle key={evidence.name} evidence={evidence} onToggle={this.props.onEvidenceToggle} />
+                    return <ObservationToggle key={evidence.name}
+                                              evidence={evidence}
+                                              possibleGhosts={this.props.possibleGhosts}
+                                              onToggle={this.props.onEvidenceToggle} />
                 })}
 
                 <div className="has-text-centered">

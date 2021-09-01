@@ -37,8 +37,7 @@ export default class RightColumn extends Component {
                 {ghosts.sort((a, b) => compareStringsAsc(a.name, b.name)).map((ghost) => {
                     return <GhostTableRow key={ghost.name}
                                           evidence={this.props.evidence}
-                                          ghost={ghost}
-                                          onShowModal={this.props.onShowModal} />
+                                          ghost={ghost} />
                 })}
                 {this.showSuccessMessage()}
             </div>

@@ -3,21 +3,17 @@ import Footer from "./nav/Footer"
 import TopNav from "./nav/Header"
 import LeftColumn from "./layout/LeftColumn"
 import RightColumn from "./layout/RightColumn"
-import GhostInfoModal from "./layout/GhostModal"
 
 export default class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedGhost: null,
             evidence: this.props.evidence,
             possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
         }
 
         this.onEvidenceToggle = this.onEvidenceToggle.bind(this)
         this.onEvidenceReset = this.onEvidenceReset.bind(this)
-        this.onShowModal = this.onShowModal.bind(this)
-        this.onCloseModal = this.onCloseModal.bind(this)
     }
 
     calcPossibleGhosts(evidence) {
@@ -73,22 +69,12 @@ export default class App extends Component {
         })
     }
 
-    onShowModal(ghost) {
-        this.setState({selectedGhost: ghost})
-    }
-
-    onCloseModal() {
-        this.setState({selectedGhost: null})
-    }
-
     render() {
         return (
             <div className="content-wrapper">
                 <div className="content-main">
                     <div className="container">
                         <TopNav />
-                        { this.state.selectedGhost != null ? <GhostInfoModal evidence={this.state.evidence} ghost={this.state.selectedGhost} onCloseModal={this.onCloseModal} /> : "" }
-
                         <div className="columns">
                             <div className="column is-4">
                                 <LeftColumn evidence={this.state.evidence}
@@ -98,8 +84,7 @@ export default class App extends Component {
                             </div>
                             <div className="column is-8">
                                 <RightColumn evidence={this.state.evidence}
-                                             ghosts={this.state.possibleGhosts}
-                                             onShowModal={this.onShowModal}/>
+                                             ghosts={this.state.possibleGhosts}/>
                             </div>
                         </div>
                     </div>

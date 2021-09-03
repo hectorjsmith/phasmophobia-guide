@@ -18,13 +18,14 @@ export default class GhostTableRow extends Component {
         return (
             <div>
                 <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
-                    { /* eslint-disable jsx-a11y/anchor-is-valid */ }
-                    <a className="column is-narrow-desktop is-1-mobile" onClick={this.toggleRowExpanded}>
-                    { /* eslint-enable jsx-a11y/anchor-is-valid */ }
-                        <i className="icon has-text-info ml-4">
-                            <i className={"fa" + (this.state.expanded ? " fa-chevron-up" : " fa-chevron-down")} />
-                        </i>
-                    </a>
+                    <div className="column is-narrow-desktop is-1-mobile">
+                        <button className={"button" + (this.state.expanded ? " is-dark" : "")}
+                                onClick={this.toggleRowExpanded}>
+                            <span className="icon is-small">
+                                <i className={"fa" + (this.state.expanded ? " fa-minus" : " fa-plus")} />
+                            </span>
+                        </button>
+                    </div>
                     <div className="column is-11-mobile is-3-desktop">
                         <p className="is-uppercase has-text-weight-light has-letter-spacing">
                             {this.props.ghost.name}
@@ -38,10 +39,10 @@ export default class GhostTableRow extends Component {
                         )
                     })}
                 </div>
-                <div hidden={!this.state.expanded} className="mt-4 mx-4">
+                <div hidden={!this.state.expanded} className="mt-4 mx-4 ghost-info-accordion-content">
                     <h2 className="is-size-5 is-uppercase has-letter-spacing">Description</h2>
-                    <p>{this.props.ghost.description}</p>
-                    <div className="my-5 columns is-mobile is-vcentered">
+                    <p className="ml-4">{this.props.ghost.description}</p>
+                    <div className="my-5 ml-4 columns is-mobile is-vcentered">
                         <div className="column is-6-mobile">
                             <h2 className="is-size-6 is-uppercase has-letter-spacing">Strengths</h2>
                             {this.props.ghost.strengths.map((s) => {

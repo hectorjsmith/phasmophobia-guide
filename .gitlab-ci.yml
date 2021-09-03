@@ -5,9 +5,30 @@ stages:
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
-react/build:
+build/preview:
   image: node:latest
   stage: build
+  except:
+    - main
+  environment:
+    name: "preview/$CI_COMMIT_REF_NAME"
+    url: "https://$CI_PROJECT_NAMESPACE.gitlab.io/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build/index.html"
+  variables:
+    PUBLIC_URL: "/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build"
+  before_script:
+    - make npm/install
+  script:
+    - make npm/build
+  artifacts:
+    paths:
+      - build/*
+    expire_in: 7 days
+
+build/publish:
+  image: node:latest
+  stage: build
+  only:
+    - main
   before_script:
     - make npm/install
   script:

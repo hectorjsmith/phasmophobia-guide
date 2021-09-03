@@ -25,7 +25,13 @@ export default class TopNav extends Component {
                 <p className="level-item has-text-centered">
                     <img src={headerImg} alt="Phasmophobia paranormal guide" style={{height: "150px"}} />
                 </p>
-                <button onClick={this.props.openSyncModal} className={"button" + (this.state.syncing ? " is-success" : " is-dark")}>Sync</button>
+                <button className={"button is-outlined" + (this.state.syncing ? " is-success" : "")}
+                        onClick={this.props.openSyncModal}>
+                    <span className="icon mr-3">
+                        <i className={"fa fa-sync" + (this.state.syncing ? " fa-spin" : "")} />
+                    </span>
+                    Sync
+                </button>
             </nav>
         )
     }

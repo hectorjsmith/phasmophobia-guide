@@ -15,12 +15,21 @@ export default class SyncModal extends Component {
         this.stopSync = this.stopSync.bind(this)
     }
 
+    componentDidMount() {
+        syncService.registerOnConnectFunc(
+            () => this.setState({syncActive: true})
+        )
+        syncService.registerOnCloseFunc(
+            () => this.setState({syncActive: false})
+        )
+    }
+
     startSync() {
-        this.setState({syncActive: true})
+        syncService.connect(this.state.url, this.state.roomId)
     }
 
     stopSync() {
-        this.setState({syncActive: false})
+        syncService.disconnect()
     }
 
     render() {
@@ -31,7 +40,7 @@ export default class SyncModal extends Component {
                 <div className="modal-background" onClick={this.props.closeSyncModal} />
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title is-uppercase has-letter-spacing has-crow-font">Sync</p>
+                        <p className="modal-card-title is-uppercase has-letter-spacing">Sync</p>
                         <button className="delete" aria-label="close" onClick={this.props.closeSyncModal} />
                     </header>
                     <section className="modal-card-body">

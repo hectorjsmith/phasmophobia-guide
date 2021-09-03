@@ -22,7 +22,7 @@ export default class GhostTableRow extends Component {
                         <button className={"button" + (this.state.expanded ? " is-dark" : "")}
                                 onClick={this.toggleRowExpanded}>
                             <span className="icon is-small">
-                                <i className={"fa" + (this.state.expanded ? " fa-minus" : " fa-plus")} />
+                                <i className={"fa" + (this.state.expanded ? " fa-chevron-up" : " fa-chevron-down")} />
                             </span>
                         </button>
                     </div>
@@ -39,7 +39,7 @@ export default class GhostTableRow extends Component {
                         )
                     })}
                 </div>
-                <div hidden={!this.state.expanded} className="mt-4 mx-4 ghost-info-accordion-content">
+                <div hidden={!this.state.expanded} className="mt-4 mb-5 mx-4 ghost-info-accordion-content">
                     <h2 className="is-size-5 is-uppercase has-letter-spacing">Description</h2>
                     <p className="ml-4">{this.props.ghost.description}</p>
                     <div className="my-5 ml-4 columns is-mobile is-vcentered">

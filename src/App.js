@@ -12,12 +12,18 @@ export default class App extends Component {
         this.state = {
             evidence: this.props.evidence,
             syncModalOpen: false,
+            syncOptions: {
+                consent: false,
+                url: "",
+                roomId: "",
+            },
             version: 0,
             possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
         }
 
         this.onEvidenceToggle = this.onEvidenceToggle.bind(this)
         this.onEvidenceReset = this.onEvidenceReset.bind(this)
+        this.setSyncOptions = this.setSyncOptions.bind(this)
         this.onSyncStart = this.onSyncStart.bind(this)
         this.onSyncUpdate = this.onSyncUpdate.bind(this)
         this.openSyncModal = this.openSyncModal.bind(this)
@@ -27,6 +33,11 @@ export default class App extends Component {
     componentDidMount() {
         syncService.registerOnConnectFunc(this.onSyncStart)
         syncService.registerOnUpdateFunc(this.onSyncUpdate)
+    }
+
+    setSyncOptions(options) {
+        console.log("updating options", options)
+        this.setState({syncOptions: options})
     }
 
     openSyncModal() {
@@ -126,7 +137,7 @@ export default class App extends Component {
                     <div className="container">
                         <TopNav openSyncModal={this.openSyncModal} />
 
-                        { this.state.syncModalOpen === true ? <SyncModal closeSyncModal={this.closeSyncModal} /> : "" }
+                        { this.state.syncModalOpen === true ? <SyncModal syncOptions={this.state.syncOptions} setSyncOptions={this.setSyncOptions} closeSyncModal={this.closeSyncModal} /> : "" }
 
                         <div className="columns">
                             <div className="column is-4">

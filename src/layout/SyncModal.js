@@ -5,9 +5,7 @@ export default class SyncModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            url: "",
-            roomId: "",
-            consent: false,
+            syncOptions: props.syncOptions,
             syncActive: syncService.isConnected(),
         }
 
@@ -25,15 +23,24 @@ export default class SyncModal extends Component {
     }
 
     startSync() {
-        syncService.connect(this.state.url, this.state.roomId)
+        const opts = this.state.syncOptions
+        syncService.connect(opts.url, opts.roomId)
+        this.props.setSyncOptions(opts)
     }
 
     stopSync() {
         syncService.disconnect()
     }
 
+    updateSyncOptions(value, field) {
+        const newState = {...this.state.syncOptions}
+        newState[field] = value
+        this.setState({syncOptions: newState})
+    }
+
     render() {
-        const startSyncDisabled = !this.state.consent || this.state.url === "" || this.state.roomId === ""
+        const opts = this.state.syncOptions
+        const startSyncDisabled = !opts.consent || opts.url === "" || opts.roomId === ""
 
         return (
             <div className="modal is-active">
@@ -49,8 +56,8 @@ export default class SyncModal extends Component {
                             <div className="control">
                                 <input className="input"
                                        type="text"
-                                       defaultValue={this.state.url}
-                                       onChange={e => this.setState({url: e.target.value})}
+                                       defaultValue={opts.url}
+                                       onChange={e => this.updateSyncOptions(e.target.value, "url")}
                                        placeholder="pg-sync.hjs.dev" />
                             </div>
                         </div>
@@ -59,8 +66,8 @@ export default class SyncModal extends Component {
                             <div className="control">
                                 <input className="input"
                                        type="text"
-                                       defaultValue={this.state.roomId}
-                                       onChange={e => this.setState({roomId: e.target.value})}
+                                       defaultValue={opts.roomId}
+                                       onChange={e => this.updateSyncOptions(e.target.value, "roomId")}
                                        placeholder="000000" />
                             </div>
                         </div>
@@ -69,8 +76,8 @@ export default class SyncModal extends Component {
                             <div className="control">
                                 <label className="checkbox">
                                     <input type="checkbox"
-                                           checked={this.state.consent}
-                                           onChange={e => this.setState({consent: e.target.checked})}/>
+                                           checked={opts.consent}
+                                           onChange={e => this.updateSyncOptions(e.target.checked, "consent")}/>
                                     <span className="ml-3">I agree to connect to the server listed above</span>
                                 </label>
                             </div>

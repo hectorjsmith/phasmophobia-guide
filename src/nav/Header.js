@@ -30,7 +30,7 @@ export default class TopNav extends Component {
                     <span className="icon mr-3">
                         <i className={"fa fa-sync" + (this.state.syncing ? " fa-spin" : "")} />
                     </span>
-                    Sync
+                    {this.state.syncing ? "Connected" : "Sync"}
                 </button>
             </nav>
         )

@@ -26,6 +26,7 @@ export default class SyncModal extends Component {
         const opts = this.state.syncOptions
         syncService.connect(opts.url, opts.roomId)
         this.props.setSyncOptions(opts)
+        this.props.closeSyncModal()
     }
 
     stopSync() {
@@ -36,6 +37,22 @@ export default class SyncModal extends Component {
         const newState = {...this.state.syncOptions}
         newState[field] = value
         this.setState({syncOptions: newState})
+    }
+
+    renderSyncRunning() {
+        if (this.state.syncActive) {
+            return (
+                <div className="my-5">
+                    <p className="is-size-7 has-text-centered">
+                    <span className="icon mr-3">
+                        <i className="fa fa-sync fa-spin" />
+                    </span>
+                    <span className="is-uppercase has-letter-spacing">Sync is running ...</span>
+                    </p>
+                </div>
+            )
+        }
+        return ""
     }
 
     render() {
@@ -57,6 +74,7 @@ export default class SyncModal extends Component {
                                 <input className="input"
                                        type="text"
                                        defaultValue={opts.url}
+                                       disabled={this.state.syncActive}
                                        onChange={e => this.updateSyncOptions(e.target.value, "url")}
                                        placeholder="pg-sync.hjs.dev" />
                             </div>
@@ -67,6 +85,7 @@ export default class SyncModal extends Component {
                                 <input className="input"
                                        type="text"
                                        defaultValue={opts.roomId}
+                                       disabled={this.state.syncActive}
                                        onChange={e => this.updateSyncOptions(e.target.value, "roomId")}
                                        placeholder="000000" />
                             </div>
@@ -77,18 +96,20 @@ export default class SyncModal extends Component {
                                 <label className="checkbox">
                                     <input type="checkbox"
                                            checked={opts.consent}
+                                           disabled={this.state.syncActive}
                                            onChange={e => this.updateSyncOptions(e.target.checked, "consent")}/>
                                     <span className="ml-3">I agree to connect to the server listed above</span>
                                 </label>
                             </div>
                         </div>
 
+                        {this.renderSyncRunning()}
                         <div className="field is-grouped is-grouped-centered">
                             <div className="control" hidden={this.state.syncActive}>
                                 <button disabled={startSyncDisabled} className="button is-success" onClick={this.startSync}>Start Sync</button>
                             </div>
                             <div className="control" hidden={!this.state.syncActive}>
-                                <button className="button is-warning" onClick={this.stopSync}>Stop Sync</button>
+                                <button className="button is-danger" onClick={this.stopSync}>Stop Sync</button>
                             </div>
                             <div className="control">
                                 <button className="button is-light" onClick={this.props.closeSyncModal}>Close</button>

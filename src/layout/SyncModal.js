@@ -64,7 +64,12 @@ export default class SyncModal extends Component {
                 <div className="modal-background" onClick={this.props.closeSyncModal} />
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title is-uppercase has-letter-spacing">Sync</p>
+                        <p className="modal-card-title is-uppercase has-letter-spacing">
+                            <span className="icon mr-3">
+                                <i className="fa fa-exchange" />
+                            </span>
+                            Sync
+                        </p>
                         <button className="delete" aria-label="close" onClick={this.props.closeSyncModal} />
                     </header>
                     <section className="modal-card-body">
@@ -106,10 +111,10 @@ export default class SyncModal extends Component {
                         {this.renderSyncRunning()}
                         <div className="field is-grouped is-grouped-centered">
                             <div className="control" hidden={this.state.syncActive}>
-                                <button disabled={startSyncDisabled} className="button is-success" onClick={this.startSync}>Start Sync</button>
+                                <button disabled={startSyncDisabled} className="button is-success" onClick={this.startSync}>Connect</button>
                             </div>
                             <div className="control" hidden={!this.state.syncActive}>
-                                <button className="button is-danger" onClick={this.stopSync}>Stop Sync</button>
+                                <button className="button is-danger" onClick={this.stopSync}>Disconnect</button>
                             </div>
                             <div className="control">
                                 <button className="button is-light" onClick={this.props.closeSyncModal}>Close</button>

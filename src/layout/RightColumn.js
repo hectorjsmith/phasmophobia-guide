@@ -1,5 +1,4 @@
 import {Component} from "react"
-import MissingEvidence from "./MissingEvidence"
 import GhostTableRow from "./GhostTableRow"
 import { compareStringsAsc } from "../util/stringSort"
 
@@ -49,8 +48,6 @@ export default class RightColumn extends Component {
             <div className="has-text-centered">
                 <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Ghosts</h2>
                 {this.renderGhostTable()}
-
-                <MissingEvidence evidence={this.props.evidence} ghosts={this.props.ghosts} />
             </div>
         )
     }

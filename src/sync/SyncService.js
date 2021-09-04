@@ -11,7 +11,7 @@ class SyncService {
     }
 
     connect(url, roomId) {
-        let fullUrl = `ws://${url}/sync/${roomId}`
+        let fullUrl = `wss://${url}/sync/${roomId}`
         console.log(`[sock] connecting to '${fullUrl}'`)
         this.socket = new WebSocket(fullUrl);
 

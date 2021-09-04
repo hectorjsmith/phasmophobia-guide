@@ -2,11 +2,15 @@ import {syncService} from "../sync/SyncService";
 import {Component} from "react";
 
 export default class SyncModal extends Component {
+    disconnected = 0
+    connecting = 1
+    connected = 2
+
     constructor(props) {
         super(props);
         this.state = {
             syncOptions: props.syncOptions,
-            syncActive: syncService.isConnected(),
+            syncState: this.syncStateFromSyncService(),
         }
 
         this.startSync = this.startSync.bind(this)
@@ -15,18 +19,25 @@ export default class SyncModal extends Component {
 
     componentDidMount() {
         syncService.registerOnConnectFunc(
-            () => this.setState({syncActive: true})
+            () => {
+                this.setState({syncState: this.syncStateFromSyncService()})
+                setTimeout(() => this.props.closeSyncModal(), 500);
+            }
         )
         syncService.registerOnCloseFunc(
-            () => this.setState({syncActive: false})
+            () => this.setState({syncState: this.syncStateFromSyncService()})
         )
     }
 
+    syncStateFromSyncService() {
+        return syncService.isConnected() ? this.connected : this.disconnected
+    }
+
     startSync() {
+        this.setState({syncState: this.connecting})
         const opts = this.state.syncOptions
         syncService.connect(opts.url, opts.roomId)
         this.props.setSyncOptions(opts)
-        this.props.closeSyncModal()
     }
 
     stopSync() {
@@ -40,7 +51,7 @@ export default class SyncModal extends Component {
     }
 
     renderSyncRunning() {
-        if (this.state.syncActive) {
+        if (this.state.syncState === this.connected) {
             return (
                 <div className="my-5">
                     <p className="is-size-7 has-text-centered">
@@ -55,9 +66,45 @@ export default class SyncModal extends Component {
         return ""
     }
 
-    render() {
+    renderConnectButton() {
         const opts = this.state.syncOptions
         const startSyncDisabled = !opts.consent || opts.url === "" || opts.roomId === ""
+        const syncDisconnected = this.state.syncState === this.disconnected
+        const syncConnecting = this.state.syncState === this.connecting
+
+        if (syncDisconnected) {
+            return (
+                <div className="control">
+                    <button disabled={startSyncDisabled}
+                            className="button is-success"
+                            onClick={this.startSync}>Connect</button>
+                </div>
+            )
+        }
+        if (syncConnecting) {
+            return (
+                <div className="control">
+                    <button disabled={true}
+                            className="button is-success">
+                        <span className="icon mr-3">
+                            <i className="fa fa-sync fa-spin" />
+                        </span>
+                        Connecting ...
+                    </button>
+                </div>
+            )
+        }
+        return (
+            <div className="control">
+                <button className="button is-danger"
+                        onClick={this.stopSync}>Disconnect</button>
+            </div>
+        )
+    }
+
+    render() {
+        const opts = this.state.syncOptions
+        const syncDisconnected = this.state.syncState === this.disconnected
 
         return (
             <div className="modal is-active">
@@ -79,7 +126,7 @@ export default class SyncModal extends Component {
                                 <input className="input"
                                        type="text"
                                        defaultValue={opts.url}
-                                       disabled={this.state.syncActive}
+                                       disabled={!syncDisconnected}
                                        onChange={e => this.updateSyncOptions(e.target.value, "url")}
                                        placeholder="pg-sync.hjs.dev" />
                             </div>
@@ -90,7 +137,7 @@ export default class SyncModal extends Component {
                                 <input className="input"
                                        type="text"
                                        defaultValue={opts.roomId}
-                                       disabled={this.state.syncActive}
+                                       disabled={!syncDisconnected}
                                        onChange={e => this.updateSyncOptions(e.target.value, "roomId")}
                                        placeholder="000000" />
                             </div>
@@ -101,7 +148,7 @@ export default class SyncModal extends Component {
                                 <label className="checkbox">
                                     <input type="checkbox"
                                            checked={opts.consent}
-                                           disabled={this.state.syncActive}
+                                           disabled={!syncDisconnected}
                                            onChange={e => this.updateSyncOptions(e.target.checked, "consent")}/>
                                     <span className="ml-3">I agree to connect to the server listed above</span>
                                 </label>
@@ -110,12 +157,7 @@ export default class SyncModal extends Component {
 
                         {this.renderSyncRunning()}
                         <div className="field is-grouped is-grouped-centered">
-                            <div className="control" hidden={this.state.syncActive}>
-                                <button disabled={startSyncDisabled} className="button is-success" onClick={this.startSync}>Connect</button>
-                            </div>
-                            <div className="control" hidden={!this.state.syncActive}>
-                                <button className="button is-danger" onClick={this.stopSync}>Disconnect</button>
-                            </div>
+                            {this.renderConnectButton()}
                             <div className="control">
                                 <button className="button is-light" onClick={this.props.closeSyncModal}>Close</button>
                             </div>

@@ -9,10 +9,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Banshee",
     "description": "A Banshee is a natural hunter and will attack anything. It has been known to stalk its prey one at a time until making its kill.",
     "weaknesses": [
-      "Banshees fear the Crucifix"
+      "Crucifix effectiveness is increased to 5m against one"
     ],
     "strengths": [
-      "A Banshee will focus on one player at a time"
+      "Will target only one player at a time."
     ]
   },
   {
@@ -25,10 +25,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Demon",
     "description": "A Demon is one of the worst Ghosts you can encounter. It has been known to attack without a reason.",
     "weaknesses": [
-      "Asking a Demon successful questions on the Ouija Board won't lower the user's sanity"
+      "Getting Ouija Board responses will lower sanity less"
     ],
     "strengths": [
-      "Demons are the most aggressive ghosts and will begin Hunts more often"
+      "Can initiate Hunts more often"
     ]
   },
   {
@@ -41,10 +41,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Goryo",
     "description": "Using a video camera is the only way to view a Goryo, when it passes through a DOTS projector",
     "weaknesses": [
-      "A Goryo will usually only show itself on camera if there are no people nearby"
+      "Never wanders far from its place of death"
     ],
     "strengths": [
-      "They are rarely seen far from their place of death"
+      "Can only be seen interacting with D.O.T.S. through a camera when nobody is nearby"
     ]
   },
   {
@@ -57,10 +57,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Hantu",
     "description": "A rare ghost that can be found in hot climates. They are known to attack more often in cold weather.",
     "weaknesses": [
-      "Hantu moves slower in warmer areas"
+      "Warmer areas slow the Hantu's movement"
     ],
     "strengths": [
-      "Hantu moves faster in colder areas"
+      "Lower temperatures allow the Hantu to move faster"
     ]
   },
   {
@@ -73,10 +73,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Jinn",
     "description": "A Jinn is a territorial Ghost that will attack when threatened. It also has been known to travel at significant speed.",
     "weaknesses": [
-      "Turning off the location's power source will prevent the Jinn from using its ability"
+      "Cannot use its ability if the site's fuse box is off"
     ],
     "strengths": [
-      "A Jinn will travel at a faster speed if its victim is far away"
+      "Travels at faster speeds if its victim is far away"
     ]
   },
   {
@@ -89,10 +89,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Mare",
     "description": "A Mare is the source of all nightmares, making it most powerful in the dark.",
     "weaknesses": [
-      "Turning the lights on will lower its chance to attack"
+      "Turning the lights on will reduce the chance of an attack"
     ],
     "strengths": [
-      "Increased chance to attack in the dark"
+      "Has an increased chance to attack in the dark"
     ]
   },
   {
@@ -105,10 +105,26 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Myling",
     "description": "A Myling is a very vocal and active ghost. They are rumoured to be quiet when hunting their prey.",
     "weaknesses": [
-      "A Myling is known to be quieter when hunting"
+      "Produces paranormal sounds more frequently"
     ],
     "strengths": [
-      "Mylings more frequently make paranormal sounds"
+      "Has quieter footsteps during a hunt"
+    ]
+  },
+  {
+    "name": "Obake",
+    "evidence": [
+      "EMF",
+      "Fingerprints",
+      "Ghost Orb"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/Obake",
+    "description": "Obake are terrifying shape-shifters, capable of taking on many forms. They have been seen taking on humanoid shapes to attract their prey.",
+    "weaknesses": [
+      "Sometimes leaves behind unique evidence"
+    ],
+    "strengths": [
+      "Rarely leaves a trace when interacting with the environment"
     ]
   },
   {
@@ -121,11 +137,26 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Oni",
     "description": "Onis are a cousin to the Demon and possess extreme strength. There have been rumors that they become more active around their prey.",
     "weaknesses": [
-      "More active when people nearby",
-      "Throws objects at great speed"
+      "An Oni's increased activity makes them easier to find"
     ],
     "strengths": [
-      "Being more active will make the Oni easier to find and identify"
+      "Increased activity if there are multiple players nearby"
+    ]
+  },
+  {
+    "name": "Onryo",
+    "evidence": [
+      "Ghost Orb",
+      "Spirit Box",
+      "Freezing"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/Onryo",
+    "description": "The Onryo is often referred to as 'The Wrathful Spirit.' It steals souls from dying victims' bodies to seek revenge. This ghost has been known to fear any form of fire, and will do anything to be far from it.",
+    "weaknesses": [
+      "When threatened, this ghost will be less likely to hunt"
+    ],
+    "strengths": [
+      "Extinguishing a flame can cause an Onryo to attack"
     ]
   },
   {
@@ -138,10 +169,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Phantom",
     "description": "A Phantom is a Ghost that can possess the living, most commonly summoned by a Ouija Board. It also induces fear into those around it.",
     "weaknesses": [
-      "Taking a photo of the Phantom will make it temporarily disappear"
+      "Taking a photo of the Phantom will cause it to briefly disappear"
     ],
     "strengths": [
-      "Looking at a Phantom will considerably drop your Sanity"
+      "Looking at a Phantom will lower the player's Sanity considerably"
     ]
   },
   {
@@ -154,11 +185,26 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Poltergeist",
     "description": "One of the most famous Ghosts, a Poltergeist, also known as a noisy ghost can manipulate objects around it to spread fear into it's victims.",
     "weaknesses": [
-      "Innefective in empty rooms"
+      "Becomes powerless with no throwables nearby"
     ],
     "strengths": [
-      "Can throw multiple objects at once",
-      "Can close multiple doors at once"
+      "Capable of throwing multiple objects at once"
+    ]
+  },
+  {
+    "name": "Raiju",
+    "evidence": [
+      "EMF",
+      "Ghost Orb",
+      "D.O.T.S. Projector"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/Raiju",
+    "description": "A Raiju is a demon that thrives on electrical current. While generally calm, they can become agitated when overwhelmed with power.",
+    "weaknesses": [
+      "Constantly disrupt electronic equipment"
+    ],
+    "strengths": [
+      "Moves faster near electrical devices"
     ]
   },
   {
@@ -171,10 +217,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Revenant",
     "description": "A Revenant is a slow but violent Ghost that will attack indiscriminantly. It has been rumored to travel at a significantly high speed when hunting.",
     "weaknesses": [
-      "Hiding from the Revenant will cause it to move at a significantly reduced speed"
+      "Without a target, the Revenant moves very slowly"
     ],
     "strengths": [
-      "A Revenant will travel significantly faster when hunting a victim"
+      "Can travel significantly faster if a player is spotted during a Hunt"
     ]
   },
   {
@@ -187,10 +233,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Shade",
     "description": "A Shade is known to be a Shy Ghost. There is evidence that a Shade will stop all paranormal activity if there are multiple people nearby.",
     "weaknesses": [
-      "A Shade will rarely start a Hunt when players are grouped together"
+      "Less likely to hunt if multiple people are nearby"
     ],
     "strengths": [
-      "As a shy ghost, a Shade will rarely perform actions in the presence of two or more people"
+      "Being shy makes it more difficult to locate and obtain evidence"
     ]
   },
   {
@@ -203,10 +249,26 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
     "description": "A Spirit is the most common Ghost you will come across however it is still very powerful and dangerous. They are usually discovered at one of their hunting grounds after an unexplained death.",
     "weaknesses": [
-      "Smudge sticks"
+      "Smudge Sticks are more effective, preventing a hunt for longer"
     ],
     "strengths": [
       "None"
+    ]
+  },
+  {
+    "name": "The Twins",
+    "evidence": [
+      "EMF",
+      "Freezing",
+      "Spirit Box"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Twins",
+    "description": "hese ghosts have been reported to mimic each other's actions. They alternate their attacks to confuse their prey.",
+    "weaknesses": [
+      "The Twins will often interact with the environment at the same time"
+    ],
+    "strengths": [
+      "Either Twin can be angered and initiate an attack on their prey"
     ]
   },
   {
@@ -219,10 +281,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Wraith",
     "description": "A Wraith is one of the most dangerous Ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.",
     "weaknesses": [
-      "Wraiths have a toxic reaction to Salt"
+      "Will become more active if it steps in salt"
     ],
     "strengths": [
-      "Wraiths almost never touch the ground"
+      "Does not leave UV Footprints after stepping in salt"
     ]
   },
   {
@@ -235,10 +297,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yokai",
     "description": "A common type of ghost that is attracted to human voices. They can usually be found haunting family homes.",
     "weaknesses": [
-      "While hunting, it can only hear voices close to it"
+      "Can only hear voices close to it during a Hunt"
     ],
     "strengths": [
-      "Talking near a Yokai will anger it and cause it to attack more often"
+      "Talking near the Yokai will anger it, increasing the chance to attack"
     ]
   },
   {
@@ -251,10 +313,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yurei",
     "description": "A Yurei is a Ghost that has returned to the physical world, usually for the purpose of revenge or hatred.",
     "weaknesses": [
-      "Using Smudge Sticks on the Yurei will cause it to not wander"
+      "Smudging the Yurei's Ghost Room will reduce how often it wanders"
     ],
     "strengths": [
-      "Yurei have been known to have a stronger effect on people's Sanity"
+      "Has a stronger effect on Sanity"
     ]
   }
 ]

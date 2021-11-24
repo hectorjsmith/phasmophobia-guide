@@ -1,6 +1,9 @@
 import {Component} from "react"
 
 export const ObservationToggle = ({possibleGhosts, evidence, setEvidence}) => {
+    console.log("ghosts", possibleGhosts)
+    console.log("evidence", evidence)
+    console.log("setter", setEvidence)
     const toggleSelect = () => {
         setEvidence({
             ...evidence,
@@ -29,7 +32,7 @@ export const ObservationToggle = ({possibleGhosts, evidence, setEvidence}) => {
                             </span>
                     </button>
 
-                    <button className={"button" + (this.props.evidence.selected ? " is-success" : "") + (matchingGhosts === 0 ? " is-dark" : "")}
+                    <button className={"button" + (evidence.selected ? " is-success" : "") + (matchingGhosts === 0 ? " is-dark" : "")}
                             onClick={toggleReject}>
                             <span className="icon is-small">
                                 <i className={"fa fa-check" + (matchingGhosts === 0 ? " has-text-dark" : "")} />
@@ -38,7 +41,7 @@ export const ObservationToggle = ({possibleGhosts, evidence, setEvidence}) => {
                 </div>
             </div>
             <div className="column is-mobile mt-1">
-                <p>{this.props.evidence.name}</p>
+                <p>{evidence.name}</p>
                 <p className="heading">{matchingGhosts} / {totalGhosts}</p>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import {App} from './App'
 import 'bulmaswatch/cyborg/bulmaswatch.scss'
 import './index.scss'
 import './fa/scss/fork-awesome.scss'

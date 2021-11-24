@@ -1,10 +1,9 @@
-import {Component} from "react"
-import GhostTableRow from "./GhostTableRow"
+import {GhostTableRow} from "./GhostTableRow"
 import { compareStringsAsc } from "../util/stringSort"
 
-export default class RightColumn extends Component {
-    showSuccessMessage() {
-        if (this.props.ghosts.length === 1) {
+export const RightColumn = ({evidence, possibleGhosts}) => {
+    const showSuccessMessage = () => {
+        if (possibleGhosts.length === 1) {
             return (
                 <div className="box has-text-centered">
                     <span className="icon has-text-success">
@@ -18,9 +17,8 @@ export default class RightColumn extends Component {
         return ""
     }
 
-    renderGhostTable() {
-        const ghosts = this.props.ghosts
-        if (ghosts.length === 0) {
+    const renderGhostTable = () => {
+        if (possibleGhosts.length === 0) {
             return (
                 <div className="box has-text-centered">
                     <span className="icon has-text-warning">
@@ -33,22 +31,20 @@ export default class RightColumn extends Component {
         }
         return (
             <div>
-                {ghosts.sort((a, b) => compareStringsAsc(a.name, b.name)).map((ghost) => {
+                {possibleGhosts.sort((a, b) => compareStringsAsc(a.name, b.name)).map((ghost) => {
                     return <GhostTableRow key={ghost.name}
-                                          evidence={this.props.evidence}
+                                          evidence={evidence}
                                           ghost={ghost} />
                 })}
-                {this.showSuccessMessage()}
+                {showSuccessMessage()}
             </div>
         )
     }
 
-    render() {
-        return (
-            <div className="has-text-centered">
-                <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Ghosts</h2>
-                {this.renderGhostTable()}
-            </div>
-        )
-    }
+    return (
+        <div className="has-text-centered">
+            <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Ghosts</h2>
+            {renderGhostTable()}
+        </div>
+    )
 }

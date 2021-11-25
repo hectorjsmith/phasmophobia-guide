@@ -1,4 +1,4 @@
-import {Component, useReducer, useState} from "react"
+import { useReducer } from "react"
 import { compareStringsAsc } from "../util/stringSort"
 import {EvidenceTag} from "./EvidenceTag"
 

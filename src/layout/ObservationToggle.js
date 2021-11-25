@@ -1,5 +1,3 @@
-import {Component} from "react"
-
 export const ObservationToggle = ({possibleGhosts, evidence, setEvidence}) => {
     const toggleSelect = () => {
         setEvidence({

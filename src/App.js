@@ -4,44 +4,45 @@ import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 
-export const App = ({evidence, ghosts}) => {
+const resetEvidenceData = (evidence, setEvidence) => {
+    const mappedEvidence = evidence.map((e) => {
+        return {
+            ...e,
+            selected: false,
+            rejected: false
+        }
+    })
+    setEvidence(mappedEvidence)
+}
+
+const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
+    const isGhostPossible = (ghost, selectedEvidence, rejectedEvidence) => {
+        let ghostHasSelectedEvidence = selectedEvidence.length === 0
+            || selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
+        let ghostHasRejectedEvidence = rejectedEvidence.length > 0
+            && rejectedEvidence.some(rejected => ghost.evidence.some(ghostEvidence => ghostEvidence === rejected.name))
+
+        return ghostHasSelectedEvidence && !ghostHasRejectedEvidence
+    }
+
+    let selectedEvidence = evidence.filter(e => e.selected)
+    let rejectedEvidence = evidence.filter(e => e.rejected)
+
+    if (selectedEvidence.length === 0 && rejectedEvidence.length === 0) {
+        setPossibleGhosts(allGhosts)
+    } else {
+        setPossibleGhosts(
+            allGhosts.filter(ghost => isGhostPossible(ghost, selectedEvidence, rejectedEvidence))
+        )
+    }
+}
+
+export const App = ({allEvidence, allGhosts}) => {
     const [evidenceData, setEvidenceData] = useState([])
     const [possibleGhosts, setPossibleGhosts] = useState([])
 
-    const resetEvidenceData = () => {
-        setEvidenceData(mapEvidence(evidence))
-    }
-
-    const mapEvidence = (e) => {
-        return e.map((e1) => {
-            return {
-                ...e1,
-                selected: false,
-                rejected: false
-            }
-        })
-    }
-
-    const filterGhosts = (evidence) => {
-        let selectedEvidence = evidence.filter(e => e.selected)
-        let rejectedEvidence = evidence.filter(e => e.rejected)
-
-        if (selectedEvidence.length === 0 && rejectedEvidence.length === 0) {
-            return ghosts
-        }
-
-        return ghosts.filter(ghost => {
-            let ghostHasSelectedEvidence = selectedEvidence.length === 0
-                || selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
-            let ghostHasRejectedEvidence = rejectedEvidence.length > 0
-                && rejectedEvidence.some(rejected => ghost.evidence.some(ghostEvidence => ghostEvidence === rejected.name))
-
-            return ghostHasSelectedEvidence && !ghostHasRejectedEvidence
-        })
-    }
-
-    useEffect(() => setEvidenceData(mapEvidence(evidence)), [evidence])
-    useEffect(() => setPossibleGhosts(filterGhosts(evidenceData)), [evidenceData, ghosts])
+    useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
+    useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])
 
     return (
         <div className="content-wrapper">
@@ -52,7 +53,7 @@ export const App = ({evidence, ghosts}) => {
                         <div className="column is-4">
                             <LeftColumn evidence={evidenceData}
                                         setEvidence={setEvidenceData}
-                                        resetEvidence={resetEvidenceData}
+                                        resetEvidence={() => resetEvidenceData(allEvidence, setEvidenceData)}
                                         possibleGhosts={possibleGhosts} />
                         </div>
                         <div className="column is-8">

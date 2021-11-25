@@ -1,4 +1,3 @@
-import {Component} from "react"
 import { compareStringsAsc } from "../util/stringSort"
 import { ObservationToggle } from "./ObservationToggle"
 
@@ -29,10 +28,10 @@ export const LeftColumn = ({evidence, setEvidence, resetEvidence, possibleGhosts
         <div>
             <h2 className="mb-5 has-text-centered is-size-5 is-uppercase has-letter-spacing">Observations</h2>
 
-            {evidence.sort((a, b) => compareStringsAsc(a.name, b.name)).map((e) => {
+            {evidence.sort((a, b) => compareStringsAsc(a.name, b.name)).map((e, index) => {
                 return <ObservationToggle key={e.name}
                                           evidence={e}
-                                          setEvidence={(newE) => e = newE}
+                                          setEvidence={(newE) => {evidence[index] = newE; setEvidence([...evidence])}}
                                           possibleGhosts={possibleGhosts} />
             })}
 

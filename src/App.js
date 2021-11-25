@@ -1,4 +1,4 @@
-import {Component, useEffect, useState} from "react"
+import { useEffect, useState} from "react"
 import {Footer} from "./nav/Footer"
 import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
@@ -41,7 +41,7 @@ export const App = ({evidence, ghosts}) => {
     }
 
     useEffect(() => setEvidenceData(mapEvidence(evidence)), [evidence])
-    useEffect(() => setPossibleGhosts(filterGhosts(evidence)), [evidence, ghosts])
+    useEffect(() => setPossibleGhosts(filterGhosts(evidenceData)), [evidenceData, ghosts])
 
     return (
         <div className="content-wrapper">
@@ -56,7 +56,7 @@ export const App = ({evidence, ghosts}) => {
                                         possibleGhosts={possibleGhosts} />
                         </div>
                         <div className="column is-8">
-                            <RightColumn evidence={evidence}
+                            <RightColumn evidence={evidenceData}
                                          possibleGhosts={possibleGhosts}/>
                         </div>
                     </div>

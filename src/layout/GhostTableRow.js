@@ -2,6 +2,13 @@ import { useReducer } from "react"
 import { compareStringsAsc } from "../util/stringSort"
 import {EvidenceTag} from "./EvidenceTag"
 
+const isEvidenceSelected = (evidence, evidenceList) => {
+    if (!evidenceList) {
+        return false
+    }
+    return evidenceList.filter(e => e.selected).some(e => e.name === evidence)
+}
+
 export const GhostTableRow = ({evidence, ghost}) => {
     const [expanded, toggleExpanded] = useReducer((v) => !v, false)
 
@@ -24,7 +31,7 @@ export const GhostTableRow = ({evidence, ghost}) => {
                 {ghost.evidence.sort((a, b) => compareStringsAsc(a, b)).map((e) => {
                     return (
                         <div key={e} className="column is-4-mobile has-text-centered">
-                            <EvidenceTag evidenceList={evidence} evidence={e} />
+                            <EvidenceTag title={e} selected={isEvidenceSelected(e, evidence)} />
                         </div>
                     )
                 })}

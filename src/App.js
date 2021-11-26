@@ -4,15 +4,15 @@ import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 
-const resetEvidenceData = (evidence, setEvidence) => {
+const resetEvidenceData = (evidence, setEvidenceData) => {
     const mappedEvidence = evidence.map((e) => {
         return {
-            ...e,
+            name: e,
             selected: false,
             rejected: false
         }
     })
-    setEvidence(mappedEvidence)
+    setEvidenceData(mappedEvidence)
 }
 
 const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {

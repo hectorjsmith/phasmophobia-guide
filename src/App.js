@@ -1,96 +1,69 @@
-import {Component} from "react"
-import Footer from "./nav/Footer"
-import TopNav from "./nav/Header"
-import LeftColumn from "./layout/LeftColumn"
-import RightColumn from "./layout/RightColumn"
+import { useEffect, useState} from "react"
+import {Footer} from "./nav/Footer"
+import {TopNav} from "./nav/Header"
+import {LeftColumn} from "./layout/LeftColumn"
+import {RightColumn} from "./layout/RightColumn"
 
-export default class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            evidence: this.props.evidence,
-            possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
+const resetEvidenceData = (evidence, setEvidenceData) => {
+    const mappedEvidence = evidence.map((e) => {
+        return {
+            name: e,
+            selected: false,
+            rejected: false
         }
+    })
+    setEvidenceData(mappedEvidence)
+}
 
-        this.onEvidenceToggle = this.onEvidenceToggle.bind(this)
-        this.onEvidenceReset = this.onEvidenceReset.bind(this)
+const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
+    const isGhostPossible = (ghost, selectedEvidence, rejectedEvidence) => {
+        let ghostHasSelectedEvidence = selectedEvidence.length === 0
+            || selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
+        let ghostHasRejectedEvidence = rejectedEvidence.length > 0
+            && rejectedEvidence.some(rejected => ghost.evidence.some(ghostEvidence => ghostEvidence === rejected.name))
+
+        return ghostHasSelectedEvidence && !ghostHasRejectedEvidence
     }
 
-    calcPossibleGhosts(evidence) {
-        let selectedEvidence = evidence.filter(e => e.selected)
-        let rejectedEvidence = evidence.filter(e => e.rejected)
+    let selectedEvidence = evidence.filter(e => e.selected)
+    let rejectedEvidence = evidence.filter(e => e.rejected)
 
-        if (selectedEvidence.length === 0 && rejectedEvidence.length === 0) {
-            return this.props.ghosts
-        }
-
-        return this.props.ghosts.filter(ghost => {
-            let ghostHasSelectedEvidence = selectedEvidence.length === 0
-                || selectedEvidence.every(selected => ghost.evidence.some(ghostEvidence => ghostEvidence === selected.name))
-            let ghostHasRejectedEvidence = rejectedEvidence.length > 0
-                && rejectedEvidence.some(rejected => ghost.evidence.some(ghostEvidence => ghostEvidence === rejected.name))
-
-            return ghostHasSelectedEvidence && !ghostHasRejectedEvidence
-        })
-    }
-
-    onEvidenceReset() {
-        this.setState({
-            evidence: this.props.evidence,
-            possibleGhosts: this.calcPossibleGhosts(this.props.evidence)
-        })
-    }
-
-    onEvidenceToggle(evidence, field) {
-        // state update inspired by: https://stackoverflow.com/questions/43638938/updating-an-object-with-setstate-in-react
-        let selectedToggle = (el) => el.selected
-        let rejectedToggle = (el) => el.rejected
-
-        if (field === "selected") {
-            selectedToggle = (el) => !el.selected
-            rejectedToggle = () => false
-        }
-        if (field === "rejected") {
-            selectedToggle = () => false
-            rejectedToggle = (el) => !el.rejected
-        }
-
-        const updatedEvidence = this.state.evidence.map(
-            el => el.name === evidence.name ? {
-                ...el,
-                selected: selectedToggle(el),
-                rejected: rejectedToggle(el)
-            }: el
+    if (selectedEvidence.length === 0 && rejectedEvidence.length === 0) {
+        setPossibleGhosts(allGhosts)
+    } else {
+        setPossibleGhosts(
+            allGhosts.filter(ghost => isGhostPossible(ghost, selectedEvidence, rejectedEvidence))
         )
-
-        this.setState({
-            evidence: updatedEvidence,
-            possibleGhosts: this.calcPossibleGhosts(updatedEvidence)
-        })
     }
+}
 
-    render() {
-        return (
-            <div className="content-wrapper">
-                <div className="content-main">
-                    <div className="container">
-                        <TopNav />
-                        <div className="columns">
-                            <div className="column is-4">
-                                <LeftColumn evidence={this.state.evidence}
-                                            possibleGhosts={this.state.possibleGhosts}
-                                            onEvidenceToggle={this.onEvidenceToggle}
-                                            onEvidenceReset={this.onEvidenceReset} />
-                            </div>
-                            <div className="column is-8">
-                                <RightColumn evidence={this.state.evidence}
-                                             ghosts={this.state.possibleGhosts}/>
-                            </div>
+export const App = ({allEvidence, allGhosts}) => {
+    const [evidenceData, setEvidenceData] = useState([])
+    const [possibleGhosts, setPossibleGhosts] = useState([])
+
+    useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
+    useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])
+
+    return (
+        <div className="content-wrapper">
+            <div className="content-main">
+                <div className="container">
+                    <TopNav />
+                    <div className="columns">
+                        <div className="column is-4">
+                            <LeftColumn evidence={evidenceData}
+                                        setEvidence={setEvidenceData}
+                                        resetEvidence={() => resetEvidenceData(allEvidence, setEvidenceData)}
+                                        possibleGhosts={possibleGhosts} />
+                        </div>
+                        <div className="column is-8">
+                            <RightColumn evidence={evidenceData}
+                                         possibleGhosts={possibleGhosts}/>
                         </div>
                     </div>
                 </div>
-                <Footer />
             </div>
-        )
-    }
+            <Footer />
+        </div>
+    )
 }

@@ -3,6 +3,7 @@ import {Footer} from "./nav/Footer"
 import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
+import {SyncModal} from "./sync/SyncModal";
 
 const resetEvidenceData = (evidence, setEvidenceData) => {
     const mappedEvidence = evidence.map((e) => {
@@ -40,6 +41,8 @@ const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
 export const App = ({allEvidence, allGhosts}) => {
     const [evidenceData, setEvidenceData] = useState([])
     const [possibleGhosts, setPossibleGhosts] = useState([])
+    const [syncOptions, setSyncOptions] = useState({url: "wss://", confirm: true, roomId: "1234"})
+    const [syncModalOpen, setSyncModalOpen] = useState(false)
 
     useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
     useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])
@@ -48,7 +51,13 @@ export const App = ({allEvidence, allGhosts}) => {
         <div className="content-wrapper">
             <div className="content-main">
                 <div className="container">
-                    <TopNav />
+                    <TopNav isSyncing={false}
+                            openSyncModal={() => setSyncModalOpen(true)} />
+                    { syncModalOpen ?
+                        <SyncModal syncOptions={syncOptions}
+                                   setSyncOptions={setSyncOptions}
+                                   closeSyncModal={() => setSyncModalOpen(false)} />
+                        : "" }
                     <div className="columns">
                         <div className="column is-4">
                             <LeftColumn evidence={evidenceData}

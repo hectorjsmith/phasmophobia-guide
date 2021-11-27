@@ -4,6 +4,7 @@ import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 import {SyncModal} from "./sync/SyncModal";
+import {disconnectedState} from "./util/syncService";
 
 const resetEvidenceData = (evidence, setEvidenceData) => {
     const mappedEvidence = evidence.map((e) => {
@@ -41,7 +42,8 @@ const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
 export const App = ({allEvidence, allGhosts}) => {
     const [evidenceData, setEvidenceData] = useState([])
     const [possibleGhosts, setPossibleGhosts] = useState([])
-    const [syncOptions, setSyncOptions] = useState({url: "wss://", confirm: true, roomId: "1234"})
+    const [syncOptions, setSyncOptions] = useState({url: "wss://", consent: false, roomId: "1234"})
+    const [syncState, setSyncState] = useState(disconnectedState)
     const [syncModalOpen, setSyncModalOpen] = useState(false)
 
     useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
@@ -56,6 +58,7 @@ export const App = ({allEvidence, allGhosts}) => {
                     { syncModalOpen ?
                         <SyncModal syncOptions={syncOptions}
                                    setSyncOptions={setSyncOptions}
+                                   syncState={syncState}
                                    closeSyncModal={() => setSyncModalOpen(false)} />
                         : "" }
                     <div className="columns">

@@ -4,7 +4,7 @@ import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 import {SyncModal} from "./sync/SyncModal";
-import {disconnectedState} from "./util/syncService";
+import {disconnectedState, StartSync, StopSync} from "./util/syncService";
 
 const resetEvidenceData = (evidence, setEvidenceData) => {
     const mappedEvidence = evidence.map((e) => {
@@ -59,6 +59,8 @@ export const App = ({allEvidence, allGhosts}) => {
                         <SyncModal syncOptions={syncOptions}
                                    setSyncOptions={setSyncOptions}
                                    syncState={syncState}
+                                   startSync={() => StartSync(syncState, setSyncState)}
+                                   stopSync={() => StopSync(syncState, setSyncState)}
                                    closeSyncModal={() => setSyncModalOpen(false)} />
                         : "" }
                     <div className="columns">

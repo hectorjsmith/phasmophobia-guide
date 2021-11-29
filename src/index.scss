@@ -46,3 +46,8 @@
   border-color: $dark !important;
   color: unset !important;
 }
+
+.tabs.is-boxed li.is-active a {
+  background-color: #242424 !important;
+  color: $white !important;
+}

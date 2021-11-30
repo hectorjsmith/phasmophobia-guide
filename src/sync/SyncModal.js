@@ -140,7 +140,8 @@ const CreateRoomForm = ({syncOptions, setSyncOptions, createRoom, closeSyncModal
 
 export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, stopSync, closeSyncModal}) => {
 
-    const [selectedTab, setSelectedTab] = useState('joinRoom')
+    const [joinRoomTab, createRoomTab] = ['joinRoom', 'createRoom']
+    const [selectedTab, setSelectedTab] = useState(joinRoomTab)
 
     return (
         <div className="modal is-active">
@@ -158,28 +159,35 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, st
                 <section className="modal-card-body">
                     <div className="tabs is-boxed is-centered">
                         <ul>
-                            <li className={selectedTab === 'joinRoom' ? "is-active" : ""}>
-                                <a className="px-5" onClick={() => setSelectedTab('joinRoom')}>
+                            <li className={selectedTab === joinRoomTab ? "is-active" : ""}>
+                                <a className="px-5" onClick={() => setSelectedTab(joinRoomTab)}>
                                     <span className="icon is-small"><i className="fa fa-sign-in" aria-hidden="true" /></span>
                                     <span>Join Room</span>
                                 </a>
                             </li>
-                            <li className={selectedTab === 'createRoom' ? "is-active" : ""}>
-                                <a className="px-5" onClick={() => setSelectedTab('createRoom')}>
+                            <li className={selectedTab === createRoomTab ? "is-active" : ""}>
+                                <a className="px-5" onClick={() => setSelectedTab(createRoomTab)}>
                                     <span className="icon is-small"><i className="fa fa-user-plus" aria-hidden="true" /></span>
                                     <span>Create Room</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    { selectedTab === 'joinRoom' ?
-                        <JoinRoomForm syncState={syncState} setSyncOptions={setSyncOptions} syncOptions={syncOptions} closeSyncModal={closeSyncModal} startSync={startSync} stopSync={stopSync} />
+                    { selectedTab === joinRoomTab ?
+                        <JoinRoomForm syncState={syncState}
+                                      syncOptions={syncOptions}
+                                      setSyncOptions={setSyncOptions}
+                                      startSync={startSync}
+                                      stopSync={stopSync}
+                                      closeSyncModal={closeSyncModal} />
                         :
-                        <CreateRoomForm syncOptions={syncOptions} setSyncOptions={setSyncOptions} closeSyncModal={closeSyncModal} createRoom={() => console.log("create room")} />
+                        <CreateRoomForm syncOptions={syncOptions}
+                                        setSyncOptions={setSyncOptions}
+                                        createRoom={() => console.log("create room")}
+                                        closeSyncModal={closeSyncModal} />
                     }
                 </section>
             </div>
         </div>
-
     )
 }

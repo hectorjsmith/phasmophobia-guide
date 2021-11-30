@@ -41,18 +41,6 @@ const JoinRoomForm = ({syncOptions, setSyncOptions, syncState, startSync, stopSy
     return (
         <>
             <div className="field">
-                <label className="label">URL</label>
-                <div className="control">
-                    <input className="input"
-                           type="text"
-                           defaultValue={syncOptions.url}
-                           disabled={false}
-                           onChange={(e) => setSyncOptions({...syncOptions, url: e.target.value})}
-                           placeholder="pg-sync.hjs.dev" />
-                </div>
-            </div>
-
-            <div className="field">
                 <label className="label">Room ID</label>
                 <div className="control">
                     <input className="input"
@@ -90,18 +78,6 @@ const CreateRoomForm = ({syncOptions, setSyncOptions, createRoom, closeSyncModal
     return (
         <>
             <div className="field">
-                <label className="label">URL</label>
-                <div className="control">
-                    <input className="input"
-                           type="text"
-                           defaultValue={syncOptions.url}
-                           disabled={false}
-                           onChange={(e) => setSyncOptions({...syncOptions, url: e.target.value})}
-                           placeholder="pg-sync.hjs.dev" />
-                </div>
-            </div>
-
-            <div className="field">
                 <label className="label">Room Name</label>
                 <div className="control">
                     <input className="input"
@@ -128,7 +104,7 @@ const CreateRoomForm = ({syncOptions, setSyncOptions, createRoom, closeSyncModal
             <div className="field is-grouped is-grouped-centered mt-5">
                 <div className="control">
                     <button className="button is-success"
-                            onClick={createRoom}>Create</button>
+                            onClick={createRoom}>Create + Join</button>
                 </div>
                 <div className="control">
                     <button className="button is-light" onClick={closeSyncModal}>Close</button>
@@ -160,12 +136,14 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, st
                     <div className="tabs is-boxed is-centered">
                         <ul>
                             <li className={selectedTab === joinRoomTab ? "is-active" : ""}>
+                                { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
                                 <a className="px-5" onClick={() => setSelectedTab(joinRoomTab)}>
                                     <span className="icon is-small"><i className="fa fa-sign-in" aria-hidden="true" /></span>
                                     <span>Join Room</span>
                                 </a>
                             </li>
                             <li className={selectedTab === createRoomTab ? "is-active" : ""}>
+                                { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
                                 <a className="px-5" onClick={() => setSelectedTab(createRoomTab)}>
                                     <span className="icon is-small"><i className="fa fa-user-plus" aria-hidden="true" /></span>
                                     <span>Create Room</span>
@@ -173,6 +151,19 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, st
                             </li>
                         </ul>
                     </div>
+
+                    <div className="field">
+                        <label className="label">URL</label>
+                        <div className="control">
+                            <input className="input"
+                                   type="text"
+                                   defaultValue={syncOptions.url}
+                                   disabled={false}
+                                   onChange={(e) => setSyncOptions({...syncOptions, url: e.target.value})}
+                                   placeholder="pg-sync.hjs.dev" />
+                        </div>
+                    </div>
+
                     { selectedTab === joinRoomTab ?
                         <JoinRoomForm syncState={syncState}
                                       syncOptions={syncOptions}

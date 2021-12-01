@@ -1,5 +1,5 @@
 
-import {disconnectedState, connectingState} from "../util/syncService";
+import {disconnectedState, connectingState, connectedState} from "../util/syncService";
 import {useState} from "react";
 
 const renderConnectButton = (syncOptions, syncState, startSync, stopSync) => {
@@ -37,7 +37,7 @@ const renderConnectButton = (syncOptions, syncState, startSync, stopSync) => {
     )
 }
 
-const JoinRoomForm = ({syncOptions, setSyncOptions, syncState, startSync, stopSync, closeSyncModal}) => {
+const JoinRoomForm = ({syncOptions, setSyncOptions, syncState, startSync, closeSyncModal}) => {
     return (
         <>
             <div className="field">
@@ -65,7 +65,7 @@ const JoinRoomForm = ({syncOptions, setSyncOptions, syncState, startSync, stopSy
             </div>
 
             <div className="field is-grouped is-grouped-centered">
-                {renderConnectButton(syncOptions, syncState, startSync, stopSync)}
+                {renderConnectButton(syncOptions, syncState, startSync, () => {})}
                 <div className="control">
                     <button className="button is-light" onClick={closeSyncModal}>Close</button>
                 </div>
@@ -114,11 +114,71 @@ const CreateRoomForm = ({syncOptions, setSyncOptions, createRoom, closeSyncModal
     )
 }
 
-export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, stopSync, closeSyncModal}) => {
+const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync, closeSyncModal}) => {
 
     const [joinRoomTab, createRoomTab] = ['joinRoom', 'createRoom']
     const [selectedTab, setSelectedTab] = useState(joinRoomTab)
 
+    return (
+        <>
+            <div className="tabs is-boxed is-centered">
+                <ul>
+                    <li className={selectedTab === joinRoomTab ? "is-active" : ""}>
+                        { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                        <a className="px-5" onClick={() => setSelectedTab(joinRoomTab)}>
+                            <span className="icon is-small"><i className="fa fa-sign-in" aria-hidden="true" /></span>
+                            <span>Join Room</span>
+                        </a>
+                    </li>
+                    <li className={selectedTab === createRoomTab ? "is-active" : ""}>
+                        { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                        <a className="px-5" onClick={() => setSelectedTab(createRoomTab)}>
+                            <span className="icon is-small"><i className="fa fa-user-plus" aria-hidden="true" /></span>
+                            <span>Create Room</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div className="field">
+                <label className="label">URL</label>
+                <div className="control">
+                    <input className="input"
+                           type="text"
+                           defaultValue={syncOptions.url}
+                           disabled={false}
+                           onChange={(e) => setSyncOptions({...syncOptions, url: e.target.value})}
+                           placeholder="pg-sync.hjs.dev" />
+                </div>
+            </div>
+
+            { selectedTab === joinRoomTab ?
+                <JoinRoomForm syncState={syncState}
+                              syncOptions={syncOptions}
+                              setSyncOptions={setSyncOptions}
+                              startSync={startSync}
+                              closeSyncModal={closeSyncModal} />
+                :
+                <CreateRoomForm syncOptions={syncOptions}
+                                setSyncOptions={setSyncOptions}
+                                createRoom={() => console.log("create room")}
+                                closeSyncModal={closeSyncModal} />
+            }
+        </>
+    )
+}
+
+
+const SyncModalConnectedBody = ({syncOptions, setSyncOptions, syncState, stopSync, closeSyncModal}) => {
+    return (
+        <>
+            <p>Connected to sync</p>
+        </>
+    )
+}
+
+
+export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, stopSync, closeSyncModal}) => {
     return (
         <div className="modal is-active">
             <div className="modal-background" onClick={closeSyncModal} />
@@ -133,49 +193,19 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, st
                     <button className="delete" aria-label="close" onClick={closeSyncModal} />
                 </header>
                 <section className="modal-card-body">
-                    <div className="tabs is-boxed is-centered">
-                        <ul>
-                            <li className={selectedTab === joinRoomTab ? "is-active" : ""}>
-                                { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
-                                <a className="px-5" onClick={() => setSelectedTab(joinRoomTab)}>
-                                    <span className="icon is-small"><i className="fa fa-sign-in" aria-hidden="true" /></span>
-                                    <span>Join Room</span>
-                                </a>
-                            </li>
-                            <li className={selectedTab === createRoomTab ? "is-active" : ""}>
-                                { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
-                                <a className="px-5" onClick={() => setSelectedTab(createRoomTab)}>
-                                    <span className="icon is-small"><i className="fa fa-user-plus" aria-hidden="true" /></span>
-                                    <span>Create Room</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">URL</label>
-                        <div className="control">
-                            <input className="input"
-                                   type="text"
-                                   defaultValue={syncOptions.url}
-                                   disabled={false}
-                                   onChange={(e) => setSyncOptions({...syncOptions, url: e.target.value})}
-                                   placeholder="pg-sync.hjs.dev" />
-                        </div>
-                    </div>
-
-                    { selectedTab === joinRoomTab ?
-                        <JoinRoomForm syncState={syncState}
-                                      syncOptions={syncOptions}
-                                      setSyncOptions={setSyncOptions}
-                                      startSync={startSync}
-                                      stopSync={stopSync}
-                                      closeSyncModal={closeSyncModal} />
-                        :
-                        <CreateRoomForm syncOptions={syncOptions}
-                                        setSyncOptions={setSyncOptions}
-                                        createRoom={() => console.log("create room")}
-                                        closeSyncModal={closeSyncModal} />
+                    {
+                        syncState === connectingState || syncState === disconnectedState ?
+                            <SyncModalConnectBody syncOptions={syncOptions}
+                                                  setSyncOptions={setSyncOptions}
+                                                  syncState={syncState}
+                                                  startSync={startSync}
+                                                  closeSyncModal={closeSyncModal} />
+                            :
+                            <SyncModalConnectedBody syncOptions={syncOptions}
+                                                    setSyncOptions={setSyncOptions}
+                                                    syncState={syncState}
+                                                    stopSync={stopSync}
+                                                    closeSyncModal={closeSyncModal} />
                     }
                 </section>
             </div>

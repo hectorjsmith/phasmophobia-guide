@@ -1,5 +1,5 @@
 
-import {disconnectedState, connectingState, connectedState} from "../util/syncService";
+import {disconnectedState, connectingState} from "../util/syncService";
 import {useState} from "react";
 
 const renderConnectButton = (syncOptions, syncState, startSync, stopSync) => {

@@ -169,16 +169,20 @@ const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync
 }
 
 
-const SyncModalConnectedBody = ({syncOptions, setSyncOptions, syncState, stopSync, closeSyncModal}) => {
+const SyncModalConnectedBody = ({syncOptions, setSyncOptions, syncData, syncState, stopSync, closeSyncModal}) => {
     return (
         <>
-            <p>Connected to sync</p>
+            <p>Connected to sync as {syncData.me?.id}</p>
+            <p>State</p>
+            <pre>{JSON.stringify(syncData.state, null, 4)}</pre>
+            <p>Members</p>
+            <pre>{JSON.stringify(syncData.members, null, 4)}</pre>
         </>
     )
 }
 
 
-export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, stopSync, closeSyncModal}) => {
+export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, startSync, stopSync, closeSyncModal}) => {
     return (
         <div className="modal is-active">
             <div className="modal-background" onClick={closeSyncModal} />
@@ -203,6 +207,7 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncState, startSync, st
                             :
                             <SyncModalConnectedBody syncOptions={syncOptions}
                                                     setSyncOptions={setSyncOptions}
+                                                    syncData={syncData}
                                                     syncState={syncState}
                                                     stopSync={stopSync}
                                                     closeSyncModal={closeSyncModal} />

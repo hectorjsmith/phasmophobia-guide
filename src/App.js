@@ -4,7 +4,7 @@ import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 import {SyncModal} from "./sync/SyncModal";
-import {disconnectedState, StartSync, StopSync} from "./util/syncService";
+import {connectedState, disconnectedState, StartSync, StopSync} from "./util/syncService";
 
 const resetEvidenceData = (evidence, setEvidenceData) => {
     const mappedEvidence = evidence.map((e) => {
@@ -43,6 +43,7 @@ export const App = ({allEvidence, allGhosts}) => {
     const [evidenceData, setEvidenceData] = useState([])
     const [possibleGhosts, setPossibleGhosts] = useState([])
     const [syncOptions, setSyncOptions] = useState({url: "wss://", consent: false, roomId: "1234"})
+    const [syncData, setSyncData] = useState({me: null, state: null, members: null})
     const [syncState, setSyncState] = useState(disconnectedState)
     const [syncModalOpen, setSyncModalOpen] = useState(false)
 
@@ -53,13 +54,14 @@ export const App = ({allEvidence, allGhosts}) => {
         <div className="content-wrapper">
             <div className="content-main">
                 <div className="container">
-                    <TopNav isSyncing={false}
+                    <TopNav isSyncing={syncState === connectedState}
                             openSyncModal={() => setSyncModalOpen(true)} />
                     { syncModalOpen ?
                         <SyncModal syncOptions={syncOptions}
                                    setSyncOptions={setSyncOptions}
+                                   syncData={syncData}
                                    syncState={syncState}
-                                   startSync={() => StartSync(syncState, setSyncState)}
+                                   startSync={() => StartSync(syncState, setSyncState, syncData, setSyncData, syncOptions)}
                                    stopSync={() => StopSync(syncState, setSyncState)}
                                    closeSyncModal={() => setSyncModalOpen(false)} />
                         : "" }

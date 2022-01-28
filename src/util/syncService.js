@@ -26,16 +26,23 @@ export const Init = (evidenceData, setEvidenceData, setSyncData) => {
 
 export const CreateRoom = (syncOptions, initialState) => {
     let payload = {
-        id: "",
-        name: "",
+        id: syncOptions.roomId,
+        name: "My Room",
         state: initialState,
-        permissions: {},
+        permissions: {
+            readKey: syncOptions.readKey ?? "",
+            writeKey: syncOptions.writeKey ?? ""
+        },
     }
+    fetch('http://localhost:8080/api/v0/room', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    })
 }
 
 export const StartSync = (syncState, setSyncState, syncData, setSyncData, syncOptions) => {
     setSyncState(connectingState)
-    WsssSync.connect(syncOptions.roomId);
+    WsssSync.connect(syncOptions);
     setSyncState(connectedState)
 }
 

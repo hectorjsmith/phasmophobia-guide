@@ -26,13 +26,16 @@ class WsssSync {
         this.socket.send(JSON.stringify(payload))
     }
 
-    connect = (roomId) => {
+    connect = (syncOptions) => {
         if (this.socket) {
             console.log("[sock] already connected")
             return
         }
 
-        let fullUrl = `ws://localhost:8080/api/v0/room/${roomId}/connect`
+        let fullUrl = `ws://localhost:8080/api/v0/room/${syncOptions.roomId}/connect`
+        if (syncOptions.readKey && syncOptions.readKey !== "") {
+            fullUrl += `?readKey=${syncOptions.readKey}`
+        }
         console.log(`[sock] connecting to '${fullUrl}'`)
         this.socket = new WebSocket(fullUrl);
 

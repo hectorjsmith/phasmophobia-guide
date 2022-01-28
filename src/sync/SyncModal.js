@@ -1,5 +1,5 @@
 
-import {disconnectedState, connectingState} from "../util/syncService";
+import {disconnectedState, connectingState, CreateRoom, StartSync} from "../util/syncService";
 import {useState} from "react";
 
 const renderConnectButton = (syncOptions, syncState, startSync, stopSync) => {
@@ -37,33 +37,9 @@ const renderConnectButton = (syncOptions, syncState, startSync, stopSync) => {
     )
 }
 
-const JoinRoomForm = ({syncOptions, setSyncOptions, syncState, startSync, closeSyncModal}) => {
+const JoinRoomForm = ({syncOptions, syncState, startSync, closeSyncModal}) => {
     return (
         <>
-            <div className="field">
-                <label className="label">Room ID</label>
-                <div className="control">
-                    <input className="input"
-                           type="text"
-                           defaultValue={syncOptions.roomId}
-                           disabled={false}
-                           onChange={(e) => setSyncOptions({...syncOptions, roomId: e.target.value})}
-                           placeholder="000000" />
-                </div>
-            </div>
-
-            <div className="field has-text-centered my-5">
-                <div className="control">
-                    <label className="checkbox">
-                        <input type="checkbox"
-                               checked={syncOptions.consent}
-                               disabled={false}
-                               onChange={(e) => setSyncOptions({...syncOptions, consent: e.target.checked})} />
-                        <span className="ml-3">I agree to connect to the server listed above</span>
-                    </label>
-                </div>
-            </div>
-
             <div className="field is-grouped is-grouped-centered">
                 {renderConnectButton(syncOptions, syncState, startSync, () => {})}
                 <div className="control">
@@ -74,33 +50,9 @@ const JoinRoomForm = ({syncOptions, setSyncOptions, syncState, startSync, closeS
     )
 }
 
-const CreateRoomForm = ({syncOptions, setSyncOptions, createRoom, closeSyncModal}) => {
+const CreateRoomForm = ({createRoom, closeSyncModal}) => {
     return (
         <>
-            <div className="field">
-                <label className="label">Room Name</label>
-                <div className="control">
-                    <input className="input"
-                           type="text"
-                           defaultValue={syncOptions.roomName}
-                           disabled={false}
-                           onChange={(e) => setSyncOptions({...syncOptions, roomName: e.target.value})}
-                           placeholder="room name" />
-                </div>
-            </div>
-
-            <div className="field">
-                <label className="label">Room ID</label>
-                <div className="control">
-                    <input className="input"
-                           type="text"
-                           defaultValue={syncOptions.roomId}
-                           disabled={false}
-                           onChange={(e) => setSyncOptions({...syncOptions, roomId: e.target.value})}
-                           placeholder="000000" />
-                </div>
-            </div>
-
             <div className="field is-grouped is-grouped-centered mt-5">
                 <div className="control">
                     <button className="button is-success"
@@ -114,8 +66,7 @@ const CreateRoomForm = ({syncOptions, setSyncOptions, createRoom, closeSyncModal
     )
 }
 
-const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync, closeSyncModal}) => {
-
+const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync, createRoomAndStartSync, closeSyncModal}) => {
     const [joinRoomTab, createRoomTab] = ['joinRoom', 'createRoom']
     const [selectedTab, setSelectedTab] = useState(joinRoomTab)
 
@@ -151,17 +102,65 @@ const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync
                            placeholder="pg-sync.hjs.dev" />
                 </div>
             </div>
+            <div className="field">
+                <label className="label">Room ID</label>
+                <div className="control">
+                    <input className="input"
+                           type="text"
+                           defaultValue={syncOptions.roomId}
+                           disabled={false}
+                           onChange={(e) => setSyncOptions({...syncOptions, roomId: e.target.value})}
+                           placeholder="000000" />
+                </div>
+            </div>
+            <div className="columns">
+                <div className="column is-6">
+                    <div className="field">
+                        <label className="label">Read Key</label>
+                        <div className="control">
+                            <input className="input"
+                                   type="text"
+                                   defaultValue={syncOptions.readKey}
+                                   disabled={false}
+                                   onChange={(e) => setSyncOptions({...syncOptions, readKey: e.target.value})}
+                                   placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                <div className="column is-6">
+                    <div className="field">
+                        <label className="label">Write Key</label>
+                        <div className="control">
+                            <input className="input"
+                                   type="text"
+                                   defaultValue={syncOptions.writeKey}
+                                   disabled={false}
+                                   onChange={(e) => setSyncOptions({...syncOptions, writeKey: e.target.value})}
+                                   placeholder="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="field has-text-centered my-5">
+                <div className="control">
+                    <label className="checkbox">
+                        <input type="checkbox"
+                               checked={syncOptions.consent}
+                               disabled={false}
+                               onChange={(e) => setSyncOptions({...syncOptions, consent: e.target.checked})} />
+                        <span className="ml-3">I agree to connect to the server listed above</span>
+                    </label>
+                </div>
+            </div>
 
             { selectedTab === joinRoomTab ?
                 <JoinRoomForm syncState={syncState}
                               syncOptions={syncOptions}
-                              setSyncOptions={setSyncOptions}
                               startSync={startSync}
                               closeSyncModal={closeSyncModal} />
                 :
-                <CreateRoomForm syncOptions={syncOptions}
-                                setSyncOptions={setSyncOptions}
-                                createRoom={() => console.log("create room")}
+                <CreateRoomForm createRoom={() => { createRoomAndStartSync(syncOptions) }}
                                 closeSyncModal={closeSyncModal} />
             }
         </>
@@ -182,7 +181,7 @@ const SyncModalConnectedBody = ({syncOptions, setSyncOptions, syncData, syncStat
 }
 
 
-export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, startSync, stopSync, closeSyncModal}) => {
+export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, startSync, stopSync, createRoomAndStartSync, closeSyncModal}) => {
     return (
         <div className="modal is-active">
             <div className="modal-background" onClick={closeSyncModal} />
@@ -203,6 +202,7 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, sta
                                                   setSyncOptions={setSyncOptions}
                                                   syncState={syncState}
                                                   startSync={startSync}
+                                                  createRoomAndStartSync={createRoomAndStartSync}
                                                   closeSyncModal={closeSyncModal} />
                             :
                             <SyncModalConnectedBody syncOptions={syncOptions}

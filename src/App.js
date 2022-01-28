@@ -4,7 +4,15 @@ import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 import {SyncModal} from "./sync/SyncModal";
-import {connectedState, disconnectedState, Init, StartSync, StopSync, UpdateRoomState} from "./util/syncService";
+import {
+    connectedState,
+    CreateRoom,
+    disconnectedState,
+    Init,
+    StartSync,
+    StopSync,
+    UpdateRoomState
+} from "./util/syncService";
 
 const mapEvidence = (evidence) => {
     return evidence.map((e) => {
@@ -78,6 +86,7 @@ export const App = ({allEvidence, allGhosts}) => {
                                    syncState={syncState}
                                    startSync={() => StartSync(syncState, setSyncState, syncData, setSyncData, syncOptions)}
                                    stopSync={() => StopSync(syncState, setSyncState)}
+                                   createRoomAndStartSync = {() => { CreateRoom(syncOptions, evidenceData); StartSync(syncState, setSyncState, syncData, setSyncData, syncOptions) }}
                                    closeSyncModal={() => setSyncModalOpen(false)} />
                         : "" }
                     <div className="columns">

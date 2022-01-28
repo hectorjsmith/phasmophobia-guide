@@ -1,19 +1,23 @@
-import { useEffect, useState} from "react"
+import {useEffect, useState} from "react"
 import {Footer} from "./nav/Footer"
 import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
 import {RightColumn} from "./layout/RightColumn"
 import {SyncModal} from "./sync/SyncModal";
-import {connectedState, disconnectedState, StartSync, StopSync} from "./util/syncService";
+import {connectedState, disconnectedState, Init, StartSync, StopSync, UpdateRoomState} from "./util/syncService";
 
-const resetEvidenceData = (evidence, setEvidenceData) => {
-    const mappedEvidence = evidence.map((e) => {
+const mapEvidence = (evidence) => {
+    return evidence.map((e) => {
         return {
             name: e,
             selected: false,
             rejected: false
         }
     })
+}
+
+const resetEvidenceData = (evidence, setEvidenceData) => {
+    const mappedEvidence = mapEvidence(evidence)
     setEvidenceData(mappedEvidence)
 }
 
@@ -40,15 +44,26 @@ const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
 }
 
 export const App = ({allEvidence, allGhosts}) => {
-    const [evidenceData, setEvidenceData] = useState([])
+    const [eventsInitialized, setEventsInitialized] = useState(false)
+    const [evidenceData, setEvidenceData] = useState(mapEvidence(allEvidence))
     const [possibleGhosts, setPossibleGhosts] = useState([])
     const [syncOptions, setSyncOptions] = useState({url: "wss://", consent: false, roomId: "1234"})
     const [syncData, setSyncData] = useState({me: null, state: null, members: null})
     const [syncState, setSyncState] = useState(disconnectedState)
     const [syncModalOpen, setSyncModalOpen] = useState(false)
 
-    useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
+    if (!eventsInitialized) {
+        Init(evidenceData, setEvidenceData, setSyncData)
+        setEventsInitialized(true)
+    }
     useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])
+
+    const setAndSyncEvidenceData = (newData) => {
+        setEvidenceData(newData)
+        if (syncState === connectedState) {
+            UpdateRoomState(syncOptions, syncData, newData)
+        }
+    }
 
     return (
         <div className="content-wrapper">
@@ -68,8 +83,8 @@ export const App = ({allEvidence, allGhosts}) => {
                     <div className="columns">
                         <div className="column is-4">
                             <LeftColumn evidence={evidenceData}
-                                        setEvidence={setEvidenceData}
-                                        resetEvidence={() => resetEvidenceData(allEvidence, setEvidenceData)}
+                                        setEvidence={setAndSyncEvidenceData}
+                                        resetEvidence={() => resetEvidenceData(allEvidence, setAndSyncEvidenceData)}
                                         possibleGhosts={possibleGhosts} />
                         </div>
                         <div className="column is-8">

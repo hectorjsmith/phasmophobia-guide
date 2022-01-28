@@ -1,46 +1,64 @@
+import WsssSync from "./wsssApi";
+
 export const [disconnectedState, connectingState, connectedState] = [0, 1, 2]
 
-let socket = null
+export const Init = (evidenceData, setEvidenceData, setSyncData) => {
+    WsssSync.subscribe("welcome", (payload) => {
+        setSyncData({
+            me: payload.body.member,
+            state: payload.body.room.state,
+            members: payload.body.room.members
+        })
+        setEvidenceData(payload.body.room.state.data)
+    })
+    WsssSync.subscribe("update/members", (payload) => {
+        setSyncData((prevState) => {
+            return {...prevState, members: payload.body}
+        })
+    })
+    WsssSync.subscribe("update/state", (payload) => {
+        setSyncData((prevState) => {
+            return {...prevState, state: payload.body}
+        })
+        setEvidenceData(payload.body.data)
+    })
+}
 
-export const CreateRoom = (url, id, name, permissions) => {
-
+export const CreateRoom = (syncOptions, initialState) => {
+    let payload = {
+        id: "",
+        name: "",
+        state: initialState,
+        permissions: {},
+    }
 }
 
 export const StartSync = (syncState, setSyncState, syncData, setSyncData, syncOptions) => {
     setSyncState(connectingState)
-    connect(syncOptions,
-        () => setSyncState(connectedState),
-        () => setSyncState(disconnectedState),
-        (message) => onMessage(message, syncData, setSyncData))
+    WsssSync.connect(syncOptions.roomId);
+    setSyncState(connectedState)
 }
 
 export const StopSync = (syncState, setSyncState) => {
-    disconnect(() => setSyncState(disconnectedState))
+    WsssSync.disconnect()
+    setSyncState(disconnectedState)
 }
 
-export const UpdateRoomState = (syncOptions, writeKey, version, newData) => {
-    if (socket === null) {
-        console.log("[sock] not connected")
-        return
-    }
+export const UpdateRoomState = (syncOptions, syncData, newData) => {
     let payload = {
         "id": "uahiegh",
         "command": "post/state",
         "status": 200,
         "body": {
-            "writeKey": writeKey,
-            "version": version,
+            "writeKey": syncOptions.writeKey,
+            "version": syncData.state.version,
             "data": newData
         }
     }
-    socket.send(JSON.stringify(payload))
+    WsssSync.sendMessage(payload)
 }
 
 export const UpdateMemberData = (syncOptions, memberKey, newData) => {
-    if (socket === null) {
-        console.log("[sock] not connected")
-        return
-    }
     let payload = {
         "id": "oaieja",
         "command": "post/member",
@@ -50,70 +68,5 @@ export const UpdateMemberData = (syncOptions, memberKey, newData) => {
             "data": newData
         }
     }
-    socket.send(JSON.stringify(payload))
+    WsssSync.sendMessage(payload)
 }
-
-const onMessage = (message, syncData, setSyncData) => {
-    let payload = JSON.parse(message)
-    switch (payload.command) {
-        case "welcome":
-            setSyncData({
-                me: payload.body.member,
-                state: payload.body.room.state,
-                members: payload.body.room.members
-            })
-            break;
-        case "update/members":
-            setSyncData({...syncData, members: payload.body});
-            break;
-        case "update/state":
-            setSyncData({...syncData, state: payload.body})
-            break;
-        default:
-            console.log(`[sock] unrecognized message type: ${payload.command}`)
-    }
-}
-
-const disconnect = (onClose = () => {}) => {
-    if (socket !== null) {
-        socket.close(1000)
-        socket = null
-        onClose()
-    }
-}
-
-const connect = (syncOptions, onOpen = f => f, onClose = f => f, onMessage = f => f) => {
-    if (socket != null) {
-        disconnect()
-    }
-
-    let fullUrl = `ws://localhost:8080/api/v0/room/${syncOptions.roomId}/connect`
-    console.log(`[sock] connecting to '${fullUrl}'`)
-    socket = new WebSocket(fullUrl);
-
-    socket.onerror = function(error) {
-        console.log(`[sock] connection error: ${error.message}`);
-    };
-
-    socket.onopen = function(event) {
-        onOpen()
-        console.log(`[sock] connection open`);
-    }
-
-    socket.onmessage = function(event) {
-        console.log(`[sock] message received: ${event.data}`);
-        onMessage(event.data)
-    }
-
-    socket.onclose = function(event) {
-        if (event.wasClean) {
-            console.log(`[sock] connection closed cleanly (code=${event.code}, reason=${event.reason})`);
-        } else {
-            // e.g. server process killed or network down
-            // event.code is usually 1006 in this case
-            console.log('[sock] connection died');
-        }
-        onClose()
-    }
-}
-

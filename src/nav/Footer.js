@@ -24,6 +24,11 @@ export const Footer = () => {
                     </a>
                 </p>
                 {showVersion()}
+                <p className="heading has-text-centered my-2">
+                    <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
+                        Analytics by Umami
+                    </a>
+                </p>
             </div>
         </footer>
     )

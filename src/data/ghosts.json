@@ -32,6 +32,22 @@
     ]
   },
   {
+    "name": "Deogen",
+    "evidence": [
+      "D.O.T.S. Projector",
+      "Spirit Box",
+      "Ghost Writing"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/Deogen",
+    "description": "Sometimes surrounded by an endless fog, Deogen have been eluding ghost hunters for years. These ghosts have been reported to find even the most hidden prey, before stalking them into exhaustion.",
+    "weaknesses": [
+      "Deogen require a lot of energy to form and will move very slowly when approaching its victim."
+    ],
+    "strengths": [
+      "Deogen constantly sense the living. You can run but you can't hide."
+    ]
+  },
+  {
     "name": "Goryo",
     "evidence": [
       "D.O.T.S. Projector",
@@ -93,6 +109,22 @@
     ],
     "strengths": [
       "Has an increased chance to attack in the dark"
+    ]
+  },
+  {
+    "name": "Moroi",
+    "evidence": [
+      "Freezing",
+      "Ghost Writing",
+      "Spirit Box"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/Moroi",
+    "description": "Moroi have risen from the grave to drain energy from the living. They have been known to place curses on their victims, curable only by antidotes or moving very far away.",
+    "weaknesses": [
+      "Moroi suffer from hyperosmia, weakening them for longer periods."
+    ],
+    "strengths": [
+      "The weaker their victims, the stronger the Moroi becomes."
     ]
   },
   {
@@ -256,6 +288,39 @@
     ]
   },
   {
+    "name": "Thaye",
+    "evidence": [
+      "D.O.T.S. Projector",
+      "Ghost Writing",
+      "Ghost Orb"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
+    "description": "A Spirit is the most common Ghost you will come across however it is still very powerful and dangerous. They are usually discovered at one of their hunting grounds after an unexplained death.",
+    "weaknesses": [
+      "Smudge Sticks are more effective, preventing a hunt for longer"
+    ],
+    "strengths": [
+      "None"
+    ]
+  },
+  {
+    "name": "The Mimic",
+    "evidence": [
+      "Spirit Box",
+      "Fingerprints",
+      "Freezing",
+      "Ghost Orb"
+    ],
+    "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Mimic",
+    "description": "The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.",
+    "weaknesses": [
+      "Several reports have noted ghost orb sightings near mimics."
+    ],
+    "strengths": [
+      "We're unsure what this ghost is capable of. Be careful."
+    ]
+  },
+  {
     "name": "The Twins",
     "evidence": [
       "EMF",
@@ -317,23 +382,6 @@
     ],
     "strengths": [
       "Has a stronger effect on Sanity"
-    ]
-  },
-  {
-    "name": "The Mimic",
-    "evidence": [
-      "Spirit Box",
-      "Fingerprints",
-      "Freezing",
-      "Ghost Orb"
-    ],
-    "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Mimic",
-    "description": "The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.",
-    "weaknesses": [
-      "Several reports have noted ghost orb sightings near mimics."
-    ],
-    "strengths": [
-      "We're unsure what this ghost is capable of. Be careful."
     ]
   }
 ]

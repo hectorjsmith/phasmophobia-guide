@@ -32,7 +32,8 @@ class WsssSync {
             return
         }
 
-        let fullUrl = `ws://localhost:8080/api/v0/room/${syncOptions.roomId}/connect`
+        let baseUrl = syncOptions.url.replace("https", "wss").replace("http", "ws")
+        let fullUrl = `${baseUrl}/api/v0/room/${syncOptions.roomId}/connect`
         if (syncOptions.readKey && syncOptions.readKey !== "") {
             fullUrl += `?readKey=${syncOptions.readKey}`
         }

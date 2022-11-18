@@ -2,7 +2,7 @@ import WsssSync from "./wsssApi";
 
 export const [disconnectedState, connectingState, connectedState] = [0, 1, 2]
 
-export const Init = (evidenceData, setEvidenceData, setSyncData) => {
+export const Init = (evidenceData, setEvidenceData, setSyncData, setSyncOptions) => {
     WsssSync.subscribe("welcome", (payload) => {
         setSyncData({
             me: payload.body.member,
@@ -10,6 +10,9 @@ export const Init = (evidenceData, setEvidenceData, setSyncData) => {
             members: payload.body.room.members
         })
         setEvidenceData(payload.body.room.state.data)
+        setSyncOptions((prevState) => {
+            return {...prevState, memberName: payload.body.member.id}
+        })
     })
     WsssSync.subscribe("update/members", (payload) => {
         setSyncData((prevState) => {
@@ -27,14 +30,14 @@ export const Init = (evidenceData, setEvidenceData, setSyncData) => {
 export const CreateRoom = (syncOptions, initialState) => {
     let payload = {
         id: syncOptions.roomId,
-        name: "My Room",
+        name: syncOptions.roomId,
         state: initialState,
         permissions: {
             readKey: syncOptions.readKey ?? "",
             writeKey: syncOptions.writeKey ?? ""
         },
     }
-    fetch('http://localhost:8080/api/v0/room', {
+    fetch(`${syncOptions.url}/api/v0/room`, {
         method: 'POST',
         body: JSON.stringify(payload)
     })
@@ -53,7 +56,7 @@ export const StopSync = (syncState, setSyncState) => {
 
 export const UpdateRoomState = (syncOptions, syncData, newData) => {
     let payload = {
-        "id": "uahiegh",
+        "id": `${Math.random()}`,
         "command": "post/state",
         "status": 200,
         "body": {
@@ -67,7 +70,7 @@ export const UpdateRoomState = (syncOptions, syncData, newData) => {
 
 export const UpdateMemberData = (syncOptions, memberKey, newData) => {
     let payload = {
-        "id": "oaieja",
+        "id": `${Math.random()}`,
         "command": "post/member",
         "status": 200,
         "body": {

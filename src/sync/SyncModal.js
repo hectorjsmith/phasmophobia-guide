@@ -96,10 +96,10 @@ const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync
                 <div className="control">
                     <input className="input"
                            type="text"
-                           defaultValue={syncOptions.url}
+                           defaultValue={syncOptions.url ?? ""}
                            disabled={false}
                            onChange={(e) => setSyncOptions({...syncOptions, url: e.target.value})}
-                           placeholder="pg-sync.hjs.dev" />
+                           placeholder="http://example.com" />
                 </div>
             </div>
             <div className="field">
@@ -110,7 +110,7 @@ const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync
                            defaultValue={syncOptions.roomId}
                            disabled={false}
                            onChange={(e) => setSyncOptions({...syncOptions, roomId: e.target.value})}
-                           placeholder="000000" />
+                           placeholder="room-id" />
                 </div>
             </div>
             <div className="columns">
@@ -168,20 +168,53 @@ const SyncModalConnectBody = ({syncOptions, setSyncOptions, syncState, startSync
 }
 
 
-const SyncModalConnectedBody = ({syncOptions, setSyncOptions, syncData, syncState, stopSync, closeSyncModal}) => {
+const SyncModalConnectedBody = ({syncOptions, setSyncOptions, syncData, syncState, stopSync, updateMemberData, closeSyncModal}) => {
+    if (syncData.members === null || syncData.me === null) {
+        return ""
+    }
     return (
         <>
-            <p>Connected to sync as {syncData.me?.id}</p>
-            <p>State</p>
-            <pre>{JSON.stringify(syncData.state, null, 4)}</pre>
-            <p>Members</p>
-            <pre>{JSON.stringify(syncData.members, null, 4)}</pre>
+            <div className="field">
+                <label className="label">My Name</label>
+                <div className="control">
+                    <input className="input"
+                           type="text"
+                           defaultValue={syncOptions.memberName}
+                           disabled={false}
+                           onChange={(e) => setSyncOptions({...syncOptions, memberName: e.target.value})}
+                           placeholder="" />
+                </div>
+            </div>
+
+            <div className="field is-grouped is-grouped-right">
+                <div className="control">
+                    <button className="button is-success"
+                            onClick={updateMemberData}>Update</button>
+                </div>
+                {renderConnectButton(syncOptions, syncState, f => f, stopSync)}
+            </div>
+
+            <hr className="my-5" />
+            <div className="columns is-multiline">
+                {syncData.members.map((member) => {
+                    return (
+                        <div key={member.id} className="column is-4">
+                            <p className={member.id === syncData.me.id ? "has-text-weight-bold" : ""}>
+                                {member.data.name ?? member.id}
+                            </p>
+                        </div>
+                    )
+                })}
+            </div>
+            <ul>
+
+            </ul>
+
         </>
     )
 }
 
-
-export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, startSync, stopSync, createRoomAndStartSync, closeSyncModal}) => {
+export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, startSync, stopSync, updateMemberData, createRoomAndStartSync, closeSyncModal}) => {
     return (
         <div className="modal is-active">
             <div className="modal-background" onClick={closeSyncModal} />
@@ -210,6 +243,7 @@ export const SyncModal = ({syncOptions, setSyncOptions, syncData, syncState, sta
                                                     syncData={syncData}
                                                     syncState={syncState}
                                                     stopSync={stopSync}
+                                                    updateMemberData={updateMemberData}
                                                     closeSyncModal={closeSyncModal} />
                     }
                 </section>

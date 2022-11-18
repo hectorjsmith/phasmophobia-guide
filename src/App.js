@@ -10,7 +10,7 @@ import {
     disconnectedState,
     Init,
     StartSync,
-    StopSync,
+    StopSync, UpdateMemberData,
     UpdateRoomState
 } from "./util/syncService";
 
@@ -55,13 +55,13 @@ export const App = ({allEvidence, allGhosts}) => {
     const [eventsInitialized, setEventsInitialized] = useState(false)
     const [evidenceData, setEvidenceData] = useState(mapEvidence(allEvidence))
     const [possibleGhosts, setPossibleGhosts] = useState([])
-    const [syncOptions, setSyncOptions] = useState({url: "wss://", consent: false, roomId: "1234"})
+    const [syncOptions, setSyncOptions] = useState({url: "http://example.com", consent: false, roomId: "", readKey: "", writeKey: ""})
     const [syncData, setSyncData] = useState({me: null, state: null, members: null})
     const [syncState, setSyncState] = useState(disconnectedState)
     const [syncModalOpen, setSyncModalOpen] = useState(false)
 
     if (!eventsInitialized) {
-        Init(evidenceData, setEvidenceData, setSyncData)
+        Init(evidenceData, setEvidenceData, setSyncData, setSyncOptions)
         setEventsInitialized(true)
     }
     useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])
@@ -86,6 +86,7 @@ export const App = ({allEvidence, allGhosts}) => {
                                    syncState={syncState}
                                    startSync={() => StartSync(syncState, setSyncState, syncData, setSyncData, syncOptions)}
                                    stopSync={() => StopSync(syncState, setSyncState)}
+                                   updateMemberData={() => UpdateMemberData(syncOptions, syncData.me.memberKey, {name: syncOptions.memberName})}
                                    createRoomAndStartSync = {() => { CreateRoom(syncOptions, evidenceData); StartSync(syncState, setSyncState, syncData, setSyncData, syncOptions) }}
                                    closeSyncModal={() => setSyncModalOpen(false)} />
                         : "" }

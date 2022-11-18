@@ -18,14 +18,14 @@ export const Footer = () => {
         <footer className="footer py-4 mt-6">
             <div className="content has-text-centered">
                 <p className="heading has-text-centered my-2">
-                    <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
+                    <a className="has-text-white has-hover-text-link-dark" target="_blank" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
                         <span className="icon"><i className="fa fa-gitlab"/></span>
                         Code on Gitlab
                     </a>
                 </p>
                 {showVersion()}
                 <p className="heading has-text-centered my-2">
-                    <a className="has-text-white has-hover-text-link-dark" href="https://gitlab.com/hectorjsmith/phasmophobia-guide">
+                    <a className="has-text-white has-hover-text-link-dark" target="_blank" href="https://umami.is/">
                         Analytics by Umami
                     </a>
                 </p>

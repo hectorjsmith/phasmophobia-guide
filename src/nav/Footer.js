@@ -26,7 +26,6 @@ export const Footer = () => {
                         Code on Gitlab
                     </a>
                 </p>
-                {showVersion()}
                 <p className="heading has-text-centered my-2">
                     <a className="has-text-white has-hover-text-link-dark"
                        target="_blank"
@@ -35,6 +34,7 @@ export const Footer = () => {
                         Analytics by Umami
                     </a>
                 </p>
+                {showVersion()}
             </div>
         </footer>
     )

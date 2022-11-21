@@ -9,6 +9,19 @@ const isEvidenceSelected = (evidence, evidenceList) => {
     return evidenceList.filter(e => e.selected).some(e => e.name === evidence)
 }
 
+const sortEvidence = (allEvidence, evidenceList) => {
+    return evidenceList.sort((a, b) => {
+        let aSelected = isEvidenceSelected(a, allEvidence)
+        let bSelected = isEvidenceSelected(b, allEvidence)
+        if (aSelected === bSelected) {
+            return compareStringsAsc(a, b)
+        } else {
+            if (aSelected) return 1
+            else return -1
+        }
+    })
+}
+
 export const GhostTableRow = ({evidence, ghost}) => {
     const [expanded, toggleExpanded] = useReducer((v) => !v, false)
 
@@ -28,7 +41,7 @@ export const GhostTableRow = ({evidence, ghost}) => {
                         {ghost.name}
                     </p>
                 </div>
-                {ghost.evidence.sort((a, b) => compareStringsAsc(a, b)).map((e) => {
+                {sortEvidence(evidence, ghost.evidence).map((e) => {
                     return (
                         <div key={e} className="column is-4-mobile has-text-centered">
                             <EvidenceTag title={e} selected={isEvidenceSelected(e, evidence)} />

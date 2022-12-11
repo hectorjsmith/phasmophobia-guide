@@ -23,12 +23,12 @@
       "Ghost Writing"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Demon",
-    "description": "A Demon is one of the worst Ghosts you can encounter. It has been known to attack without a reason.",
+    "description": "Demons are the most aggressive ghost we've ever encountered. Known to attack without reason, they seem to enjoy the thrill of the hunt.",
     "weaknesses": [
-      "Getting Ouija Board responses will lower sanity less"
+      "Demons fear the crucifix and will be less aggressive near one"
     ],
     "strengths": [
-      "Can initiate Hunts more often"
+      "Demons will initiate hunts more often than other ghosts"
     ]
   },
   {

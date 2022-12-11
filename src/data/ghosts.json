@@ -55,12 +55,12 @@
       "Fingerprints"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Goryo",
-    "description": "Using a video camera is the only way to view a Goryo, when it passes through a DOTS projector",
+    "description": "When a Goryo passes through a DOTS projector, using a video camera is the only way to see it.",
     "weaknesses": [
-      "Never wanders far from its place of death"
+      "They are rarely seen far from their place of death"
     ],
     "strengths": [
-      "Can only be seen interacting with D.O.T.S. through a camera when nobody is nearby"
+      "A Goryo will usually only show itself on camera if are no people nearby"
     ]
   },
   {

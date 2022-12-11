@@ -167,12 +167,12 @@
       "Freezing"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Oni",
-    "description": "Onis are a cousin to the Demon and possess extreme strength. There have been rumors that they become more active around their prey.",
+    "description": "Onis love to scare their victims as much as possible before attacking. They are often seen in their physical form guarding their place of death.",
     "weaknesses": [
-      "An Oni's increased activity makes them easier to find"
+      "Oni disappear less often while hunting their prey"
     ],
     "strengths": [
-      "Increased activity if there are multiple players nearby"
+      "Oni are much more active while people are nearby and will drain their sanity faster when manifesting"
     ]
   },
   {
@@ -199,12 +199,12 @@
       "Spirit Box"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Phantom",
-    "description": "A Phantom is a Ghost that can possess the living, most commonly summoned by a Ouija Board. It also induces fear into those around it.",
+    "description": "A Phantom is a Ghost that can possess the living, inducing fear into those around it. They are most commonly summoned from Ouija Boards.",
     "weaknesses": [
-      "Taking a photo of the Phantom will cause it to briefly disappear"
+      "Taking a photo of the Phantom will cause it to temporarily disappear"
     ],
     "strengths": [
-      "Looking at a Phantom will lower the player's Sanity considerably"
+      "Looking at a Phantom will drop your sanity considerably faster"
     ]
   },
   {
@@ -215,12 +215,12 @@
       "Spirit Box"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Poltergeist",
-    "description": "One of the most famous Ghosts, a Poltergeist, also known as a noisy ghost can manipulate objects around it to spread fear into it's victims.",
+    "description": "One of the most famous Ghosts, the Poltergeist. Known to manipulate objects around it to spread fear into its victims.",
     "weaknesses": [
-      "Becomes powerless with no throwables nearby"
+      "With nothing to throw, Poltergeists become powerless"
     ],
     "strengths": [
-      "Capable of throwing multiple objects at once"
+      "Poltergeists can throw multiple objects at once, and with great force"
     ]
   },
   {
@@ -233,10 +233,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Raiju",
     "description": "A Raiju is a demon that thrives on electrical current. While generally calm, they can become agitated when overwhelmed with power.",
     "weaknesses": [
-      "Constantly disrupt electronic equipment"
+      "Raiju are constantly disrupting electronic equipment when attacking, making it easier to track"
     ],
     "strengths": [
-      "Moves faster near electrical devices"
+      "A Raiju can siphon power from nearby electrical devices, making it move faster"
     ]
   },
   {
@@ -247,12 +247,12 @@
       "Ghost Writing"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Revenant",
-    "description": "A Revenant is a slow but violent Ghost that will attack indiscriminantly. It has been rumored to travel at a significantly high speed when hunting.",
+    "description": "A Revenant is a violent ghost that will attack indiscriminately. Their speed can be deceiving, as they are slow while dormant; however, as soon as they hunt they can move incredibly fast.",
     "weaknesses": [
-      "Without a target, the Revenant moves very slowly"
+      "Hiding from a Revennat will cause it to move very slowly"
     ],
     "strengths": [
-      "Can travel significantly faster if a player is spotted during a Hunt"
+      "A Revenant will travel at a significantly faster speed when hunting their prey"
     ]
   },
   {
@@ -263,12 +263,12 @@
       "Ghost Writing"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Shade",
-    "description": "A Shade is known to be a Shy Ghost. There is evidence that a Shade will stop all paranormal activity if there are multiple people nearby.",
+    "description": "A Share is known to be very shy. There is evidence to suggest that a Shade will stop all paranormal activity if there are people nearby",
     "weaknesses": [
-      "Less likely to hunt if multiple people are nearby"
+      "The ghost will not enter a hunt if there are people nearby"
     ],
     "strengths": [
-      "Being shy makes it more difficult to locate and obtain evidence"
+      "Shades are much harder to find"
     ]
   },
   {
@@ -279,9 +279,9 @@
       "Spirit Box"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
-    "description": "A Spirit is the most common Ghost you will come across however it is still very powerful and dangerous. They are usually discovered at one of their hunting grounds after an unexplained death.",
+    "description": "Spirits are very common ghosts. They are very powerful, but passive, only attacking when they need to. They defend their place of death to the utmost degree, killing anyone that is caught overstaying their welcome.",
     "weaknesses": [
-      "Smudge Sticks are more effective, preventing a hunt for longer"
+      "A Spirit can be temporarily stopped by burning Smudge Sticks near them"
     ],
     "strengths": [
       "None"
@@ -295,12 +295,12 @@
       "Ghost Orb"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
-    "description": "A Spirit is the most common Ghost you will come across however it is still very powerful and dangerous. They are usually discovered at one of their hunting grounds after an unexplained death.",
+    "description": "Thaye have been known to rapidly age over time, even in the afterlife. From what we've learned, they seem to deteriorate faster while within the presence of the living.",
     "weaknesses": [
-      "Smudge Sticks are more effective, preventing a hunt for longer"
+      "Thaye will weaken over time, making them weaker, slower and less aggressive"
     ],
     "strengths": [
-      "None"
+      "Upon entering the location, Thaye will become active, defensive and agile"
     ]
   },
   {
@@ -344,12 +344,12 @@
       "Spirit Box"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Wraith",
-    "description": "A Wraith is one of the most dangerous Ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.",
+    "description": "Wraiths are one of the most dangerous ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.",
     "weaknesses": [
-      "Will become more active if it steps in salt"
+      "Wraiths have a toxic reaction to Salt"
     ],
     "strengths": [
-      "Does not leave UV Footprints after stepping in salt"
+      "Wraiths almost never tough the ground, meaning it can't be traked by footsteps"
     ]
   },
   {
@@ -360,12 +360,12 @@
       "Spirit Box"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yokai",
-    "description": "A common type of ghost that is attracted to human voices. They can usually be found haunting family homes.",
+    "description": "Yokai are common ghosts that are attracted to human voices. They can usually be found haunting family homes.",
     "weaknesses": [
-      "Can only hear voices close to it during a Hunt"
+      "When hunting, a Yokai can only hear voices close to it"
     ],
     "strengths": [
-      "Talking near the Yokai will anger it, increasing the chance to attack"
+      "Talking near a Yokai will anger it, increasing the chance of an attack"
     ]
   },
   {
@@ -378,10 +378,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yurei",
     "description": "A Yurei is a Ghost that has returned to the physical world, usually for the purpose of revenge or hatred.",
     "weaknesses": [
-      "Smudging the Yurei's Ghost Room will reduce how often it wanders"
+      "Smudging the Yurei's place of death will trap it temporarily, reducing how much it wanders"
     ],
     "strengths": [
-      "Has a stronger effect on Sanity"
+      "Yureis have been known to have a stronger effect on people's sanity"
     ]
   }
 ]

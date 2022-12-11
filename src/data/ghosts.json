@@ -7,12 +7,12 @@
       "Ghost Orb"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Banshee",
-    "description": "A Banshee is a natural hunter and will attack anything. It has been known to stalk its prey one at a time until making its kill.",
+    "description": "The singing siren, known for attracting its victims through song. It has been known to single out its prey before making a killing blow",
     "weaknesses": [
-      "Crucifix effectiveness is increased to 5m against one"
+      "Banshees can sometimes be heard screaming with a parabolic microphone"
     ],
     "strengths": [
-      "Will target only one player at a time."
+      "Banshees will weaken their target before striking"
     ]
   },
   {

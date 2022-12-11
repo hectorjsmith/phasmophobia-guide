@@ -71,12 +71,12 @@
       "Ghost Orb"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Hantu",
-    "description": "A rare ghost that can be found in hot climates. They are known to attack more often in cold weather.",
+    "description": "A Hantu is a rare ghost that thrives in the coldest climates. The cold seems to make them more aggressive and empowered.",
     "weaknesses": [
-      "Warmer areas slow the Hantu's movement"
+      "Hantus move slower in warmer areas"
     ],
     "strengths": [
-      "Lower temperatures allow the Hantu to move faster"
+      "Lower temperatures allow the Hantu to move at faster speeds"
     ]
   },
   {

@@ -105,10 +105,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Mare",
     "description": "A Mare is the source of all nightmares, making it most powerful in the dark.",
     "weaknesses": [
-      "Turning the lights on will reduce the chance of an attack"
+      "Turning the lights on around the Mare will lower its chance to attack"
     ],
     "strengths": [
-      "Has an increased chance to attack in the dark"
+      "A Mare will have an increased chance to attack in the dark"
     ]
   },
   {

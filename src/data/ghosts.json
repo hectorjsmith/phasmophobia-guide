@@ -89,10 +89,10 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Jinn",
     "description": "A Jinn is a territorial Ghost that will attack when threatened. It also has been known to travel at significant speed.",
     "weaknesses": [
-      "Cannot use its ability if the site's fuse box is off"
+      "Turning off the location's power source will prevent the Jinn from using its ability"
     ],
     "strengths": [
-      "Travels at faster speeds if its victim is far away"
+      "A Jinn will travel at a faster speed if its victim is far away"
     ]
   },
   {

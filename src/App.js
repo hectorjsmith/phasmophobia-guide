@@ -46,7 +46,7 @@ export const App = ({allEvidence, allGhosts}) => {
 
     return (
         <div className="content-wrapper">
-            <div className="content-main">
+            <div className="content-main content">
                 <div className="container">
                     <TopNav />
                     <div className="columns">

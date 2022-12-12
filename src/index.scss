@@ -46,3 +46,7 @@
   border-color: $dark !important;
   color: unset !important;
 }
+
+li::marker {
+  color: $info;
+}

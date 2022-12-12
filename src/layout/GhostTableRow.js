@@ -71,7 +71,7 @@ export const GhostTableRow = ({evidence, ghost}) => {
                     </div>
                     <div className="column is-12 is-12-mobile">
                         <h2 className="is-size-6 is-uppercase has-letter-spacing">Tips</h2>
-                        <ol className="ml-0 is-upper-alpha">
+                        <ol className="ml-0 is-lower-alpha">
                         {ghost.tips?.map((w) => {
                             return (
                                 <li key={w}>{w}</li>

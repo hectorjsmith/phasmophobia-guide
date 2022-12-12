@@ -116,7 +116,7 @@
       "A Jinn will travel at a faster speed if its victim is far away",
       "It has a secret ability. While the breaker is on and the Jinn is near you, it has a chance to zap 25% of your Sanity without warning. If you notice you get early hunts, it could still be a Jinn.",
       "Leave an EMF reader at the fuse box; if it picks up a reading but the fuse box never turned on/off, then it is very likely the Jinn using its ability, barring any other items that could have caused the reading.",
-      "Wait for a hunt at the end of a long room or corridor, standing far away from where the ghost is expected to enter the room, and with line-of-sight all the way through. Listen for its footsteps and observe its speed before and after it sees the player. If it instantly gains speed to chase the player, then it is likely a Jinn; use a smudge stick if needed. The Jinn will also slow down once it gets within 3 meters of its target, but be wary as testing this can be very risky.",
+      "Wait for a hunt at the end of a long room or corridor, standing far away from where the ghost is expected to enter the room, and with line-of-sight all the way through. Listen for its footsteps and observe its speed before and after it sees the player. If it instantly gains speed to chase the player, then it is likely a Jinn; use a smudge stick if needed. The Jinn will also slow down once it gets within 3 meters of its target, but be wary as testing this can be very risky."
     ]
   },
   {
@@ -157,7 +157,8 @@
       "The weaker their victims, the stronger the Moroi becomes."
     ],
     "tips": [
-      
+      "1) Consume sanity pills until your sanity is as high as possible. You must have at least one sanity pill left over. 2) Hold a lit candle and enter the investigation area. Obtain another response throught the spirit box or parabolic microphone. Once this is done, stay in the investigation area for at least 30 seconds (or enough to drop your sanity by 5-10% as if you were cursed). Ensure that the ghost does not perform a ghost event on yourself by staying on another floor or far away. 3) Exit the investigation area and attempt to consume a sanity pill. If you can consume a pill, then you were likely cursed and the ghost is likely a Moroi.",
+      "Pay attention to the ghost's speed instead. Listen for the ghost's speed over multiple hunts, with average sanity lowering; a ghost that speeds up over the course of multiple hunts as average sanity lowers could be a Moroi."
     ]
   },
   {
@@ -174,6 +175,10 @@
     ],
     "strengths": [
       "Mylings more frequently make paranormal sounds"
+    ],
+    "tips": [
+      "Myling will walk quietly during hunts. If your equipment is malfunctioning before you hear the footsteps (mind the grace period), it’s a Myling.",
+      "1) Before a hunt, drop a flashlight (or any obvious electric equipment that flickers within range) in your hiding spot. Then look out for the following: 2) Make sure that the ghost is on the same floor. 3) Check if footsteps and ghost vocalisations are audible only when your electrical equipment starts flickering, the ghost is probably a Myling. (Note that there may be an occasional bug where the ghost temporarily does not flicker electronics on the correct floor when changing floors.)"
     ]
   },
   {
@@ -190,6 +195,11 @@
     ],
     "strengths": [
       "When interacting with the environment, an Obake will rarely leave a trace"
+    ],
+    "tips": [
+      "If the ghost touches a surface and leaves no fingerprints, then later leaves fingerprints on another surface, or vice versa, this usually points to the ghost being an Obake.",
+      "Obake has a chance for it's fingerprints to disappear very quickly. If you notice that sometimes fingerprints disappear after 1 minute and sometimes after 2 minutes, it's an Obake.",
+      "When creating handprints or fingerprints, there is a one-sixth (~16.7%) chance for the Obake to create a unique handprint/fingerprint pattern: 1) A six-fingered handprint instead of the usual five fingers. 2) Two fingerprints on a light switch instead of one. 3) Five fingerprints on keyboards and Prison cell doors instead of four"
     ]
   },
   {
@@ -206,6 +216,12 @@
     ],
     "strengths": [
       "Oni are much more active while people are nearby and will drain their sanity faster when manifesting"
+    ],
+    "tips": [
+      "Oni is sometimes more active than usual. If you notice it interacting very often or doing a lot of ghost events in quick successions, it could likely be an Oni. Since it is one of the most active ghosts in the game, it may more readily give up evidence to players.",
+      "Cannot perform the \"ghost mist\" event. Note that it can still perform events that can cause a hiss, such as \"fake hunt\"-type manifestations.",
+      "Will prefer showing in its full form during a manifestation event as opposed to a shadowy or translucent form.",
+      "Will have double the sanity drain of other ghosts (20% instead of 10%) when colliding with the target player in a \"fake hunt\" ghost event."
     ]
   },
   {
@@ -222,6 +238,12 @@
     ],
     "strengths": [
       "Extinguishing a flame can cause an Onryo to attack"
+    ],
+    "tips": [
+      "It uses lit Candles like Crucifixes, and over Crucifixes preventing hunts. If the Crucifix gets eaten/used but a Candle placed on top of it isn’t extinguished, it’s not an Onryo.",
+      "Onryo can very rarely start a hunt regardless of Sanity when blowing out a Candle. If you notice this, it's an Onryo.",
+      "The Onryo's aversion to fire, while a powerful tool against it, does come with risks of its own. With sufficient candles and diligent relighting, the Onryo may very well be kept from hunting indefinitely, which may also serve as identification for the ghost in Nightmare difficulty.",
+      "In Sunny Meadows, several lit candles can be found in the chapel, which ghosts can blow out. If the ghost is located there and hunts very early (and is otherwise not a Demon), then it may be an Onryo."
     ]
   },
   {

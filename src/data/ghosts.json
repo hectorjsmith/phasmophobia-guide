@@ -13,6 +13,11 @@
     ],
     "strengths": [
       "Banshees will weaken their target before striking"
+    ],
+    "tips": [
+      "Test tip",
+      "abc",
+      "cde"
     ]
   },
   {
@@ -45,6 +50,10 @@
     ],
     "strengths": [
       "Deogen constantly sense the living. You can run but you can't hide."
+    ],
+    "tips": [
+      "The simplest way to identify a Deogen by its behavior is for players to stand in a room that is comfortably big enough to kite the ghost in, but would be less likely for it to enter by being more distant from the favourite room. Make sure that everyone's electronics are turned off as well to prevent the ghost from being naturally led to the room. If the ghost sounds very fast as it rushes directly to where players are located before slowing down as it gets close, then it is a Deogen.",
+      "A more advanced version of this strategy, applicable to larger maps, is to have players hiding across several different locations, each with varying distances to the ghost room. As the Deogen targets whoever is closest to it when it hunts, the player nearest to the ghost will be targeted; this player will also \"manage\" the ghost for the rest of the hunt. Provided players do not accidentally trap themselves in a tight space with no way out, surviving a slowed Deogen is almost trivial as it is virtually impossible for it to catch up to its targets so long as they keep moving."
     ]
   },
   {
@@ -61,6 +70,12 @@
     ],
     "strengths": [
       "A Goryo will usually only show itself on camera if are no people nearby"
+    ],
+    "tips": [
+      "If D.O.T.S. evidence is visible without a camera, it's not a Goryo.",
+      "Goryo will only give D.O.T.S. if you are far enough away. If you notice it when observing from far away but don't get any while close, it's a Goryo.",
+      "If D.O.T.S. evidence is visible in the camera's screen, but invisible in direct view, the ghost is likely to be a Goryo.",
+      "Goryos have a shorter roaming distance."
     ]
   },
   {
@@ -77,6 +92,12 @@
     ],
     "strengths": [
       "Lower temperatures allow the Hantu to move at faster speeds"
+    ],
+    "tips": [
+      "On Nightmare difficulty, a Hantu will always have Freezing Temperatures as one of its two pieces of evidence.",
+      "While it's in a ghost room during a hunt, it will have freezing breath coming out of its mouth. If you notice this, it's a Hantu. This is hard to observe though.",
+      "Leave the breaker turned on for a while, then listen for its speed during a hunt. If it is faster in colder rooms (usually, but not always the favourite room), and slower than a normal ghost in a warm room, then it is a Hantu.",
+      "Leave the breaker turned on for a while, then loop the ghost around a large piece of furniture in a warm room during a hunt, carrying Smudge Sticks to avoid death. If the ghost does not speed up quickly with line-of-sight (within ~10 seconds), then it is likely a Hantu."
     ]
   },
   {
@@ -92,7 +113,10 @@
       "Turning off the location's power source will prevent the Jinn from using its ability"
     ],
     "strengths": [
-      "A Jinn will travel at a faster speed if its victim is far away"
+      "A Jinn will travel at a faster speed if its victim is far away",
+      "It has a secret ability. While the breaker is on and the Jinn is near you, it has a chance to zap 25% of your Sanity without warning. If you notice you get early hunts, it could still be a Jinn.",
+      "Leave an EMF reader at the fuse box; if it picks up a reading but the fuse box never turned on/off, then it is very likely the Jinn using its ability, barring any other items that could have caused the reading.",
+      "Wait for a hunt at the end of a long room or corridor, standing far away from where the ghost is expected to enter the room, and with line-of-sight all the way through. Listen for its footsteps and observe its speed before and after it sees the player. If it instantly gains speed to chase the player, then it is likely a Jinn; use a smudge stick if needed. The Jinn will also slow down once it gets within 3 meters of its target, but be wary as testing this can be very risky.",
     ]
   },
   {
@@ -109,6 +133,12 @@
     ],
     "strengths": [
       "A Mare will have an increased chance to attack in the dark"
+    ],
+    "tips": [
+      "Mare has the ability to turn a light back off the moment a player turns it on.",
+      "Mare will never turn on the building lights in its ghost room. If you notice the ghost room lights on and nobody from your team turned them on, it’s not a Mare.",
+      "If you tend to keep the lights near the ghost turned on, and you find the ghost frequently wandering into dark rooms that players have not entered, and changing ghost rooms frequently on Professional and Nightmare difficulties, then the ghost could be a Mare."
+
     ]
   },
   {
@@ -125,6 +155,9 @@
     ],
     "strengths": [
       "The weaker their victims, the stronger the Moroi becomes."
+    ],
+    "tips": [
+      
     ]
   },
   {
@@ -205,6 +238,10 @@
     ],
     "strengths": [
       "Looking at a Phantom will drop your sanity considerably faster"
+    ],
+    "tips": [
+      "Taking a picture",
+      "It will stay invisible for longer during hunts, making it harder to see"
     ]
   },
   {
@@ -285,6 +322,9 @@
     ],
     "strengths": [
       "None"
+    ],
+    "tips": [
+      "If you smudge a room and the ghost hunts within 3 minutes, it IS NOT a Spirit"
     ]
   },
   {
@@ -318,6 +358,9 @@
     ],
     "strengths": [
       "We're unsure what this ghost is capable of. Be careful."
+    ],
+    "tips": [
+      "The Mimic always has Ghost Orbs. If you get two pieces of evidence in addition to Ghost Orbs, it's a Mimic."
     ]
   },
   {
@@ -350,6 +393,10 @@
     ],
     "strengths": [
       "Wraiths almost never tough the ground, meaning it can't be traked by footsteps"
+    ],
+    "tips": [
+      "If the ghost steps in Salt (and you hear footsteps), but you do not see footprints, it is a Wraith",
+      "Note that footprints do not appear on floor obstacles such as carpets"
     ]
   },
   {

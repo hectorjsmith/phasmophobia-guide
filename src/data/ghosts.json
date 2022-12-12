@@ -457,8 +457,8 @@
       "Wraiths almost never tough the ground, meaning it can't be traked by footsteps"
     ],
     "tips": [
-      "Take a picture of a footstep in Salt, if it is labelled as Footstep, it is NOT a Wraith. If it is no labelled, then it is a Wraith",
-      "Point a UV light at a footstep in Salt, if a Footprint can be seen it is NOT a Wraith. Not seeing a Footprint does not guarantee a Wraith.",
+      "Take a picture of a footstep in Salt, if it's labelled as Footstep, it's NOT a Wraith. If it's not labelled, then it IS a Wraith",
+      "Point a UV light at a footstep in Salt, if a Footprint can be seen it's NOT a Wraith. However, not seeing a Footprint does not guarantee a Wraith.",
       "Due to its teleportating behaviour, interactions may happen far away from the favourite room and near where a player currently is (or recently was) and seemingly random EMF level 2 or 5 readings which could not have been caused by any interaction may show up especially far away from the favourite room. (The Banshee and Phantom can also roam/walk (but not teleport) to a player, while The Twins can interact with objects far away.)"
     ]
   },

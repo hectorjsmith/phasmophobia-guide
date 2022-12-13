@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react"
+import { useEffect, useState, useReducer } from "react"
 import {Footer} from "./nav/Footer"
 import {TopNav} from "./nav/Header"
 import {LeftColumn} from "./layout/LeftColumn"
@@ -40,6 +40,7 @@ const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
 export const App = ({allEvidence, allGhosts}) => {
     const [evidenceData, setEvidenceData] = useState([])
     const [possibleGhosts, setPossibleGhosts] = useState([])
+    const [showTips, toggleShowTips] = useReducer(state => !state, false)
 
     useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
     useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])
@@ -54,11 +55,14 @@ export const App = ({allEvidence, allGhosts}) => {
                             <LeftColumn evidence={evidenceData}
                                         setEvidence={setEvidenceData}
                                         resetEvidence={() => resetEvidenceData(allEvidence, setEvidenceData)}
-                                        possibleGhosts={possibleGhosts} />
+                                        possibleGhosts={possibleGhosts}
+                                        showTips={showTips}
+                                        toggleShowTips={toggleShowTips} />
                         </div>
                         <div className="column is-8">
                             <RightColumn evidence={evidenceData}
-                                         possibleGhosts={possibleGhosts}/>
+                                         possibleGhosts={possibleGhosts}
+                                         showTips={showTips} />
                         </div>
                     </div>
                 </div>

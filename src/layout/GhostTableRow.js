@@ -22,7 +22,7 @@ const sortEvidence = (allEvidence, evidenceList) => {
     })
 }
 
-export const GhostTableRow = ({evidence, ghost}) => {
+export const GhostTableRow = ({evidence, ghost, showTips}) => {
     const [expanded, toggleExpanded] = useReducer((v) => !v, false)
 
     return (
@@ -69,7 +69,9 @@ export const GhostTableRow = ({evidence, ghost}) => {
                             )
                         })}
                     </div>
-                    <div className="column is-12 is-12-mobile">
+
+                    {showTips && (
+                        <div className="column is-12 is-12-mobile">
                         <h2 className="is-size-6 is-uppercase has-letter-spacing">Tips</h2>
                         <ol className="ml-0 is-lower-alpha">
                         {ghost.tips?.map((w) => {
@@ -79,6 +81,7 @@ export const GhostTableRow = ({evidence, ghost}) => {
                         })}
                         </ol>
                     </div>
+                    )}
                 </div>
                 <a className="button is-outlined is-info mb-4"
                    href={ghost.wikiUrl}

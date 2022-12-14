@@ -40,7 +40,7 @@ const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
 export const App = ({allEvidence, allGhosts}) => {
     const [evidenceData, setEvidenceData] = useState([])
     const [possibleGhosts, setPossibleGhosts] = useState([])
-    const [showTips, toggleShowTips] = useReducer(state => !state, false)
+    const [showTips, toggleShowTips] = useReducer(state => !state, true)
 
     useEffect(() => resetEvidenceData(allEvidence, setEvidenceData), [allEvidence])
     useEffect(() => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts), [evidenceData, allGhosts])

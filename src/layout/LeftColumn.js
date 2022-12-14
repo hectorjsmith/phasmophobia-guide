@@ -1,7 +1,7 @@
 import { compareStringsAsc } from "../util/stringSort"
 import { ObservationToggle } from "./ObservationToggle"
 
-export const LeftColumn = ({evidence, setEvidence, resetEvidence, possibleGhosts}) => {
+export const LeftColumn = ({evidence, setEvidence, resetEvidence, possibleGhosts, showTips, toggleShowTips}) => {
     const maxSelected = 3
     const countSelectedEvidence = () => {
         return evidence.filter(e => e.selected).length
@@ -42,6 +42,16 @@ export const LeftColumn = ({evidence, setEvidence, resetEvidence, possibleGhosts
 
                 <p className="heading mb-3">({selectedEvidenceCount} of {maxSelected})</p>
                 {showWarning()}
+            </div>
+
+            <div className="columns is-mobile is-centered is-vcentered is-narrow my-5">
+                <button className={"button" + (showTips ? " is-info" : "")}
+                        onClick={toggleShowTips}
+                        title="Show Tips" >
+                    <span className="icon is-small">
+                        <i className={"fa fa-info"} />
+                    </span>
+                </button>
             </div>
         </div>
     )

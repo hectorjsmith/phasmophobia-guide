@@ -1,7 +1,7 @@
 import {GhostTableRow} from "./GhostTableRow"
 import { compareStringsAsc } from "../util/stringSort"
 
-export const RightColumn = ({evidence, possibleGhosts}) => {
+export const RightColumn = ({evidence, possibleGhosts, showTips}) => {
     const showSuccessMessage = () => {
         if (possibleGhosts.length === 1) {
             return (
@@ -34,7 +34,8 @@ export const RightColumn = ({evidence, possibleGhosts}) => {
                 {possibleGhosts.sort((a, b) => compareStringsAsc(a.name, b.name)).map((ghost) => {
                     return <GhostTableRow key={ghost.name}
                                           evidence={evidence}
-                                          ghost={ghost} />
+                                          ghost={ghost}
+                                          showTips={showTips} />
                 })}
                 {showSuccessMessage()}
             </div>

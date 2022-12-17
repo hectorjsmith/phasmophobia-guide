@@ -119,7 +119,9 @@
       "Turning off the location's power source will prevent the Jinn from using its ability"
     ],
     "strengths": [
-      "A Jinn will travel at a faster speed if its victim is far away",
+      "A Jinn will travel at a faster speed if its victim is far away"
+    ],
+    "tips": [
       "It has a secret ability. While the breaker is on and the Jinn is near you, it has a chance to zap 25% of your Sanity without warning. If you notice you get early hunts, it could still be a Jinn.",
       "Leave an EMF reader at the fuse box; if it picks up a reading but the fuse box never turned on/off, then it is very likely the Jinn using its ability, barring any other items that could have caused the reading.",
       "Wait for a hunt at the end of a long room or corridor, standing far away from where the ghost is expected to enter the room, and with line-of-sight all the way through. Listen for its footsteps and observe its speed before and after it sees the player. If it instantly gains speed to chase the player, then it is likely a Jinn; use a smudge stick if needed. The Jinn will also slow down once it gets within 3 meters of its target, but be wary as testing this can be very risky."
@@ -453,7 +455,7 @@
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Wraith",
     "description": "Wraiths are one of the most dangerous ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.",
     "weaknesses": [
-      "Wraiths have a toxic reaction to Salt"
+      "Wraiths are afraid of Salt and will actively avoid it"
     ],
     "strengths": [
       "Wraiths almost never tough the ground, meaning it can't be traked by footsteps"
@@ -492,7 +494,7 @@
       "Ghost Orb"
     ],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yurei",
-    "description": "A Yurei is a Ghost that has returned to the physical world, usually for the purpose of revenge or hatred.",
+    "description": "A Yurei is a ghost that has returned to the physical world, usually for the purpose of revenge or hatred.",
     "weaknesses": [
       "Smudging the Yurei's place of death will trap it temporarily, reducing how much it wanders"
     ],

@@ -81,7 +81,7 @@
       "If D.O.T.S. evidence is visible without a camera, it's not a Goryo.",
       "Goryo will only give D.O.T.S. if you are far enough away. If you notice it when observing from far away but don't get any while close, it's a Goryo.",
       "If D.O.T.S. evidence is visible in the camera's screen, but invisible in direct view, the ghost is likely to be a Goryo.",
-      "Goryos have a shorter roaming distance."
+      "Goryos have a shorter roaming distance and cannot change favourite room."
     ]
   },
   {
@@ -204,8 +204,9 @@
     ],
     "tips": [
       "If the ghost touches a surface and leaves no fingerprints, then later leaves fingerprints on another surface, or vice versa, this usually points to the ghost being an Obake.",
+      "During a hunt, the Obake will, at least once, shapeshift into another ghost form (before turning back to its original form). Each flicker has a 6.66% chance of shapeshifting.",
       "Obake has a chance for it's fingerprints to disappear very quickly. If you notice that sometimes fingerprints disappear after 1 minute and sometimes after 2 minutes, it's an Obake.",
-      "When creating handprints or fingerprints, there is a one-sixth (~16.7%) chance for the Obake to create a unique handprint/fingerprint pattern: 1) A six-fingered handprint instead of the usual five fingers. 2) Two fingerprints on a light switch instead of one. 3) Five fingerprints on keyboards and Prison cell doors instead of four"
+      "When creating handprints or fingerprints, there is a one-sixth (~16.7%) chance for the Obake to create a unique handprint/fingerprint pattern: 1) A six-fingered handprint instead of the usual five fingers. 2) Two fingerprints on a light switch instead of one. 3) Five fingerprints on keyboards and Prison cell doors instead of four."
     ]
   },
   {
@@ -310,6 +311,7 @@
       "A Raiju can siphon power from nearby electrical devices, making it move faster"
     ],
     "tips": [
+      "Raiju affect lights and equipment (on the same floor) within a 15m radius, unlike other ghosts that have a 10m radius.",
       "The Raiju may be readily-identified by being mindful of its speed during a hunt, particularly on small maps, so long as there are active electronic items nearby. If the ghost continues to walk very quickly when roaming (and not chasing particular players), then it is most likely a Raiju."
     ]
   },
@@ -329,7 +331,7 @@
       "A Revenant will travel at a significantly faster speed when hunting their prey"
     ],
     "tips": [
-      "Revenants will move very slowly if they do not have line of sight to a player.",
+      "Revenants will move very slowly if they do not have line of sight to a player. They will however keep their increased speed until reaching the last known position.",
       "While hiding, listen for the ghost's footsteps; if the footsteps are relatively few and far between while the ghost is nearby, then it is most likely a Revenant.",
       "Revenants will move extremely fast during hunts if it has line of sight to a player.",
       "On multiplayer, the Revenant will perform an immediate area search just like any other ghost during hunts. However, it will take a longer time due to its slow movement speed while roaming, so wary players can easily identify it."
@@ -457,8 +459,7 @@
       "Wraiths almost never tough the ground, meaning it can't be traked by footsteps"
     ],
     "tips": [
-      "Take a picture of a footstep in Salt, if it's labelled as Footstep, it's NOT a Wraith. If it's not labelled, then it IS a Wraith",
-      "Point a UV light at a footstep in Salt, if a Footprint can be seen it's NOT a Wraith. However, not seeing a Footprint does not guarantee a Wraith.",
+      "A Wraith will never step in Salt.",
       "Due to its teleportating behaviour, interactions may happen far away from the favourite room and near where a player currently is (or recently was) and seemingly random EMF level 2 or 5 readings which could not have been caused by any interaction may show up especially far away from the favourite room. (The Banshee and Phantom can also roam/walk (but not teleport) to a player, while The Twins can interact with objects far away.)"
     ]
   },

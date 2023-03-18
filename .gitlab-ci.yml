@@ -1,51 +1,56 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
-  - build
-  - publish
-
+- build
+- publish
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
-
 build/preview:
   image: node:16
   stage: build
   except:
-    - main
+  - main
   environment:
-    name: "preview/$CI_COMMIT_REF_NAME"
-    url: "https://$CI_PROJECT_NAMESPACE.gitlab.io/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build/index.html"
+    name: preview/$CI_COMMIT_REF_NAME
+    url: https://$CI_PROJECT_NAMESPACE.gitlab.io/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build/index.html
   variables:
     PUBLIC_URL: "/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build"
   before_script:
-    - make npm/install
+  - make npm/install
   script:
-    - make npm/build
+  - make npm/build
   artifacts:
     paths:
-      - build/*
+    - build/*
     expire_in: 7 days
-
 build/publish:
   image: node:16
   stage: build
   only:
-    - main
+  - main
   before_script:
-    - make npm/install
+  - make npm/install
   script:
-    - make npm/build
+  - make npm/build
   artifacts:
     paths:
-      - build/*
+    - build/*
     expire_in: 1 day
-
 pages:
   image: alpine
   stage: publish
   only:
-    - main
+  - main
   script:
-    - rm -r public/
-    - mv build/ public/
+  - rm -r public/
+  - mv build/ public/
   artifacts:
     paths:
-      - public/
+    - public/
+include:
+- template: Security/Dependency-Scanning.gitlab-ci.yml

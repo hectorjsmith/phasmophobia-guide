@@ -19,7 +19,7 @@ export const ObservationToggle = ({
 
   const totalGhosts = possibleGhosts.length
   const matchingGhosts = possibleGhosts.filter((g) =>
-    g.evidence.some((e) => e === evidence.name),
+    g.evidence.some((e) => e === evidence.id),
   ).length
 
   return (

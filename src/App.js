@@ -7,7 +7,7 @@ import { RightColumn } from './layout/RightColumn'
 const resetEvidenceData = (evidence, setEvidenceData) => {
   const mappedEvidence = evidence.map((e) => {
     return {
-      name: e,
+      ...e,
       selected: false,
       rejected: false,
     }
@@ -20,12 +20,12 @@ const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
     let ghostHasSelectedEvidence =
       selectedEvidence.length === 0 ||
       selectedEvidence.every((selected) =>
-        ghost.evidence.some((ghostEvidence) => ghostEvidence === selected.name),
+        ghost.evidence.some((ghostEvidence) => ghostEvidence === selected.id),
       )
     let ghostHasRejectedEvidence =
       rejectedEvidence.length > 0 &&
       rejectedEvidence.some((rejected) =>
-        ghost.evidence.some((ghostEvidence) => ghostEvidence === rejected.name),
+        ghost.evidence.some((ghostEvidence) => ghostEvidence === rejected.id),
       )
 
     return ghostHasSelectedEvidence && !ghostHasRejectedEvidence

@@ -1,9 +1,37 @@
 [
-  "D.O.T.S. Projector",
-  "EMF",
-  "Fingerprints",
-  "Freezing",
-  "Ghost Orb",
-  "Ghost Writing",
-  "Spirit Box"
+  {
+    "id": "dots",
+    "name": "D.O.T.S. Projector",
+    "icon": "th"
+  },
+  {
+    "id": "emf",
+    "name": "EMF",
+    "icon": "signal"
+  },
+  {
+    "id": "fingerprints",
+    "name": "Fingerprints",
+    "icon": "hand-stop-o"
+  },
+  {
+    "id": "freezing",
+    "name": "Freezing Temperatures",
+    "icon": "thermometer-o"
+  },
+  {
+    "id": "orb",
+    "name": "Ghost Orb",
+    "icon": "dot-circle-o"
+  },
+  {
+    "id": "writing",
+    "name": "Ghost Writing",
+    "icon": "pencil-square-o"
+  },
+  {
+    "id": "box",
+    "name": "Sprit Box",
+    "icon": "microphone"
+  }
 ]

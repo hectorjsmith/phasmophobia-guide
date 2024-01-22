@@ -2,19 +2,16 @@ import { useReducer } from 'react'
 import { compareStringsAsc } from '../util/stringSort'
 import { EvidenceTag } from './EvidenceTag'
 
-const isEvidenceSelected = (evidence, evidenceList) => {
-  if (!evidenceList) {
-    return false
-  }
-  return evidenceList.filter((e) => e.selected).some((e) => e.name === evidence)
+const mapEvidence = (allEvidence, ghostEvidenceIds) => {
+  return allEvidence.filter((e) => ghostEvidenceIds.includes(e.id))
 }
 
-const sortEvidence = (allEvidence, evidenceList) => {
-  return evidenceList.sort((a, b) => {
-    let aSelected = isEvidenceSelected(a, allEvidence)
-    let bSelected = isEvidenceSelected(b, allEvidence)
+const sortEvidence = (ghostEvidence) => {
+  return ghostEvidence.sort((a, b) => {
+    let aSelected = a.selected
+    let bSelected = b.selected
     if (aSelected === bSelected) {
-      return compareStringsAsc(a, b)
+      return compareStringsAsc(a.name, b.name)
     } else {
       if (aSelected) return 1
       else return -1
@@ -24,6 +21,8 @@ const sortEvidence = (allEvidence, evidenceList) => {
 
 export const GhostTableRow = ({ evidence, ghost, showTips }) => {
   const [expanded, toggleExpanded] = useReducer((v) => !v, false)
+
+  const ghostEvidence = mapEvidence(evidence, ghost.evidence)
 
   return (
     <div>
@@ -47,12 +46,12 @@ export const GhostTableRow = ({ evidence, ghost, showTips }) => {
             {ghost.name}
           </p>
         </div>
-        {sortEvidence(evidence, ghost.evidence).map((e) => {
+        {sortEvidence(ghostEvidence).map((e) => {
           return (
-            <div key={e} className="column is-4-mobile has-text-centered">
+            <div key={e.id} className="column is-4-mobile has-text-centered">
               <EvidenceTag
-                title={e}
-                selected={isEvidenceSelected(e, evidence)}
+                title={e.name}
+                selected={e.selected}
               />
             </div>
           )

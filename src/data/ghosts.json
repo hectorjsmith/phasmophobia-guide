@@ -1,19 +1,13 @@
 [
   {
     "name": "Banshee",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "Fingerprints",
-      "Ghost Orb"
-    ],
+    "evidence": ["D.O.T.S. Projector", "Fingerprints", "Ghost Orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Banshee",
     "description": "The singing siren, known for attracting its victims through song. It has been known to single out its prey before making a killing blow",
     "weaknesses": [
       "Banshees can sometimes be heard screaming with a parabolic microphone"
     ],
-    "strengths": [
-      "Banshees will weaken their target before striking"
-    ],
+    "strengths": ["Banshees will weaken their target before striking"],
     "tips": [
       "Banshee will always sing during ghost events be it male or female. Keep track of ghost events and after you had at least 3 and all were singing ones, it’s likely a Banshee.",
       "When a Parabolic Microphone is used, the Banshee has a 33% chance of making a unique shriek-like paranormal sound instead of a whisper or footstep.",
@@ -23,19 +17,13 @@
   },
   {
     "name": "Demon",
-    "evidence": [
-      "Fingerprints",
-      "Freezing",
-      "Ghost Writing"
-    ],
+    "evidence": ["Fingerprints", "Freezing", "Ghost Writing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Demon",
     "description": "Demons are the most aggressive ghost we've ever encountered. Known to attack without reason, they seem to enjoy the thrill of the hunt.",
     "weaknesses": [
       "Demons fear the crucifix and will be less aggressive near one"
     ],
-    "strengths": [
-      "Demons will initiate hunts more often than other ghosts"
-    ],
+    "strengths": ["Demons will initiate hunts more often than other ghosts"],
     "tips": [
       "It can extremely rarely hunt you at any Sanity level. If you get hunted extremely early into the game, it's a Demon.",
       "Demon can hunt you below 70% Sanity (usually it's below 50%) and has a very small cooldown between hunts. If you get hunted back to back in quick succession, it's a Demon. Time the hunt cooldown: a cooldown of less than 25 seconds (excluding hunts caused by cursed possessions) may indicate a Demon.",
@@ -44,11 +32,7 @@
   },
   {
     "name": "Deogen",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "Spirit Box",
-      "Ghost Writing"
-    ],
+    "evidence": ["D.O.T.S. Projector", "Spirit Box", "Ghost Writing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Deogen",
     "description": "Sometimes surrounded by an endless fog, Deogen have been eluding ghost hunters for years. These ghosts have been reported to find even the most hidden prey, before stalking them into exhaustion.",
     "weaknesses": [
@@ -64,16 +48,10 @@
   },
   {
     "name": "Goryo",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "EMF",
-      "Fingerprints"
-    ],
+    "evidence": ["D.O.T.S. Projector", "EMF", "Fingerprints"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Goryo",
     "description": "When a Goryo passes through a DOTS projector, using a video camera is the only way to see it.",
-    "weaknesses": [
-      "They are rarely seen far from their place of death"
-    ],
+    "weaknesses": ["They are rarely seen far from their place of death"],
     "strengths": [
       "A Goryo will usually only show itself on camera if are no people nearby"
     ],
@@ -86,16 +64,10 @@
   },
   {
     "name": "Hantu",
-    "evidence": [
-      "Fingerprints",
-      "Freezing",
-      "Ghost Orb"
-    ],
+    "evidence": ["Fingerprints", "Freezing", "Ghost Orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Hantu",
     "description": "A Hantu is a rare ghost that thrives in the coldest climates. The cold seems to make them more aggressive and empowered.",
-    "weaknesses": [
-      "Hantus move slower in warmer areas"
-    ],
+    "weaknesses": ["Hantus move slower in warmer areas"],
     "strengths": [
       "Lower temperatures allow the Hantu to move at faster speeds"
     ],
@@ -108,11 +80,7 @@
   },
   {
     "name": "Jinn",
-    "evidence": [
-      "EMF",
-      "Fingerprints",
-      "Freezing"
-    ],
+    "evidence": ["EMF", "Fingerprints", "Freezing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Jinn",
     "description": "A Jinn is a territorial Ghost that will attack when threatened. It also has been known to travel at significant speed.",
     "weaknesses": [
@@ -129,41 +97,28 @@
   },
   {
     "name": "Mare",
-    "evidence": [
-      "Ghost Orb",
-      "Ghost Writing",
-      "Spirit Box"
-    ],
+    "evidence": ["Ghost Orb", "Ghost Writing", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Mare",
     "description": "A Mare is the source of all nightmares, making it most powerful in the dark.",
     "weaknesses": [
       "Turning the lights on around the Mare will lower its chance to attack"
     ],
-    "strengths": [
-      "A Mare will have an increased chance to attack in the dark"
-    ],
+    "strengths": ["A Mare will have an increased chance to attack in the dark"],
     "tips": [
       "Mare has the ability to turn a light back off the moment a player turns it on.",
       "Mare will never turn on the building lights in its ghost room. If you notice the ghost room lights on and nobody from your team turned them on, it’s not a Mare.",
       "If you tend to keep the lights near the ghost turned on, and you find the ghost frequently wandering into dark rooms that players have not entered, and changing ghost rooms frequently on Professional and Nightmare difficulties, then the ghost could be a Mare."
-
     ]
   },
   {
     "name": "Moroi",
-    "evidence": [
-      "Freezing",
-      "Ghost Writing",
-      "Spirit Box"
-    ],
+    "evidence": ["Freezing", "Ghost Writing", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Moroi",
     "description": "Moroi have risen from the grave to drain energy from the living. They have been known to place curses on their victims, curable only by antidotes or moving very far away.",
     "weaknesses": [
       "Moroi suffer from hyperosmia, weakening them for longer periods."
     ],
-    "strengths": [
-      "The weaker their victims, the stronger the Moroi becomes."
-    ],
+    "strengths": ["The weaker their victims, the stronger the Moroi becomes."],
     "tips": [
       "1) Consume sanity pills until your sanity is as high as possible. You must have at least one sanity pill left over. 2) Hold a lit candle and enter the investigation area. Obtain another response throught the spirit box or parabolic microphone. Once this is done, stay in the investigation area for at least 30 seconds (or enough to drop your sanity by 5-10% as if you were cursed). Ensure that the ghost does not perform a ghost event on yourself by staying on another floor or far away. 3) Exit the investigation area and attempt to consume a sanity pill. If you can consume a pill, then you were likely cursed and the ghost is likely a Moroi.",
       "Pay attention to the ghost's speed instead. Listen for the ghost's speed over multiple hunts, with average sanity lowering; a ghost that speeds up over the course of multiple hunts as average sanity lowers could be a Moroi."
@@ -171,19 +126,11 @@
   },
   {
     "name": "Myling",
-    "evidence": [
-      "EMF",
-      "Fingerprints",
-      "Ghost Writing"
-    ],
+    "evidence": ["EMF", "Fingerprints", "Ghost Writing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Myling",
     "description": "A Myling is a very vocal and active ghost. They are rumoured to be quiet when hunting their prey.",
-    "weaknesses": [
-      "A Myling is known to be quieter when hunting"
-    ],
-    "strengths": [
-      "Mylings more frequently make paranormal sounds"
-    ],
+    "weaknesses": ["A Myling is known to be quieter when hunting"],
+    "strengths": ["Mylings more frequently make paranormal sounds"],
     "tips": [
       "Myling will walk quietly during hunts. If your equipment is malfunctioning before you hear the footsteps (mind the grace period), it’s a Myling.",
       "1) Before a hunt, drop a flashlight (or any obvious electric equipment that flickers within range) in your hiding spot. Then look out for the following: 2) Make sure that the ghost is on the same floor. 3) Check if footsteps and ghost vocalisations are audible only when your electrical equipment starts flickering, the ghost is probably a Myling. (Note that there may be an occasional bug where the ghost temporarily does not flicker electronics on the correct floor when changing floors.)"
@@ -191,11 +138,7 @@
   },
   {
     "name": "Obake",
-    "evidence": [
-      "EMF",
-      "Fingerprints",
-      "Ghost Orb"
-    ],
+    "evidence": ["EMF", "Fingerprints", "Ghost Orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Obake",
     "description": "Obake are terrifying shape-shifters, capable of taking on many forms. They have been seen taking on humanoid shapes to attract their prey.",
     "weaknesses": [
@@ -213,16 +156,10 @@
   },
   {
     "name": "Oni",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "EMF",
-      "Freezing"
-    ],
+    "evidence": ["D.O.T.S. Projector", "EMF", "Freezing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Oni",
     "description": "Onis love to scare their victims as much as possible before attacking. They are often seen in their physical form guarding their place of death.",
-    "weaknesses": [
-      "Oni disappear less often while hunting their prey"
-    ],
+    "weaknesses": ["Oni disappear less often while hunting their prey"],
     "strengths": [
       "Oni are much more active while people are nearby and will drain their sanity faster when manifesting"
     ],
@@ -235,19 +172,11 @@
   },
   {
     "name": "Onryo",
-    "evidence": [
-      "Ghost Orb",
-      "Spirit Box",
-      "Freezing"
-    ],
+    "evidence": ["Ghost Orb", "Spirit Box", "Freezing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Onryo",
     "description": "The Onryo is often referred to as 'The Wrathful Spirit.' It steals souls from dying victims' bodies to seek revenge. This ghost has been known to fear any form of fire, and will do anything to be far from it.",
-    "weaknesses": [
-      "When threatened, this ghost will be less likely to hunt"
-    ],
-    "strengths": [
-      "Extinguishing a flame can cause an Onryo to attack"
-    ],
+    "weaknesses": ["When threatened, this ghost will be less likely to hunt"],
+    "strengths": ["Extinguishing a flame can cause an Onryo to attack"],
     "tips": [
       "It uses lit Candles like Crucifixes, and over Crucifixes preventing hunts. If the Crucifix gets eaten/used but a Candle placed on top of it isn’t extinguished, it’s not an Onryo.",
       "Onryo can very rarely start a hunt regardless of Sanity when blowing out a Candle. If you notice this, it's an Onryo.",
@@ -257,11 +186,7 @@
   },
   {
     "name": "Phantom",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "Fingerprints",
-      "Spirit Box"
-    ],
+    "evidence": ["D.O.T.S. Projector", "Fingerprints", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Phantom",
     "description": "A Phantom is a Ghost that can possess the living, inducing fear into those around it. They are most commonly summoned from Ouija Boards.",
     "weaknesses": [
@@ -280,16 +205,10 @@
   },
   {
     "name": "Poltergeist",
-    "evidence": [
-      "Fingerprints",
-      "Ghost Writing",
-      "Spirit Box"
-    ],
+    "evidence": ["Fingerprints", "Ghost Writing", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Poltergeist",
     "description": "One of the most famous Ghosts, the Poltergeist. Known to manipulate objects around it to spread fear into its victims.",
-    "weaknesses": [
-      "With nothing to throw, Poltergeists become powerless"
-    ],
+    "weaknesses": ["With nothing to throw, Poltergeists become powerless"],
     "strengths": [
       "Poltergeists can throw multiple objects at once, and with great force"
     ],
@@ -299,11 +218,7 @@
   },
   {
     "name": "Raiju",
-    "evidence": [
-      "EMF",
-      "Ghost Orb",
-      "D.O.T.S. Projector"
-    ],
+    "evidence": ["EMF", "Ghost Orb", "D.O.T.S. Projector"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Raiju",
     "description": "A Raiju is a demon that thrives on electrical current. While generally calm, they can become agitated when overwhelmed with power.",
     "weaknesses": [
@@ -319,16 +234,10 @@
   },
   {
     "name": "Revenant",
-    "evidence": [
-      "Freezing",
-      "Ghost Orb",
-      "Ghost Writing"
-    ],
+    "evidence": ["Freezing", "Ghost Orb", "Ghost Writing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Revenant",
     "description": "A Revenant is a violent ghost that will attack indiscriminately. Their speed can be deceiving, as they are slow while dormant; however, as soon as they hunt they can move incredibly fast.",
-    "weaknesses": [
-      "Hiding from a Revennat will cause it to move very slowly"
-    ],
+    "weaknesses": ["Hiding from a Revennat will cause it to move very slowly"],
     "strengths": [
       "A Revenant will travel at a significantly faster speed when hunting their prey"
     ],
@@ -341,19 +250,13 @@
   },
   {
     "name": "Shade",
-    "evidence": [
-      "EMF",
-      "Freezing",
-      "Ghost Writing"
-    ],
+    "evidence": ["EMF", "Freezing", "Ghost Writing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Shade",
     "description": "A Shade is known to be very shy. There is evidence to suggest that a Shade will stop all paranormal activity if there are people nearby",
     "weaknesses": [
       "The ghost will not enter a hunt if there are people nearby"
     ],
-    "strengths": [
-      "Shades are much harder to find"
-    ],
+    "strengths": ["Shades are much harder to find"],
     "tips": [
       "Shade will sometimes be less active than usual. If you notice this behaviour, it could likely be a Shade.",
       "It will only hunt if your Sanity is below 35% (usually it's below 50%) and only if there are less than 2 players in its ghost room. If you notice you aren't getting hunted much, it could likely be a Shade.",
@@ -362,19 +265,13 @@
   },
   {
     "name": "Spirit",
-    "evidence": [
-      "EMF",
-      "Ghost Writing",
-      "Spirit Box"
-    ],
+    "evidence": ["EMF", "Ghost Writing", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
     "description": "Spirits are very common ghosts. They are very powerful, but passive, only attacking when they need to. They defend their place of death to the utmost degree, killing anyone that is caught overstaying their welcome.",
     "weaknesses": [
       "A Spirit can be temporarily stopped by burning Smudge Sticks near them"
     ],
-    "strengths": [
-      "None"
-    ],
+    "strengths": ["None"],
     "tips": [
       "(with sanity < 50%) If you smudge a room and the ghost hunts within 3 minutes, it IS NOT a Spirit.",
       "(with sanity < 50%) If you smudge a room and a hunt starts in less than 1 minute, the smudging failed.",
@@ -383,11 +280,7 @@
   },
   {
     "name": "Thaye",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "Ghost Writing",
-      "Ghost Orb"
-    ],
+    "evidence": ["D.O.T.S. Projector", "Ghost Writing", "Ghost Orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
     "description": "Thaye have been known to rapidly age over time, even in the afterlife. From what we've learned, they seem to deteriorate faster while within the presence of the living.",
     "weaknesses": [
@@ -400,36 +293,24 @@
       "With a Thaye, both interactions and events will be more frequent at the start of the investigation.",
       "The Thaye is more likely to interact with the D.O.T.S Projector and Ghost Writing Book; in other words, it will on average write in a book earlier than other ghosts, and show up more often as a silhouette on the D.O.T.S Projector.",
       "One could identify a Thaye through its hunting behaviour; if it is fast early in the contract, slows down over several hunts as players continue spending time near it, and does not gain speed with line-of-sight, then a Thaye is likely. Likewise, if the ghost hunts early and has high levels of activity, but becomes less willing to hunt, interact, or perform ghost events over time, this could also point to a Thaye."
-
     ]
   },
   {
     "name": "The Mimic",
-    "evidence": [
-      "Spirit Box",
-      "Fingerprints",
-      "Freezing",
-      "Ghost Orb"
-    ],
+    "evidence": ["Spirit Box", "Fingerprints", "Freezing", "Ghost Orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Mimic",
     "description": "The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.",
     "weaknesses": [
       "Several reports have noted ghost orb sightings near mimics."
     ],
-    "strengths": [
-      "We're unsure what this ghost is capable of. Be careful."
-    ],
+    "strengths": ["We're unsure what this ghost is capable of. Be careful."],
     "tips": [
       "The Mimic always has Ghost Orbs. If you get two pieces of evidence in addition to Ghost Orbs, it's a Mimic."
     ]
   },
   {
     "name": "The Twins",
-    "evidence": [
-      "EMF",
-      "Freezing",
-      "Spirit Box"
-    ],
+    "evidence": ["EMF", "Freezing", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Twins",
     "description": "These ghosts have been reported to mimic each other's actions. They alternate their attacks to confuse their prey.",
     "weaknesses": [
@@ -447,16 +328,10 @@
   },
   {
     "name": "Wraith",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "EMF",
-      "Spirit Box"
-    ],
+    "evidence": ["D.O.T.S. Projector", "EMF", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Wraith",
     "description": "Wraiths are one of the most dangerous ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.",
-    "weaknesses": [
-      "Wraiths are afraid of Salt and will actively avoid it"
-    ],
+    "weaknesses": ["Wraiths are afraid of Salt and will actively avoid it"],
     "strengths": [
       "Wraiths almost never tough the ground, meaning it can't be traked by footsteps"
     ],
@@ -467,16 +342,10 @@
   },
   {
     "name": "Yokai",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "Ghost Orb",
-      "Spirit Box"
-    ],
+    "evidence": ["D.O.T.S. Projector", "Ghost Orb", "Spirit Box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yokai",
     "description": "Yokai are common ghosts that are attracted to human voices. They can usually be found haunting family homes.",
-    "weaknesses": [
-      "When hunting, a Yokai can only hear voices close to it"
-    ],
+    "weaknesses": ["When hunting, a Yokai can only hear voices close to it"],
     "strengths": [
       "Talking near a Yokai will anger it, increasing the chance of an attack"
     ],
@@ -488,11 +357,7 @@
   },
   {
     "name": "Yurei",
-    "evidence": [
-      "D.O.T.S. Projector",
-      "Freezing",
-      "Ghost Orb"
-    ],
+    "evidence": ["D.O.T.S. Projector", "Freezing", "Ghost Orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yurei",
     "description": "A Yurei is a ghost that has returned to the physical world, usually for the purpose of revenge or hatred.",
     "weaknesses": [

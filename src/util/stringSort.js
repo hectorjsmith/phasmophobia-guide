@@ -1,3 +1,3 @@
 export const compareStringsAsc = (a, b) => {
-    return a.toUpperCase().localeCompare(b.toUpperCase())
+  return a.toUpperCase().localeCompare(b.toUpperCase())
 }

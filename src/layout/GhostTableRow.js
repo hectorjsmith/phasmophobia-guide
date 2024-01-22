@@ -9,14 +9,6 @@ const mapEvidence = (allEvidence, ghostEvidenceIds) => {
 const sortEvidence = (ghostEvidence) => {
   return ghostEvidence.sort((a, b) => {
     return compareStringsAsc(a.name, b.name)
-    // let aSelected = a.selected
-    // let bSelected = b.selected
-    // if (aSelected === bSelected) {
-    //   return compareStringsAsc(a.name, b.name)
-    // } else {
-    //   if (aSelected) return 1
-    //   else return -1
-    // }
   })
 }
 

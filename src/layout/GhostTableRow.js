@@ -49,10 +49,7 @@ export const GhostTableRow = ({ evidence, ghost, showTips }) => {
         {sortEvidence(ghostEvidence).map((e) => {
           return (
             <div key={e.id} className="column is-4-mobile has-text-centered">
-              <EvidenceTag
-                title={e.name}
-                selected={e.selected}
-              />
+              <EvidenceTag title={e.name} selected={e.selected} />
             </div>
           )
         })}

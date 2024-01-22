@@ -1,11 +1,15 @@
 import headerImg from '../img/header.png'
 
 export const TopNav = () => {
-    return (
-        <nav className="level">
-            <p className="level-item has-text-centered">
-                <img src={headerImg} alt="Phasmophobia paranormal guide" style={{height: "150px"}} />
-            </p>
-        </nav>
-    )
+  return (
+    <nav className="level">
+      <p className="level-item has-text-centered">
+        <img
+          src={headerImg}
+          alt="Phasmophobia paranormal guide"
+          style={{ height: '150px' }}
+        />
+      </p>
+    </nav>
+  )
 }

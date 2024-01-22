@@ -14,7 +14,7 @@ Access the app here: **[LINK](https://hectorjsmith.gitlab.io/phasmophobia-guide/
 
 **2.** See which ghosts could match that evidence
 
-*The table on the right will automatically update to only show ghosts that match those observations*
+_The table on the right will automatically update to only show ghosts that match those observations_
 
 ![Screenshot of ghosts section](docs/ghosts.png)
 
@@ -22,11 +22,11 @@ Access the app here: **[LINK](https://hectorjsmith.gitlab.io/phasmophobia-guide/
 
 ![Screenshot of missing evidence section](docs/missingEvidence.png)
 
-*The missing evidence section allows you to rule out evidence that is incompatible*
+_The missing evidence section allows you to rule out evidence that is incompatible_
 
 **4.** Get more information on each ghost
 
-*Click on the blue "i" next to the ghost name to get more info*
+_Click on the blue "i" next to the ghost name to get more info_
 
 ![Screenshot of ghost info](docs/ghostInfo.png)
 
@@ -51,6 +51,7 @@ This project is a fun little weekend project to experiment building an app with 
 The font used for the page heading image is "October Crow" by Sinister Fonts ([link](https://www.dafont.com/october-crow.font)).
 
 This project also makes use of the following open-source tools:
+
 - [ReactJS](https://reactjs.org/)
 - [Bulma CSS](https://bulma.io/)
 

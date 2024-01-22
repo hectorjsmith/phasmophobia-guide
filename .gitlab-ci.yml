@@ -19,17 +19,17 @@ sast:
   stage: test
 
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
 
 preview:
   extends: .node_template
   stage: build
   environment:
-    name: "preview/$CI_COMMIT_REF_NAME"
-    url: "https://$CI_PROJECT_NAMESPACE.gitlab.io/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build/index.html"
+    name: 'preview/$CI_COMMIT_REF_NAME'
+    url: 'https://$CI_PROJECT_NAMESPACE.gitlab.io/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build/index.html'
   variables:
-    PUBLIC_URL: "/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build"
+    PUBLIC_URL: '/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/build'
   script:
     - make npm/build
   artifacts:

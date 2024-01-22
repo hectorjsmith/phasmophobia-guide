@@ -32,7 +32,7 @@
   },
   {
     "name": "Deogen",
-    "evidence": ["dots", "Spirit Box", "writing"],
+    "evidence": ["dots", "box", "writing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Deogen",
     "description": "Sometimes surrounded by an endless fog, Deogen have been eluding ghost hunters for years. These ghosts have been reported to find even the most hidden prey, before stalking them into exhaustion.",
     "weaknesses": [
@@ -97,7 +97,7 @@
   },
   {
     "name": "Mare",
-    "evidence": ["orb", "writing", "Spirit Box"],
+    "evidence": ["orb", "writing", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Mare",
     "description": "A Mare is the source of all nightmares, making it most powerful in the dark.",
     "weaknesses": [
@@ -112,7 +112,7 @@
   },
   {
     "name": "Moroi",
-    "evidence": ["freezing", "writing", "Spirit Box"],
+    "evidence": ["freezing", "writing", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Moroi",
     "description": "Moroi have risen from the grave to drain energy from the living. They have been known to place curses on their victims, curable only by antidotes or moving very far away.",
     "weaknesses": [
@@ -172,7 +172,7 @@
   },
   {
     "name": "Onryo",
-    "evidence": ["orb", "Spirit Box", "freezing"],
+    "evidence": ["orb", "box", "freezing"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Onryo",
     "description": "The Onryo is often referred to as 'The Wrathful Spirit.' It steals souls from dying victims' bodies to seek revenge. This ghost has been known to fear any form of fire, and will do anything to be far from it.",
     "weaknesses": ["When threatened, this ghost will be less likely to hunt"],
@@ -186,7 +186,7 @@
   },
   {
     "name": "Phantom",
-    "evidence": ["dots", "fingerprints", "Spirit Box"],
+    "evidence": ["dots", "fingerprints", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Phantom",
     "description": "A Phantom is a Ghost that can possess the living, inducing fear into those around it. They are most commonly summoned from Ouija Boards.",
     "weaknesses": [
@@ -205,7 +205,7 @@
   },
   {
     "name": "Poltergeist",
-    "evidence": ["fingerprints", "writing", "Spirit Box"],
+    "evidence": ["fingerprints", "writing", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Poltergeist",
     "description": "One of the most famous Ghosts, the Poltergeist. Known to manipulate objects around it to spread fear into its victims.",
     "weaknesses": ["With nothing to throw, Poltergeists become powerless"],
@@ -265,7 +265,7 @@
   },
   {
     "name": "Spirit",
-    "evidence": ["emf", "writing", "Spirit Box"],
+    "evidence": ["emf", "writing", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Spirit",
     "description": "Spirits are very common ghosts. They are very powerful, but passive, only attacking when they need to. They defend their place of death to the utmost degree, killing anyone that is caught overstaying their welcome.",
     "weaknesses": [
@@ -297,7 +297,7 @@
   },
   {
     "name": "The Mimic",
-    "evidence": ["Spirit Box", "fingerprints", "freezing", "orb"],
+    "evidence": ["box", "fingerprints", "freezing", "orb"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Mimic",
     "description": "The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.",
     "weaknesses": [
@@ -310,7 +310,7 @@
   },
   {
     "name": "The Twins",
-    "evidence": ["emf", "freezing", "Spirit Box"],
+    "evidence": ["emf", "freezing", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/The_Twins",
     "description": "These ghosts have been reported to mimic each other's actions. They alternate their attacks to confuse their prey.",
     "weaknesses": [
@@ -328,7 +328,7 @@
   },
   {
     "name": "Wraith",
-    "evidence": ["dots", "emf", "Spirit Box"],
+    "evidence": ["dots", "emf", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Wraith",
     "description": "Wraiths are one of the most dangerous ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.",
     "weaknesses": ["Wraiths are afraid of Salt and will actively avoid it"],
@@ -342,7 +342,7 @@
   },
   {
     "name": "Yokai",
-    "evidence": ["dots", "orb", "Spirit Box"],
+    "evidence": ["dots", "orb", "box"],
     "wikiUrl": "https://phasmophobia.fandom.com/wiki/Yokai",
     "description": "Yokai are common ghosts that are attracted to human voices. They can usually be found haunting family homes.",
     "weaknesses": ["When hunting, a Yokai can only hear voices close to it"],

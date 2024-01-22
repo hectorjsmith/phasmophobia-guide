@@ -17,7 +17,6 @@ export const ObservationToggle = ({
     })
   }
 
-  const totalGhosts = possibleGhosts.length
   const matchingGhosts = possibleGhosts.filter((g) =>
     g.evidence.some((e) => e === evidence.id),
   ).length
@@ -46,7 +45,9 @@ export const ObservationToggle = ({
             <span className="icon is-small">
               <i
                 className={
-                  'fa fa-check' + (matchingGhosts === 0 ? ' has-text-dark' : '')
+                  'fa fa-' +
+                  evidence.icon +
+                  (matchingGhosts === 0 ? ' has-text-dark' : '')
                 }
               />
             </span>
@@ -55,9 +56,6 @@ export const ObservationToggle = ({
       </div>
       <div className="column is-mobile mt-1">
         <p>{evidence.name}</p>
-        <p className="heading">
-          {matchingGhosts} / {totalGhosts}
-        </p>
       </div>
     </div>
   )

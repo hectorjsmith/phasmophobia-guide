@@ -8,14 +8,15 @@ const mapEvidence = (allEvidence, ghostEvidenceIds) => {
 
 const sortEvidence = (ghostEvidence) => {
   return ghostEvidence.sort((a, b) => {
-    let aSelected = a.selected
-    let bSelected = b.selected
-    if (aSelected === bSelected) {
-      return compareStringsAsc(a.name, b.name)
-    } else {
-      if (aSelected) return 1
-      else return -1
-    }
+    return compareStringsAsc(a.name, b.name)
+    // let aSelected = a.selected
+    // let bSelected = b.selected
+    // if (aSelected === bSelected) {
+    //   return compareStringsAsc(a.name, b.name)
+    // } else {
+    //   if (aSelected) return 1
+    //   else return -1
+    // }
   })
 }
 
@@ -27,7 +28,7 @@ export const GhostTableRow = ({ evidence, ghost, showTips }) => {
   return (
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
-        <div className="column is-narrow-desktop is-1-mobile">
+        <div className="column is-narrow">
           <button
             className={'button' + (expanded ? ' is-dark' : '')}
             onClick={toggleExpanded}
@@ -41,15 +42,15 @@ export const GhostTableRow = ({ evidence, ghost, showTips }) => {
             </span>
           </button>
         </div>
-        <div className="column is-11-mobile is-3-desktop">
+        <div className="column">
           <p className="is-uppercase has-text-weight-light has-letter-spacing">
             {ghost.name}
           </p>
         </div>
         {sortEvidence(ghostEvidence).map((e) => {
           return (
-            <div key={e.id} className="column is-4-mobile has-text-centered">
-              <EvidenceTag title={e.name} selected={e.selected} />
+            <div key={e.id} className="column is-narrow">
+              <EvidenceTag evidence={e} />
             </div>
           )
         })}

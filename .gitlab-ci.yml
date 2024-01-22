@@ -7,7 +7,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 .node_template:
-  image: node:16
+  image: node:20
   before_script:
     - npm ci --cache .npm --prefer-offline
   cache:

@@ -41,7 +41,7 @@ export const LeftColumn = ({
           )
         })}
 
-      <div class="buttons is-centered">
+      <div className="buttons is-centered mt-6">
         <button
           className={
             'button is-outlined' + (selectionCount > 0 ? ' is-warning' : '')

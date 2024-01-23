@@ -4,6 +4,10 @@
   src: url(./fonts/october_crow.ttf) format('truetype');
 }
 
+.has-text-line-through {
+  text-decoration: line-through;
+}
+
 .has-letter-spacing {
   letter-spacing: 3px;
 }

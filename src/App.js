@@ -10,6 +10,7 @@ const mapGhosts = (rawGhosts) => {
       ...g,
       expanded: false,
       visible: true,
+      rejected: false,
     }
   })
 }

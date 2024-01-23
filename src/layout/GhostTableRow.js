@@ -15,6 +15,7 @@ export const GhostTableRow = ({
   evidence,
   ghost,
   setGhostExpanded,
+  setGhostRejected,
   showTips,
 }) => {
   const ghostEvidence = mapEvidence(evidence, ghost.evidence)
@@ -24,25 +25,44 @@ export const GhostTableRow = ({
     setGhostExpanded(ghost, !ghost.expanded)
   }
 
+  const toggleRejected = () => {
+    setGhostRejected(ghost, !ghost.rejected)
+  }
+
   return (
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
-          <button
-            className={'button' + (expanded ? ' is-dark' : '')}
-            onClick={toggleExpanded}
-          >
-            <span className="icon is-small">
-              <i
-                className={
-                  'fa' + (expanded ? ' fa-chevron-up' : ' fa-chevron-down')
-                }
-              />
-            </span>
-          </button>
+          <div className="buttons has-addons">
+            <button
+              className={'button' + (ghost.rejected ? ' is-danger' : '')}
+              onClick={toggleRejected}
+            >
+              <span className="icon is-small">
+                <i className="fa fa-times" />
+              </span>
+            </button>
+            <button
+              className={'button' + (expanded ? ' is-dark' : '')}
+              onClick={toggleExpanded}
+            >
+              <span className="icon is-small">
+                <i
+                  className={
+                    'fa' + (expanded ? ' fa-chevron-up' : ' fa-chevron-down')
+                  }
+                />
+              </span>
+            </button>
+          </div>
         </div>
         <div className="column">
-          <p className="is-uppercase has-text-weight-light has-letter-spacing">
+          <p
+            className={
+              'is-uppercase has-text-weight-light has-letter-spacing' +
+              (ghost.rejected ? ' has-text-line-through has-text-danger' : '')
+            }
+          >
             {ghost.name}
           </p>
         </div>

@@ -42,14 +42,7 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
   }
 
   const sortGhosts = (a, b) => {
-    if (a.rejected === b.rejected) {
-      return compareStringsAsc(a.name, b.name)
-    }
-    if (a.rejected && !b.rejected) {
-      return 1
-    } else {
-      return -1
-    }
+    return compareStringsAsc(a.name, b.name)
   }
 
   const renderGhostTable = () => {

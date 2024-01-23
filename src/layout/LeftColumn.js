@@ -41,18 +41,17 @@ export const LeftColumn = ({
           )
         })}
 
-<div class="buttons is-centered">
-  <button
+      <div class="buttons is-centered">
+        <button
           className={
-            'button is-outlined' +
-            (selectionCount > 0 ? ' is-warning' : '')
+            'button is-outlined' + (selectionCount > 0 ? ' is-warning' : '')
           }
           onClick={resetEvidence}
           title="Reset all selected observations"
         >
           reset
         </button>
-  <button
+        <button
           className={'button' + (showTips ? ' is-info' : '')}
           onClick={toggleShowTips}
           title="Show Tips"
@@ -61,7 +60,7 @@ export const LeftColumn = ({
             <i className={'fa fa-info'} />
           </span>
         </button>
+      </div>
     </div>
-</div>
   )
 }

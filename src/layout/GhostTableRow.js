@@ -60,7 +60,7 @@ export const GhostTableRow = ({
           <p
             className={
               'is-uppercase has-text-weight-light has-letter-spacing' +
-              (ghost.rejected ? ' has-text-line-through' : '')
+              (ghost.rejected ? ' has-text-line-through has-text-danger' : '')
             }
           >
             {ghost.name}

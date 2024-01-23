@@ -1,8 +1,4 @@
-export const ObservationToggle = ({
-  ghosts,
-  evidence,
-  setEvidence,
-}) => {
+export const ObservationToggle = ({ ghosts, evidence, setEvidence }) => {
   const toggleSelect = () => {
     setEvidence({
       ...evidence,
@@ -17,8 +13,8 @@ export const ObservationToggle = ({
     })
   }
 
-  const matchingGhosts = ghosts.filter((g) =>
-    g.visible && g.evidence.some((e) => e === evidence.id),
+  const matchingGhosts = ghosts.filter(
+    (g) => g.visible && g.evidence.some((e) => e === evidence.id),
   ).length
 
   return (

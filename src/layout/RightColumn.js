@@ -1,12 +1,7 @@
 import { GhostTableRow } from './GhostTableRow'
 import { compareStringsAsc } from '../util/stringSort'
 
-export const RightColumn = ({
-  evidence,
-  ghosts,
-  showTips,
-  setGhosts,
-}) => {
+export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
   const visibleGhosts = ghosts.filter((g) => g.visible)
   const showSuccessMessage = () => {
     if (visibleGhosts.length === 1) {

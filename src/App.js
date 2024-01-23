@@ -9,19 +9,19 @@ const mapGhosts = (rawGhosts) => {
     return {
       ...g,
       expanded: false,
-      visible: true
+      visible: true,
     }
   })
 }
 
 const mapEvidence = (rawEvidence) => {
-return rawEvidence.map((e) => {
-  return {
-    ...e,
-    selected: false,
-    rejected: false,
-  }
-})
+  return rawEvidence.map((e) => {
+    return {
+      ...e,
+      selected: false,
+      rejected: false,
+    }
+  })
 }
 
 const resetData = (rawEvidence, setEvidenceData, rawGhosts, setGhostData) => {
@@ -52,11 +52,18 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
   let rejectedEvidence = evidence.filter((e) => e.rejected)
 
   if (selectedEvidence.length === 0 && rejectedEvidence.length === 0) {
-    setGhosts(allGhosts.map((g) => {return {...g, visible: true}}))
+    setGhosts(
+      allGhosts.map((g) => {
+        return { ...g, visible: true }
+      }),
+    )
   } else {
     setGhosts(
       allGhosts.map((g) => {
-        return {...g, visible: isGhostPossible(g, selectedEvidence, rejectedEvidence)}
+        return {
+          ...g,
+          visible: isGhostPossible(g, selectedEvidence, rejectedEvidence),
+        }
       }),
     )
   }

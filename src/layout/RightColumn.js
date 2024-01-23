@@ -1,7 +1,7 @@
 import { GhostTableRow } from './GhostTableRow'
 import { compareStringsAsc } from '../util/stringSort'
 
-export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
+export const RightColumn = ({ evidence, possibleGhosts, showTips, setGhosts }) => {
   const showSuccessMessage = () => {
     if (possibleGhosts.length === 1) {
       return (
@@ -17,6 +17,19 @@ export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
       )
     }
     return ''
+  }
+
+  const setGhostExpanded = (ghost, newExpanded) => {
+    setGhosts((prevGhosts) => {
+      return prevGhosts.map(g => {
+        if (g.name === ghost.name) {
+          // Return a new object with the updated property
+          return { ...g, expanded: newExpanded };
+        }
+        // If it's not the target object, return the original object
+        return g;
+      });
+    })
   }
 
   const renderGhostTable = () => {
@@ -41,6 +54,7 @@ export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
                 key={ghost.name}
                 evidence={evidence}
                 ghost={ghost}
+                setGhostExpanded={setGhostExpanded}
                 showTips={showTips}
               />
             )

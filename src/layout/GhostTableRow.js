@@ -1,4 +1,3 @@
-import { useReducer } from 'react'
 import { compareStringsAsc } from '../util/stringSort'
 import { EvidenceTag } from './EvidenceTag'
 
@@ -12,10 +11,13 @@ const sortEvidence = (ghostEvidence) => {
   })
 }
 
-export const GhostTableRow = ({ evidence, ghost, showTips }) => {
-  const [expanded, toggleExpanded] = useReducer((v) => !v, false)
-
+export const GhostTableRow = ({ evidence, ghost, setGhostExpanded, showTips }) => {
   const ghostEvidence = mapEvidence(evidence, ghost.evidence)
+  const expanded = ghost.expanded
+
+  const toggleExpanded = () => {
+    setGhostExpanded(ghost, !ghost.expanded)
+  }
 
   return (
     <div>

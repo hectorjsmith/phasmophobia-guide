@@ -17,7 +17,7 @@ const resetData = (allEvidence, setEvidenceData, allGhosts, setGhostData) => {
   const ghosts = allGhosts.map((g) => {
     return {
       ...g,
-      expanded: true,
+      expanded: false,
     }
   })
   setGhostData(ghosts)
@@ -90,6 +90,7 @@ export const App = ({ allEvidence, allGhosts }) => {
                 evidence={evidenceData}
                 possibleGhosts={possibleGhosts}
                 showTips={showTips}
+                setGhosts={setPossibleGhosts}
               />
             </div>
           </div>

@@ -78,7 +78,12 @@ export const App = ({ allEvidence, allGhosts }) => {
                 evidence={evidenceData}
                 setEvidence={setEvidenceData}
                 resetEvidence={() =>
-                  resetData(allEvidence, setEvidenceData, allGhosts, setPossibleGhosts)
+                  resetData(
+                    allEvidence,
+                    setEvidenceData,
+                    allGhosts,
+                    setPossibleGhosts,
+                  )
                 }
                 possibleGhosts={possibleGhosts}
                 showTips={showTips}

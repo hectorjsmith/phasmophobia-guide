@@ -11,7 +11,12 @@ const sortEvidence = (ghostEvidence) => {
   })
 }
 
-export const GhostTableRow = ({ evidence, ghost, setGhostExpanded, showTips }) => {
+export const GhostTableRow = ({
+  evidence,
+  ghost,
+  setGhostExpanded,
+  showTips,
+}) => {
   const ghostEvidence = mapEvidence(evidence, ghost.evidence)
   const expanded = ghost.expanded
 

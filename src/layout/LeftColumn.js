@@ -5,7 +5,7 @@ export const LeftColumn = ({
   evidence,
   setEvidence,
   resetEvidence,
-  possibleGhosts,
+  ghosts,
   showTips,
   toggleShowTips,
 }) => {
@@ -51,7 +51,7 @@ export const LeftColumn = ({
                 evidence[index] = newE
                 setEvidence([...evidence])
               }}
-              possibleGhosts={possibleGhosts}
+              ghosts={ghosts}
             />
           )
         })}

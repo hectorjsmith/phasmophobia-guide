@@ -3,12 +3,13 @@ import { compareStringsAsc } from '../util/stringSort'
 
 export const RightColumn = ({
   evidence,
-  possibleGhosts,
+  ghosts,
   showTips,
   setGhosts,
 }) => {
+  const visibleGhosts = ghosts.filter((g) => g.visible)
   const showSuccessMessage = () => {
-    if (possibleGhosts.length === 1) {
+    if (visibleGhosts.length === 1) {
       return (
         <div className="box has-text-centered">
           <span className="icon has-text-success">
@@ -38,7 +39,7 @@ export const RightColumn = ({
   }
 
   const renderGhostTable = () => {
-    if (possibleGhosts.length === 0) {
+    if (visibleGhosts.length === 0) {
       return (
         <div className="box has-text-centered">
           <span className="icon has-text-warning">
@@ -51,7 +52,7 @@ export const RightColumn = ({
     }
     return (
       <div>
-        {possibleGhosts
+        {visibleGhosts
           .sort((a, b) => compareStringsAsc(a.name, b.name))
           .map((ghost) => {
             return (

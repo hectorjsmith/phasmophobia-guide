@@ -9,26 +9,11 @@ export const LeftColumn = ({
   showTips,
   toggleShowTips,
 }) => {
-  const maxSelected = 3
   const countSelectedEvidence = () => {
     return evidence.filter((e) => e.selected).length
   }
   const countRejectedEvidence = () => {
     return evidence.filter((e) => e.rejected).length
-  }
-
-  const showWarning = () => {
-    if (countSelectedEvidence() > maxSelected) {
-      return (
-        <span
-          className="icon has-text-warning"
-          title="Too many observations selected"
-        >
-          <i className="fa fa-2x fa-warning" />
-        </span>
-      )
-    }
-    return ''
   }
 
   let selectedEvidenceCount = countSelectedEvidence()
@@ -56,25 +41,16 @@ export const LeftColumn = ({
           )
         })}
 
-      <div className="has-text-centered">
+      <div className="buttons is-centered mt-6">
         <button
           className={
-            'button my-4 is-outlined' +
-            (selectionCount > 0 ? ' is-warning' : '')
+            'button is-outlined' + (selectionCount > 0 ? ' is-warning' : '')
           }
           onClick={resetEvidence}
           title="Reset all selected observations"
         >
           reset
         </button>
-
-        <p className="heading mb-3">
-          ({selectedEvidenceCount} of {maxSelected})
-        </p>
-        {showWarning()}
-      </div>
-
-      <div className="columns is-mobile is-centered is-vcentered is-narrow my-5">
         <button
           className={'button' + (showTips ? ' is-info' : '')}
           onClick={toggleShowTips}

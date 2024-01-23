@@ -41,6 +41,17 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
     setGhostValue(ghost, "rejected", newRejected)
   }
 
+  const sortGhosts = (a, b) => {
+    if (a.rejected === b.rejected) {
+      return compareStringsAsc(a.name, b.name)
+    }
+    if (a.rejected && !b.rejected) {
+      return 1
+    } else {
+      return -1
+    }
+  }
+
   const renderGhostTable = () => {
     if (visibleGhosts.length === 0) {
       return (
@@ -56,7 +67,7 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
     return (
       <div>
         {visibleGhosts
-          .sort((a, b) => compareStringsAsc(a.name, b.name))
+          .sort(sortGhosts)
           .map((ghost) => {
             return (
               <GhostTableRow

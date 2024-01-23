@@ -9,7 +9,7 @@ import evidence from './data/evidence.json'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App allEvidence={evidence} allGhosts={ghosts} />
+    <App rawEvidence={evidence} rawGhosts={ghosts} />
   </React.StrictMode>,
   document.getElementById('root'),
 )

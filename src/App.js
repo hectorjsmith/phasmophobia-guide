@@ -76,6 +76,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
 
   useEffect(
     () => filterPossibleGhosts(evidenceData, ghostData, setGhostData),
+    // eslint-disable-next-line
     [evidenceData],
   )
 

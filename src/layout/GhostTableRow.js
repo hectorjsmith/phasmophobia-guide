@@ -33,7 +33,7 @@ export const GhostTableRow = ({
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
-          <div className="buttons">
+          <div className="buttons has-addons">
             <button
               className={'button' + (ghost.rejected ? ' is-danger' : '')}
               onClick={toggleRejected}

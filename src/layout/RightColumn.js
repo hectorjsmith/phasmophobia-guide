@@ -1,9 +1,10 @@
 import { GhostTableRow } from './GhostTableRow'
 import { compareStringsAsc } from '../util/stringSort'
 
-export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
+export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
+  const visibleGhosts = ghosts.filter((g) => g.visible)
   const showSuccessMessage = () => {
-    if (possibleGhosts.length === 1) {
+    if (visibleGhosts.length === 1) {
       return (
         <div className="box has-text-centered">
           <span className="icon has-text-success">
@@ -19,8 +20,21 @@ export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
     return ''
   }
 
+  const setGhostExpanded = (ghost, newExpanded) => {
+    setGhosts((prevGhosts) => {
+      return prevGhosts.map((g) => {
+        if (g.name === ghost.name) {
+          // Return a new object with the updated property
+          return { ...g, expanded: newExpanded }
+        }
+        // If it's not the target object, return the original object
+        return g
+      })
+    })
+  }
+
   const renderGhostTable = () => {
-    if (possibleGhosts.length === 0) {
+    if (visibleGhosts.length === 0) {
       return (
         <div className="box has-text-centered">
           <span className="icon has-text-warning">
@@ -33,7 +47,7 @@ export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
     }
     return (
       <div>
-        {possibleGhosts
+        {visibleGhosts
           .sort((a, b) => compareStringsAsc(a.name, b.name))
           .map((ghost) => {
             return (
@@ -41,6 +55,7 @@ export const RightColumn = ({ evidence, possibleGhosts, showTips }) => {
                 key={ghost.name}
                 evidence={evidence}
                 ghost={ghost}
+                setGhostExpanded={setGhostExpanded}
                 showTips={showTips}
               />
             )

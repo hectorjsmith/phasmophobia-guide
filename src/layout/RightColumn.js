@@ -32,13 +32,13 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
       })
     })
   }
-  
+
   const setGhostExpanded = (ghost, newExpanded) => {
-    setGhostValue(ghost, "expanded", newExpanded)
+    setGhostValue(ghost, 'expanded', newExpanded)
   }
 
   const setGhostRejected = (ghost, newRejected) => {
-    setGhostValue(ghost, "rejected", newRejected)
+    setGhostValue(ghost, 'rejected', newRejected)
   }
 
   const sortGhosts = (a, b) => {
@@ -66,20 +66,18 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
     }
     return (
       <div>
-        {visibleGhosts
-          .sort(sortGhosts)
-          .map((ghost) => {
-            return (
-              <GhostTableRow
-                key={ghost.name}
-                evidence={evidence}
-                ghost={ghost}
-                setGhostExpanded={setGhostExpanded}
-                setGhostRejected={setGhostRejected}
-                showTips={showTips}
-              />
-            )
-          })}
+        {visibleGhosts.sort(sortGhosts).map((ghost) => {
+          return (
+            <GhostTableRow
+              key={ghost.name}
+              evidence={evidence}
+              ghost={ghost}
+              setGhostExpanded={setGhostExpanded}
+              setGhostRejected={setGhostRejected}
+              showTips={showTips}
+            />
+          )
+        })}
         {showSuccessMessage()}
       </div>
     )

@@ -4,15 +4,23 @@ import { TopNav } from './nav/Header'
 import { LeftColumn } from './layout/LeftColumn'
 import { RightColumn } from './layout/RightColumn'
 
-const resetEvidenceData = (evidence, setEvidenceData) => {
-  const mappedEvidence = evidence.map((e) => {
+const resetData = (allEvidence, setEvidenceData, allGhosts, setGhostData) => {
+  const evidence = allEvidence.map((e) => {
     return {
       ...e,
       selected: false,
       rejected: false,
     }
   })
-  setEvidenceData(mappedEvidence)
+  setEvidenceData(evidence)
+
+  const ghosts = allGhosts.map((g) => {
+    return {
+      ...g,
+      expanded: true,
+    }
+  })
+  setGhostData(ghosts)
 }
 
 const filterPossibleGhosts = (evidence, allGhosts, setPossibleGhosts) => {
@@ -51,12 +59,12 @@ export const App = ({ allEvidence, allGhosts }) => {
   const [showTips, toggleShowTips] = useReducer((state) => !state, true)
 
   useEffect(
-    () => resetEvidenceData(allEvidence, setEvidenceData),
-    [allEvidence],
+    () => resetData(allEvidence, setEvidenceData, allGhosts, setPossibleGhosts),
+    [allEvidence, allGhosts],
   )
   useEffect(
     () => filterPossibleGhosts(evidenceData, allGhosts, setPossibleGhosts),
-    [evidenceData, allGhosts],
+    [allGhosts, evidenceData],
   )
 
   return (
@@ -70,7 +78,7 @@ export const App = ({ allEvidence, allGhosts }) => {
                 evidence={evidenceData}
                 setEvidence={setEvidenceData}
                 resetEvidence={() =>
-                  resetEvidenceData(allEvidence, setEvidenceData)
+                  resetData(allEvidence, setEvidenceData, allGhosts, setPossibleGhosts)
                 }
                 possibleGhosts={possibleGhosts}
                 showTips={showTips}

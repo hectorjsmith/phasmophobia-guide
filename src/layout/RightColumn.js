@@ -20,17 +20,25 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
     return ''
   }
 
-  const setGhostExpanded = (ghost, newExpanded) => {
+  const setGhostValue = (ghost, key, value) => {
     setGhosts((prevGhosts) => {
       return prevGhosts.map((g) => {
         if (g.name === ghost.name) {
           // Return a new object with the updated property
-          return { ...g, expanded: newExpanded }
+          return { ...g, [key]: value }
         }
         // If it's not the target object, return the original object
         return g
       })
     })
+  }
+  
+  const setGhostExpanded = (ghost, newExpanded) => {
+    setGhostValue(ghost, "expanded", newExpanded)
+  }
+
+  const setGhostRejected = (ghost, newRejected) => {
+    setGhostValue(ghost, "rejected", newRejected)
   }
 
   const renderGhostTable = () => {
@@ -56,6 +64,7 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
                 evidence={evidence}
                 ghost={ghost}
                 setGhostExpanded={setGhostExpanded}
+                setGhostRejected={setGhostRejected}
                 showTips={showTips}
               />
             )

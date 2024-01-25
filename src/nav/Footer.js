@@ -18,7 +18,7 @@ export const Footer = () => {
           </span>
         </p>
         <p className="heading">
-          {buildTime}
+          Built on {buildTime}
           <span className="icon">
             <i className="fa fa-calendar" />
           </span>

@@ -10,42 +10,55 @@ export const Footer = () => {
       return ''
     }
     return (
-      <div className="columns is-mobile is-centered">
-        <div className="column is-2-desktop is-6-mobile heading">{version}</div>
-        <div className="column is-2-desktop is-6-mobile heading">
-          built on: {buildTime}
-        </div>
+      <div className="has-text-right">
+        <p className="heading">
+          {version}
+          <span className="icon">
+            <i className="fa fa-code" />
+          </span>
+        </p>
+        <p className="heading">
+          Built on {buildTime}
+          <span className="icon">
+            <i className="fa fa-calendar" />
+          </span>
+        </p>
       </div>
     )
   }
 
   return (
-    <footer className="footer py-4 mt-6">
-      <div className="content has-text-centered">
-        <p className="heading has-text-centered my-2">
-          <a
-            className="has-text-white has-hover-text-link-dark"
-            target="_blank"
-            rel="noreferrer"
-            href="https://gitlab.com/hectorjsmith/phasmophobia-guide"
-          >
-            <span className="icon">
-              <i className="fa fa-gitlab" />
-            </span>
-            Code on Gitlab
-          </a>
-        </p>
-        <p className="heading has-text-centered my-2">
-          <a
-            className="has-text-white has-hover-text-link-dark"
-            target="_blank"
-            rel="noreferrer"
-            href="https://umami.is/"
-          >
-            Analytics by Umami
-          </a>
-        </p>
-        {showVersion()}
+    <footer className="footer mt-6">
+      <div className="columns mx-4">
+        <div className="column is-half">
+          <p className="heading">
+            <a
+              className="has-text-white has-hover-text-link-dark"
+              target="_blank"
+              rel="noreferrer"
+              href="https://gitlab.com/hectorjsmith/phasmophobia-guide"
+            >
+              <span className="icon">
+                <i className="fa fa-gitlab" />
+              </span>
+              Code on Gitlab
+            </a>
+          </p>
+          <p className="heading">
+            <a
+              className="has-text-white has-hover-text-link-dark"
+              target="_blank"
+              rel="noreferrer"
+              href="https://umami.is/"
+            >
+              <span className="icon">
+                <i className="fa fa-line-chart" />
+              </span>
+              Analytics by Umami
+            </a>
+          </p>
+        </div>
+        <div className="column is-half">{showVersion()}</div>
       </div>
     </footer>
   )

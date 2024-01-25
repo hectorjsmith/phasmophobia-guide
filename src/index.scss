@@ -4,6 +4,11 @@
   src: url(./fonts/october_crow.ttf) format('truetype');
 }
 
+footer {
+  background-color: black !important;
+  padding: 1rem 2rem !important;
+}
+
 .has-text-line-through {
   text-decoration: line-through;
 }

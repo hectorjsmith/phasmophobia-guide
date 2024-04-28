@@ -90,7 +90,7 @@ const newSyncEventHandler = (channel, syncState, setEvidenceData) => {
     const newState = channel.presenceState()
     console.log("sync", newState)
     for (const key in newState) {
-      if (key.startsWith("user") && !key.includes(syncState.userId)) {
+      if (key.startsWith("user_") && !key.includes(syncState.userId)) {
         const newEvidence = newState[key][0]["evidence"]
         setEvidenceData(newEvidence)
       }
@@ -99,9 +99,10 @@ const newSyncEventHandler = (channel, syncState, setEvidenceData) => {
 }
 
 const handleConnect = (syncState, setSyncState, setChannel, setEvidenceData) => {
-  const channel = supabase.channel(syncState.roomId, {
+  const roomId = syncState.roomId.replace(' ', '')
+  const channel = supabase.channel(roomId, {
     config: {
-      presence: { key: syncState.userId }
+      presence: { key: `user_${syncState.userId}` },
     }
   })
   const onSync = newSyncEventHandler(channel, syncState, setEvidenceData)

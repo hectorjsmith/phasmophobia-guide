@@ -1,5 +1,39 @@
+import { useState } from 'react'
 
-const renderFormBody = (syncState, setSyncState, onConnect, onDisconnect) => {
+const checkUsername = (username) => {
+    return username && username.length <= 20
+}
+
+const checkRoomId = (roomId) => {
+    const cleanRoomId = roomId.replace(' ', '')
+    const roomIdRegex = /^[a-zA-Z0-9]+$/
+    return roomId && cleanRoomId.length >= 6 && cleanRoomId.length <= 20 && roomIdRegex.test(cleanRoomId)
+}
+
+const RenderFormBody = ({syncState, setSyncState, onConnect, onDisconnect}) => {
+    const [usernameValid, setUsernameValid] = useState(checkUsername(syncState.userId))
+    const [roomIdValid, setRoomIdValid] = useState(checkRoomId(syncState.roomId))
+    
+    const onUsernameChange = (e) => {
+        const username = e.target.value
+        if (!checkUsername(username)) {
+            setUsernameValid(false)
+            return
+        }
+        setUsernameValid(true)
+        setSyncState({...syncState, userId: username})
+    }
+
+    const onRoomIdChange = (e) => {
+        const roomId = e.target.value
+        if (!checkRoomId(roomId)) {
+            setRoomIdValid(false)
+            return
+        }
+        setRoomIdValid(true)
+        setSyncState({...syncState, roomId: roomId})
+    }
+
     return (
         <>
             <div className="field">
@@ -9,9 +43,11 @@ const renderFormBody = (syncState, setSyncState, onConnect, onDisconnect) => {
                         type="text"
                         defaultValue={syncState.userId ?? ""}
                         disabled={syncState.isConnected}
-                        onChange={(e) => setSyncState({...syncState, userId: e.target.value})}
+                        onChange={onUsernameChange}
+                        maxLength={20}
                         placeholder="pineapple pen" />
                 </div>
+                {usernameValid ? null : <p class="help is-danger">This username is invalid</p> }
             </div>
 
             <div className="field">
@@ -21,18 +57,21 @@ const renderFormBody = (syncState, setSyncState, onConnect, onDisconnect) => {
                         type="text"
                         defaultValue={syncState.roomId ?? ""}
                         disabled={syncState.isConnected}
-                        onChange={(e) => setSyncState({...syncState, roomId: e.target.value})}
+                        onChange={onRoomIdChange}
+                        maxLength={10}
                         placeholder="000 000" />
                 </div>
+                {roomIdValid ? null : <p class="help is-danger">This room ID is invalid</p> }
             </div>
 
             <div className="field is-grouped is-grouped-centered">
-                <div className="control">
+                <div className="control" hidden={!syncState.isConnected}>
                     <button className="button is-danger"
                         onClick={onDisconnect}>Disconnect</button>
                 </div>
-                <div className="control">
+                <div className="control" hidden={syncState.isConnected}>
                     <button className="button is-success"
+                        disabled={!usernameValid || !roomIdValid}
                         onClick={onConnect}>Connect</button>
                 </div>
             </div>
@@ -55,7 +94,10 @@ export const SyncModal = ({syncState, setSyncState, onConnect, onDisconnect, tog
                         <button className="delete" aria-label="close" onClick={toggleSyncModalOpen} />
                     </header>
                     <section className="modal-card-body">
-                        {renderFormBody(syncState, setSyncState, onConnect, onDisconnect)}
+                        <RenderFormBody syncState={syncState}
+                                        setSyncState={setSyncState}
+                                        onConnect={onConnect}
+                                        onDisconnect={onDisconnect} />
                     </section>
                 </div>
             </div>

@@ -72,7 +72,11 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
   }
 }
 
-const newSetAndSyncEvidenceDataFn = (evidenceData, setEvidenceData, channel) => {
+const newSetAndSyncEvidenceDataFn = (
+  evidenceData,
+  setEvidenceData,
+  channel,
+) => {
   return (newEvidence) => {
     const result = setEvidenceData(newEvidence)
     if (channel && evidenceData !== newEvidence) {

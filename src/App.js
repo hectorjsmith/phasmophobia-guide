@@ -76,7 +76,7 @@ const newSetAndSyncEvidenceDataFn = (setEvidenceData, channel) => {
   return (newEvidence) => {
     const result = setEvidenceData(newEvidence)
     if (channel) {
-      channel.track({ evidence: newEvidence })
+      channel.track({ ts: Date.now(), evidence: newEvidence })
     }
     return result
   }
@@ -89,11 +89,16 @@ const newSyncEventHandler = (channel, syncState, setEvidenceData) => {
   return () => {
     const newState = channel.presenceState()
     console.log('sync', newState)
+    let max = {ts: 0, key: ''}
     for (const key in newState) {
-      if (key.startsWith('user_') && !key.includes(syncState.userId)) {
-        const newEvidence = newState[key][0]['evidence']
-        setEvidenceData(newEvidence)
+      const ts = newState[key][0]['ts']
+      if (ts > max.ts) {
+        max = {ts: ts, key: key}
       }
+    }
+    if (max.key) {
+      const newEvidence = newState[max.key][0]['evidence']
+      setEvidenceData(newEvidence)
     }
   }
 }

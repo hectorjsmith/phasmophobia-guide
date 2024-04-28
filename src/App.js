@@ -104,7 +104,7 @@ const handleConnect = (
   setChannel,
   setEvidenceData,
 ) => {
-  const roomId = syncState.roomId.replace(' ', '')
+  const roomId = syncState.roomId.replace(/ /g, '')
   const channel = supabase.channel(roomId, {
     config: {
       presence: { key: `user_${syncState.userId}` },

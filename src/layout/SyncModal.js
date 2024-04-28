@@ -6,12 +6,12 @@ const checkUsername = (username) => {
 }
 
 const checkRoomId = (roomId) => {
-  const cleanRoomId = roomId.replace(' ', '')
-  const roomIdRegex = /^[a-zA-Z0-9]+$/
+  const cleanRoomId = roomId.replace(/ /g, '')
+  const roomIdRegex = /^[0-9]+$/
   return (
     roomId &&
     cleanRoomId.length >= 6 &&
-    cleanRoomId.length <= 20 &&
+    cleanRoomId.length <= 12 &&
     roomIdRegex.test(cleanRoomId)
   )
 }
@@ -76,7 +76,6 @@ const RenderFormBody = ({
             defaultValue={syncState.roomId ?? ''}
             disabled={syncState.isConnected}
             onChange={onRoomIdChange}
-            maxLength={10}
             placeholder="000 000"
           />
         </div>

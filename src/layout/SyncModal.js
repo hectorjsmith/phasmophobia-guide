@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const checkUsername = (username) => {
   const usernameRegex = /^[a-zA-Z0-9-_]+$/
@@ -47,6 +47,11 @@ const RenderFormBody = ({
     setSyncState({ ...syncState, roomId: roomId })
   }
 
+  const inputRef = useRef(null)
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [syncState.isConnected])
+
   return (
     <>
       <div className="field">
@@ -59,8 +64,8 @@ const RenderFormBody = ({
             disabled={syncState.isConnected}
             onChange={onUsernameChange}
             maxLength={20}
-            placeholder="pineapple pen"
-            ref={(input) => input && input.focus()}
+            placeholder="username"
+            ref={inputRef}
           />
         </div>
         {usernameValid ? null : (

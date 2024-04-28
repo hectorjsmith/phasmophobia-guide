@@ -3,6 +3,7 @@ import { Footer } from './nav/Footer'
 import { TopNav } from './nav/Header'
 import { LeftColumn } from './layout/LeftColumn'
 import { RightColumn } from './layout/RightColumn'
+import { supabase } from './util/supabase'
 
 const mapGhosts = (rawGhosts) => {
   return rawGhosts.map((g) => {
@@ -70,15 +71,58 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
   }
 }
 
+const newSetAndSyncEvidenceDataFn = (setEvidenceData, channel) => {
+  return (newEvidence) => {
+    const result = setEvidenceData(newEvidence)
+    if (channel) {
+      channel.track({ evidence: newEvidence })
+    }
+    return result
+  }
+}
+
+const connect = (setEvidenceData) => {
+  const userId = 'user_' + (Math.random() * 100).toString()
+  const roomId = 'phasmo-sync-channel-124723'
+
+  const channel = supabase.channel(roomId, {
+    config: {
+      presence: { key: userId }
+    }
+  })
+  channel
+    .on('presence', { event: 'sync' }, () => presenceChanged(setEvidenceData))
+    .subscribe()
+
+  const presenceChanged = (setEvidenceData) => {
+    const newState = channel.presenceState()
+    for (const key in newState) {
+      if (key.startsWith("user") && !key.includes(userId)) {
+        const newEvidence = newState[key][0]["evidence"]
+        setEvidenceData(newEvidence)
+      }
+    }
+  }
+
+  return channel
+}
+
 export const App = ({ rawEvidence, rawGhosts }) => {
+  const [channel, setChannel] = useState(null)
   const [ghostData, setGhostData] = useState(mapGhosts(rawGhosts))
   const [evidenceData, setEvidenceData] = useState(mapEvidence(rawEvidence))
   const [showTips, toggleShowTips] = useReducer((state) => !state, true)
+
+  const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(setEvidenceData, channel)
 
   useEffect(
     () => filterPossibleGhosts(evidenceData, ghostData, setGhostData),
     // eslint-disable-next-line
     [evidenceData],
+  )
+  useEffect(
+    () => setChannel(connect(setEvidenceData)),
+    ["test"]
   )
 
   return (
@@ -90,11 +134,11 @@ export const App = ({ rawEvidence, rawGhosts }) => {
             <div className="column is-4">
               <LeftColumn
                 evidence={evidenceData}
-                setEvidence={setEvidenceData}
+                setEvidence={setAndSyncEvidenceData}
                 resetEvidence={() =>
                   resetData(
                     rawEvidence,
-                    setEvidenceData,
+                    setAndSyncEvidenceData,
                     rawGhosts,
                     setGhostData,
                   )

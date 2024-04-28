@@ -72,10 +72,10 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
   }
 }
 
-const newSetAndSyncEvidenceDataFn = (setEvidenceData, channel) => {
+const newSetAndSyncEvidenceDataFn = (evidenceData, setEvidenceData, channel) => {
   return (newEvidence) => {
     const result = setEvidenceData(newEvidence)
-    if (channel) {
+    if (channel && evidenceData !== newEvidence) {
       channel.track({ ts: Date.now(), evidence: newEvidence })
     }
     return result
@@ -152,6 +152,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
   )
 
   const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(
+    evidenceData,
     setEvidenceData,
     channel,
   )
@@ -176,7 +177,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
                   syncState,
                   setSyncState,
                   setChannel,
-                  setEvidenceData,
+                  setAndSyncEvidenceData,
                 )
               }
               onDisconnect={() =>

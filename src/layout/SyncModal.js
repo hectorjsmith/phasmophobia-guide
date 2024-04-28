@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
 const checkUsername = (username) => {
-    return username && username.length <= 20
+    const usernameRegex = /^[a-zA-Z0-9-_]+$/
+    return username && username.length <= 20 && usernameRegex.test(username)
 }
 
 const checkRoomId = (roomId) => {

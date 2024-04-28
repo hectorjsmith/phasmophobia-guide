@@ -199,7 +199,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
                 showTips={showTips}
                 toggleShowTips={toggleShowTips}
                 toggleSyncModal={toggleSyncModalOpen}
-                isSyncConnected={syncState.isConnected}
+                syncState={syncState}
               />
             </div>
             <div className="column is-8">

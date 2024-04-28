@@ -9,7 +9,7 @@ export const LeftColumn = ({
   showTips,
   toggleShowTips,
   toggleSyncModal,
-  isSyncConnected,
+  syncState,
 }) => {
   const countSelectedEvidence = () => {
     return evidence.filter((e) => e.selected).length
@@ -63,13 +63,14 @@ export const LeftColumn = ({
           </span>
         </button>
         <button
-          className={'button' + (isSyncConnected ? ' is-success' : '')}
+          className={'button' + (syncState.isConnected ? ' is-success' : '')}
           onClick={toggleSyncModal}
           title="Sync"
         >
           <span className="icon is-small">
-            <i className={'fa fa-sync' + (isSyncConnected ? ' fa-spin' : '')} />
+            <i className={'fa fa-sync' + (syncState.isConnected ? ' fa-spin' : '')} />
           </span>
+          {syncState.isConnected ? <span>{syncState.roomId}</span> : ''}
         </button>
       </div>
     </div>

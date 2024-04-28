@@ -68,7 +68,11 @@ export const LeftColumn = ({
           title="Sync"
         >
           <span className="icon is-small">
-            <i className={'fa fa-sync' + (syncState.isConnected ? ' fa-spin' : '')} />
+            <i
+              className={
+                'fa fa-sync' + (syncState.isConnected ? ' fa-spin' : '')
+              }
+            />
           </span>
           {syncState.isConnected ? <span>{syncState.roomId}</span> : ''}
         </button>

@@ -89,11 +89,11 @@ const newSyncEventHandler = (channel, syncState, setEvidenceData) => {
   return () => {
     const newState = channel.presenceState()
     console.log('sync', newState)
-    let max = {ts: 0, key: ''}
+    let max = { ts: 0, key: '' }
     for (const key in newState) {
       const ts = newState[key][0]['ts']
       if (ts > max.ts) {
-        max = {ts: ts, key: key}
+        max = { ts: ts, key: key }
       }
     }
     if (max.key) {

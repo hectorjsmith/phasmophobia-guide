@@ -88,43 +88,46 @@ const newSyncEventHandler = (channel, syncState, setEvidenceData) => {
   }
   return () => {
     const newState = channel.presenceState()
-    console.log("sync", newState)
+    console.log('sync', newState)
     for (const key in newState) {
-      if (key.startsWith("user_") && !key.includes(syncState.userId)) {
-        const newEvidence = newState[key][0]["evidence"]
+      if (key.startsWith('user_') && !key.includes(syncState.userId)) {
+        const newEvidence = newState[key][0]['evidence']
         setEvidenceData(newEvidence)
       }
     }
   }
 }
 
-const handleConnect = (syncState, setSyncState, setChannel, setEvidenceData) => {
+const handleConnect = (
+  syncState,
+  setSyncState,
+  setChannel,
+  setEvidenceData,
+) => {
   const roomId = syncState.roomId.replace(' ', '')
   const channel = supabase.channel(roomId, {
     config: {
       presence: { key: `user_${syncState.userId}` },
-    }
+    },
   })
   const onSync = newSyncEventHandler(channel, syncState, setEvidenceData)
 
-  channel
-    .on('presence', { event: 'sync' }, onSync)
-    .subscribe()
+  channel.on('presence', { event: 'sync' }, onSync).subscribe()
 
   setChannel(channel)
   setSyncState({
     ...syncState,
-    isConnected: true
+    isConnected: true,
   })
 }
 
 const handleDisconnect = (syncState, setSyncState, channel, setChannel) => {
-  channel.untrack().then(status => console.log("disconnected", status))
+  channel.untrack().then((status) => console.log('disconnected', status))
 
   setChannel(null)
   setSyncState({
     ...syncState,
-    isConnected: false
+    isConnected: false,
   })
 }
 
@@ -133,10 +136,20 @@ export const App = ({ rawEvidence, rawGhosts }) => {
   const [ghostData, setGhostData] = useState(mapGhosts(rawGhosts))
   const [evidenceData, setEvidenceData] = useState(mapEvidence(rawEvidence))
   const [showTips, toggleShowTips] = useReducer((state) => !state, true)
-  const [syncState, setSyncState] = useState({roomId:"",userId:"",isConnected:false})
-  const [syncModalOpen, toggleSyncModalOpen] = useReducer((state) => !state, false)
+  const [syncState, setSyncState] = useState({
+    roomId: '',
+    userId: '',
+    isConnected: false,
+  })
+  const [syncModalOpen, toggleSyncModalOpen] = useReducer(
+    (state) => !state,
+    false,
+  )
 
-  const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(setEvidenceData, channel)
+  const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(
+    setEvidenceData,
+    channel,
+  )
 
   useEffect(
     () => filterPossibleGhosts(evidenceData, ghostData, setGhostData),
@@ -149,13 +162,26 @@ export const App = ({ rawEvidence, rawGhosts }) => {
       <div className="content-main content">
         <div className="container">
           <TopNav />
-          { syncModalOpen ?
-           <SyncModal syncState={syncState}
-                      setSyncState={setSyncState}
-                      onConnect={() => handleConnect(syncState, setSyncState, setChannel, setEvidenceData)}
-                      onDisconnect={() => handleDisconnect(syncState, setSyncState, channel, setChannel)}
-                      toggleSyncModalOpen={toggleSyncModalOpen} />
-            : "" }
+          {syncModalOpen ? (
+            <SyncModal
+              syncState={syncState}
+              setSyncState={setSyncState}
+              onConnect={() =>
+                handleConnect(
+                  syncState,
+                  setSyncState,
+                  setChannel,
+                  setEvidenceData,
+                )
+              }
+              onDisconnect={() =>
+                handleDisconnect(syncState, setSyncState, channel, setChannel)
+              }
+              toggleSyncModalOpen={toggleSyncModalOpen}
+            />
+          ) : (
+            ''
+          )}
           <div className="columns">
             <div className="column is-4">
               <LeftColumn

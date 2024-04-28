@@ -63,7 +63,7 @@ export const LeftColumn = ({
           </span>
         </button>
         <button
-          className={"button" + (isSyncConnected ? ' is-success' : '')}
+          className={'button' + (isSyncConnected ? ' is-success' : '')}
           onClick={toggleSyncModal}
           title="Sync"
         >

@@ -60,6 +60,7 @@ const RenderFormBody = ({
             onChange={onUsernameChange}
             maxLength={20}
             placeholder="pineapple pen"
+            ref={(input) => input && input.focus()}
           />
         </div>
         {usernameValid ? null : (

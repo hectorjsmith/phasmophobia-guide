@@ -4,7 +4,11 @@ import { TopNav } from './nav/Header'
 import { LeftColumn } from './layout/LeftColumn'
 import { RightColumn } from './layout/RightColumn'
 import { SyncModal } from './layout/SyncModal'
-import { supabase } from './util/supabase'
+import {
+  newSetAndSyncEvidenceDataFn,
+  handleConnect,
+  handleDisconnect,
+} from './sync/sync'
 
 const mapGhosts = (rawGhosts) => {
   return rawGhosts.map((g) => {
@@ -70,73 +74,6 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
       }),
     )
   }
-}
-
-const newSetAndSyncEvidenceDataFn = (setEvidenceData, syncState) => {
-  return (newEvidence) => {
-    let result = null
-    if (syncState.isConnected) {
-      supabase
-        .from('room_state')
-        .insert({
-          room_id: syncState.roomId,
-          state: newEvidence,
-          updated_by: syncState.userId,
-        })
-        .then(() => (result = setEvidenceData(newEvidence)))
-    } else {
-      result = setEvidenceData(newEvidence)
-    }
-    return result
-  }
-}
-
-const newSyncEventHandler = (setEvidenceData) => {
-  return (payload) => {
-    const newState = payload.new.state
-    setEvidenceData(newState)
-  }
-}
-
-const handleConnect = (syncState, setSyncState, setEvidenceData) => {
-  const roomId = syncState.roomId.replace(/ /g, '')
-  const channel = supabase.channel(roomId)
-  const onSync = newSyncEventHandler(setEvidenceData)
-
-  channel
-    .on(
-      'postgres_changes',
-      {
-        event: 'INSERT',
-        schema: 'public',
-      },
-      onSync,
-    )
-    .subscribe()
-
-  supabase
-    .from('room_state')
-    .select('*')
-    .eq('room_id', roomId)
-    .order('set_at', { ascending: false })
-    .limit(1)
-    .then((value) => {
-      if (value.data && value.data[0]) {
-        setEvidenceData(value.data[0].state)
-      }
-    })
-
-  setSyncState({
-    ...syncState,
-    isConnected: true,
-  })
-}
-
-const handleDisconnect = (syncState, setSyncState) => {
-  setSyncState({
-    ...syncState,
-    isConnected: false,
-  })
 }
 
 export const App = ({ rawEvidence, rawGhosts }) => {

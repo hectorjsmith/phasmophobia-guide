@@ -73,16 +73,18 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
 }
 
 const newSetAndSyncEvidenceDataFn = (
-  evidenceData,
   setEvidenceData,
   syncState,
 ) => {
   return (newEvidence) => {
-    const result = setEvidenceData(newEvidence)
-    if (syncState.isConnected && evidenceData !== newEvidence) {
+    let result = null
+    if (syncState.isConnected) {
       supabase
       .from('room_state')
       .insert({ room_id: syncState.roomId, state: newEvidence, updated_by: syncState.userId })
+      .then(() => result = setEvidenceData(newEvidence))
+    } else {
+      result = setEvidenceData(newEvidence)
     }
     return result
   }
@@ -120,7 +122,7 @@ const handleConnect = (
   .limit(1)
   .then(value => {
     console.log("value", value)
-    if (value.data) {
+    if (value.data[0]) {
       setEvidenceData(value.data[0].state)
     }
   })
@@ -153,7 +155,6 @@ export const App = ({ rawEvidence, rawGhosts }) => {
   )
 
   const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(
-    evidenceData,
     setEvidenceData,
     syncState,
   )

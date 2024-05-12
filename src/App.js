@@ -72,17 +72,18 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
   }
 }
 
-const newSetAndSyncEvidenceDataFn = (
-  setEvidenceData,
-  syncState,
-) => {
+const newSetAndSyncEvidenceDataFn = (setEvidenceData, syncState) => {
   return (newEvidence) => {
     let result = null
     if (syncState.isConnected) {
       supabase
-      .from('room_state')
-      .insert({ room_id: syncState.roomId, state: newEvidence, updated_by: syncState.userId })
-      .then(() => result = setEvidenceData(newEvidence))
+        .from('room_state')
+        .insert({
+          room_id: syncState.roomId,
+          state: newEvidence,
+          updated_by: syncState.userId,
+        })
+        .then(() => (result = setEvidenceData(newEvidence)))
     } else {
       result = setEvidenceData(newEvidence)
     }
@@ -97,35 +98,34 @@ const newSyncEventHandler = (setEvidenceData) => {
   }
 }
 
-const handleConnect = (
-  syncState,
-  setSyncState,
-  setEvidenceData,
-) => {
+const handleConnect = (syncState, setSyncState, setEvidenceData) => {
   const roomId = syncState.roomId.replace(/ /g, '')
   const channel = supabase.channel(roomId)
   const onSync = newSyncEventHandler(setEvidenceData)
 
-  channel.on(
-    'postgres_changes',
-    {
-      event: 'INSERT',
-      schema: 'public',
-    },
-    onSync,
-  ).subscribe()
+  channel
+    .on(
+      'postgres_changes',
+      {
+        event: 'INSERT',
+        schema: 'public',
+      },
+      onSync,
+    )
+    .subscribe()
 
-  supabase.from('room_state')
-  .select('*')
-  .eq('room_id', roomId)
-  .order('set_at', { ascending: false })
-  .limit(1)
-  .then(value => {
-    console.log("value", value)
-    if (value.data[0]) {
-      setEvidenceData(value.data[0].state)
-    }
-  })
+  supabase
+    .from('room_state')
+    .select('*')
+    .eq('room_id', roomId)
+    .order('set_at', { ascending: false })
+    .limit(1)
+    .then((value) => {
+      console.log('value', value)
+      if (value.data[0]) {
+        setEvidenceData(value.data[0].state)
+      }
+    })
 
   setSyncState({
     ...syncState,
@@ -175,15 +175,9 @@ export const App = ({ rawEvidence, rawGhosts }) => {
               syncState={syncState}
               setSyncState={setSyncState}
               onConnect={() =>
-                handleConnect(
-                  syncState,
-                  setSyncState,
-                  setAndSyncEvidenceData,
-                )
+                handleConnect(syncState, setSyncState, setAndSyncEvidenceData)
               }
-              onDisconnect={() =>
-                handleDisconnect(syncState, setSyncState)
-              }
+              onDisconnect={() => handleDisconnect(syncState, setSyncState)}
               toggleSyncModalOpen={toggleSyncModalOpen}
             />
           ) : (

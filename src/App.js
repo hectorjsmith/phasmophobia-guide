@@ -121,8 +121,7 @@ const handleConnect = (syncState, setSyncState, setEvidenceData) => {
     .order('set_at', { ascending: false })
     .limit(1)
     .then((value) => {
-      console.log('value', value)
-      if (value.data[0]) {
+      if (value.data && value.data[0]) {
         setEvidenceData(value.data[0].state)
       }
     })

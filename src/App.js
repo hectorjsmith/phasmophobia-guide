@@ -75,65 +75,63 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
 const newSetAndSyncEvidenceDataFn = (
   evidenceData,
   setEvidenceData,
-  channel,
+  syncState,
 ) => {
   return (newEvidence) => {
     const result = setEvidenceData(newEvidence)
-    if (channel && evidenceData !== newEvidence) {
-      channel.track({ ts: Date.now(), evidence: newEvidence })
+    if (syncState.isConnected && evidenceData !== newEvidence) {
+      supabase
+      .from('room_state')
+      .insert({ room_id: syncState.roomId, state: newEvidence, updated_by: syncState.userId })
     }
     return result
   }
 }
 
-const newSyncEventHandler = (channel, syncState, setEvidenceData) => {
-  if (!channel) {
-    return () => {}
-  }
-  return () => {
-    const newState = channel.presenceState()
-    console.log('sync', newState)
-    let max = { ts: 0, key: '' }
-    for (const key in newState) {
-      const ts = newState[key][0]['ts']
-      if (ts > max.ts) {
-        max = { ts: ts, key: key }
-      }
-    }
-    if (max.key) {
-      const newEvidence = newState[max.key][0]['evidence']
-      setEvidenceData(newEvidence)
-    }
+const newSyncEventHandler = (setEvidenceData) => {
+  return (payload) => {
+    const newState = payload.new.state
+    setEvidenceData(newState)
   }
 }
 
 const handleConnect = (
   syncState,
   setSyncState,
-  setChannel,
   setEvidenceData,
 ) => {
   const roomId = syncState.roomId.replace(/ /g, '')
-  const channel = supabase.channel(roomId, {
-    config: {
-      presence: { key: `user_${syncState.userId}` },
+  const channel = supabase.channel(roomId)
+  const onSync = newSyncEventHandler(setEvidenceData)
+
+  channel.on(
+    'postgres_changes',
+    {
+      event: 'INSERT',
+      schema: 'public',
     },
+    onSync,
+  ).subscribe()
+
+  supabase.from('room_state')
+  .select('*')
+  .eq('room_id', roomId)
+  .order('set_at', { ascending: false })
+  .limit(1)
+  .then(value => {
+    console.log("value", value)
+    if (value.data) {
+      setEvidenceData(value.data[0].state)
+    }
   })
-  const onSync = newSyncEventHandler(channel, syncState, setEvidenceData)
 
-  channel.on('presence', { event: 'sync' }, onSync).subscribe()
-
-  setChannel(channel)
   setSyncState({
     ...syncState,
     isConnected: true,
   })
 }
 
-const handleDisconnect = (syncState, setSyncState, channel, setChannel) => {
-  channel.untrack().then((status) => console.log('disconnected', status))
-
-  setChannel(null)
+const handleDisconnect = (syncState, setSyncState) => {
   setSyncState({
     ...syncState,
     isConnected: false,
@@ -141,7 +139,6 @@ const handleDisconnect = (syncState, setSyncState, channel, setChannel) => {
 }
 
 export const App = ({ rawEvidence, rawGhosts }) => {
-  const [channel, setChannel] = useState(null)
   const [ghostData, setGhostData] = useState(mapGhosts(rawGhosts))
   const [evidenceData, setEvidenceData] = useState(mapEvidence(rawEvidence))
   const [showTips, toggleShowTips] = useReducer((state) => !state, true)
@@ -158,7 +155,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
   const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(
     evidenceData,
     setEvidenceData,
-    channel,
+    syncState,
   )
 
   useEffect(
@@ -180,12 +177,11 @@ export const App = ({ rawEvidence, rawGhosts }) => {
                 handleConnect(
                   syncState,
                   setSyncState,
-                  setChannel,
                   setAndSyncEvidenceData,
                 )
               }
               onDisconnect={() =>
-                handleDisconnect(syncState, setSyncState, channel, setChannel)
+                handleDisconnect(syncState, setSyncState)
               }
               toggleSyncModalOpen={toggleSyncModalOpen}
             />

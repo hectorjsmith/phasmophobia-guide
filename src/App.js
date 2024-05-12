@@ -3,6 +3,12 @@ import { Footer } from './nav/Footer'
 import { TopNav } from './nav/Header'
 import { LeftColumn } from './layout/LeftColumn'
 import { RightColumn } from './layout/RightColumn'
+import { SyncModal } from './layout/SyncModal'
+import {
+  newSetAndSyncEvidenceDataFn,
+  handleConnect,
+  handleDisconnect,
+} from './sync/sync'
 
 const mapGhosts = (rawGhosts) => {
   return rawGhosts.map((g) => {
@@ -74,6 +80,20 @@ export const App = ({ rawEvidence, rawGhosts }) => {
   const [ghostData, setGhostData] = useState(mapGhosts(rawGhosts))
   const [evidenceData, setEvidenceData] = useState(mapEvidence(rawEvidence))
   const [showTips, toggleShowTips] = useReducer((state) => !state, true)
+  const [syncState, setSyncState] = useState({
+    roomId: '',
+    userId: '',
+    isConnected: false,
+  })
+  const [syncModalOpen, toggleSyncModalOpen] = useReducer(
+    (state) => !state,
+    false,
+  )
+
+  const setAndSyncEvidenceData = newSetAndSyncEvidenceDataFn(
+    setEvidenceData,
+    syncState,
+  )
 
   useEffect(
     () => filterPossibleGhosts(evidenceData, ghostData, setGhostData),
@@ -86,15 +106,28 @@ export const App = ({ rawEvidence, rawGhosts }) => {
       <div className="content-main content">
         <div className="container">
           <TopNav />
+          {syncModalOpen ? (
+            <SyncModal
+              syncState={syncState}
+              setSyncState={setSyncState}
+              onConnect={() =>
+                handleConnect(syncState, setSyncState, setAndSyncEvidenceData)
+              }
+              onDisconnect={() => handleDisconnect(syncState, setSyncState)}
+              toggleSyncModalOpen={toggleSyncModalOpen}
+            />
+          ) : (
+            ''
+          )}
           <div className="columns">
             <div className="column is-4">
               <LeftColumn
                 evidence={evidenceData}
-                setEvidence={setEvidenceData}
+                setEvidence={setAndSyncEvidenceData}
                 resetEvidence={() =>
                   resetData(
                     rawEvidence,
-                    setEvidenceData,
+                    setAndSyncEvidenceData,
                     rawGhosts,
                     setGhostData,
                   )
@@ -102,6 +135,8 @@ export const App = ({ rawEvidence, rawGhosts }) => {
                 ghosts={ghostData}
                 showTips={showTips}
                 toggleShowTips={toggleShowTips}
+                toggleSyncModal={toggleSyncModalOpen}
+                syncState={syncState}
               />
             </div>
             <div className="column is-8">

@@ -4,10 +4,11 @@ export const newSetAndSyncEvidenceDataFn = (setEvidenceData, syncState) => {
   return (newEvidence) => {
     let result = null
     if (syncState.isConnected) {
+      const roomId = escapeRoomId(syncState.roomId)
       supabase
         .from('room_state')
         .insert({
-          room_id: syncState.roomId,
+          room_id: roomId,
           state: newEvidence,
           updated_by: syncState.userId,
         })
@@ -20,7 +21,7 @@ export const newSetAndSyncEvidenceDataFn = (setEvidenceData, syncState) => {
 }
 
 export const handleConnect = (syncState, setSyncState, setEvidenceData) => {
-  const roomId = syncState.roomId.replace(/ /g, '')
+  const roomId = escapeRoomId(syncState.roomId)
   const onSync = newSyncEventHandler(setEvidenceData)
 
   subscribeForUpdates(roomId, onSync)
@@ -36,6 +37,10 @@ export const handleDisconnect = (syncState, setSyncState) => {
     ...syncState,
     isConnected: false,
   })
+}
+
+const escapeRoomId = (roomId) => {
+  return roomId.replace(/ /g, '')
 }
 
 const newSyncEventHandler = (setEvidenceData) => {

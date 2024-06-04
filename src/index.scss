@@ -1,8 +1,5 @@
-@import 'bulmaswatch/cyborg/bulmaswatch.scss';
-@font-face {
-  font-family: 'October Crow';
-  src: url(./fonts/october_crow.ttf) format('truetype');
-}
+// Replace this with sass option if I want to customise the Bulma theme
+@use "../node_modules/bulma/css/bulma.min.css";
 
 footer {
   background-color: black !important;
@@ -15,10 +12,6 @@ footer {
 
 .has-letter-spacing {
   letter-spacing: 3px;
-}
-
-.has-hover-text-link-dark:hover {
-  @extend .has-text-link-dark;
 }
 
 .content-wrapper {
@@ -37,16 +30,10 @@ footer {
 }
 
 .ghost-info-accordion-content {
-  border-left: 3px solid $dark;
+  border-left: 3px solid var(--bulma-dark);
   margin-left: 2.6rem !important;
 }
 
-.button:focus {
-  box-shadow: unset !important;
-  border-color: $dark !important;
-  color: unset !important;
-}
-
 li::marker {
-  color: $info;
+  color: var(--bulma-primary);
 }

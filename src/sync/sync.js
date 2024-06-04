@@ -1,4 +1,4 @@
-import { supabase } from '../util/supabase'
+import { supabase } from '../utils/supabase'
 
 export const newSetAndSyncEvidenceDataFn = (setEvidenceData, syncState) => {
   return (newEvidence) => {

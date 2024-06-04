@@ -1,4 +1,4 @@
-import headerImg from '../img/header.png'
+import headerImg from '../assets/header.png'
 
 export const TopNav = () => {
   return (

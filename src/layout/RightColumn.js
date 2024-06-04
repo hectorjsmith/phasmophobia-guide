@@ -1,5 +1,5 @@
 import { GhostTableRow } from './GhostTableRow'
-import { compareStringsAsc } from '../util/stringSort'
+import { compareStringsAsc } from '../utils/stringSort'
 
 export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
   const visibleGhosts = ghosts.filter((g) => g.visible)

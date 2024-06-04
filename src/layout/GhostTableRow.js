@@ -1,4 +1,4 @@
-import { compareStringsAsc } from '../util/stringSort'
+import { compareStringsAsc } from '../utils/stringSort'
 import { EvidenceTag } from './EvidenceTag'
 
 const mapEvidence = (allEvidence, ghostEvidenceIds) => {

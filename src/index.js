@@ -6,9 +6,8 @@ import './fa/scss/fork-awesome.scss'
 import ghosts from './data/ghosts.json'
 import evidence from './data/evidence.json'
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App rawEvidence={evidence} rawGhosts={ghosts} />
-  </React.StrictMode>,
-  document.getElementById('root'),
+  </React.StrictMode>
 )

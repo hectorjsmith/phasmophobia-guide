@@ -70,7 +70,8 @@ export const LeftColumn = ({
           <span className="icon is-small">
             <i
               className={
-                'fa' + (syncState.isConnected ? ' fa-sync fa-spin' : ' fa-users')
+                'fa' +
+                (syncState.isConnected ? ' fa-sync fa-spin' : ' fa-users')
               }
             />
           </span>

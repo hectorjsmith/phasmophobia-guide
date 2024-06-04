@@ -9,5 +9,5 @@ import evidence from './data/evidence.json'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App rawEvidence={evidence} rawGhosts={ghosts} />
-  </React.StrictMode>
+  </React.StrictMode>,
 )

@@ -124,9 +124,9 @@ export const SyncModal = ({
         <header className="modal-card-head">
           <p className="modal-card-title is-uppercase has-letter-spacing">
             <span className="icon mr-3">
-              <i className="fa fa-exchange" />
+              <i className="fa fa-users" />
             </span>
-            Sync
+            Realtime Sync
           </p>
           <button
             className="delete"

@@ -1,32 +1,4 @@
-export const Footer = () => {
-  const showVersion = () => {
-    let version = process.env.REACT_APP_VERSION
-    let buildTime = process.env.REACT_APP_BUILD_TIME
-
-    if (
-      (version === undefined || version === '') &&
-      (buildTime === undefined || buildTime === '')
-    ) {
-      return ''
-    }
-    return (
-      <div className="has-text-right">
-        <p className="heading">
-          {version}
-          <span className="icon">
-            <i className="fa fa-code" />
-          </span>
-        </p>
-        <p className="heading">
-          Built on {buildTime}
-          <span className="icon">
-            <i className="fa fa-calendar" />
-          </span>
-        </p>
-      </div>
-    )
-  }
-
+export const Footer = ({version, buildTime}) => {
   return (
     <footer className="footer mt-6">
       <div className="columns mx-4">
@@ -58,8 +30,35 @@ export const Footer = () => {
             </a>
           </p>
         </div>
-        <div className="column is-half">{showVersion()}</div>
+        <div className="column is-half">
+          <VersionData version={version} buildTime={buildTime} />
+        </div>
       </div>
     </footer>
+  )
+}
+
+const VersionData = ({version, buildTime}) => {
+  if (
+    (version === undefined || version === '') &&
+    (buildTime === undefined || buildTime === '')
+  ) {
+    return ''
+  }
+  return (
+    <div className="has-text-right">
+      <p className="heading">
+        {version}
+        <span className="icon">
+          <i className="fa fa-code" />
+        </span>
+      </p>
+      <p className="heading">
+        Built on {buildTime}
+        <span className="icon">
+          <i className="fa fa-calendar" />
+        </span>
+      </p>
+    </div>
   )
 }

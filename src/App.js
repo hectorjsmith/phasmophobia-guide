@@ -1,6 +1,6 @@
 import { useEffect, useState, useReducer } from 'react'
-import { Footer } from './nav/Footer'
-import { TopNav } from './nav/Header'
+import { Footer } from './components/Footer'
+import { TopNav } from './components/Header'
 import { LeftColumn } from './layout/LeftColumn'
 import { RightColumn } from './layout/RightColumn'
 import { SyncModal } from './layout/SyncModal'
@@ -9,6 +9,7 @@ import {
   handleConnect,
   handleDisconnect,
 } from './sync/sync'
+import getVersionData from './utils/version'
 
 const mapGhosts = (rawGhosts) => {
   return rawGhosts.map((g) => {
@@ -77,6 +78,8 @@ const filterPossibleGhosts = (evidence, allGhosts, setGhosts) => {
 }
 
 export const App = ({ rawEvidence, rawGhosts }) => {
+  const versionData = getVersionData()
+
   const [ghostData, setGhostData] = useState(mapGhosts(rawGhosts))
   const [evidenceData, setEvidenceData] = useState(mapEvidence(rawEvidence))
   const [showTips, toggleShowTips] = useReducer((state) => !state, true)
@@ -150,7 +153,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer version={versionData.version} buildTime={versionData.buildTime} />
     </div>
   )
 }

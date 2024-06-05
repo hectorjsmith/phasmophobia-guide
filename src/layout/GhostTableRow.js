@@ -1,5 +1,5 @@
 import { compareStringsAsc } from '../utils/stringSort'
-import { EvidenceTag } from './EvidenceTag'
+import { EvidenceTag } from '../components/EvidenceTag'
 
 const mapEvidence = (allEvidence, ghostEvidenceIds) => {
   return allEvidence.filter((e) => ghostEvidenceIds.includes(e.id))
@@ -69,7 +69,7 @@ export const GhostTableRow = ({
         {sortEvidence(ghostEvidence).map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
-              <EvidenceTag evidence={e} />
+              <EvidenceTag name={e.name} icon={e.icon} isSelected={e.selected} />
             </div>
           )
         })}

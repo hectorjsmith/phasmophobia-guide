@@ -30,6 +30,7 @@ const SelectionContextProvider = ({ children }) => {
                     ...current?.evidence ?? {},
                     [id]: {
                         ...current?.evidence?.[id] ?? {},
+                        id: id,
                         selected: !(current?.evidence?.[id]?.selected ?? false)
                     }
                 }
@@ -50,6 +51,7 @@ const SelectionContextProvider = ({ children }) => {
                     ...current?.evidence ?? {},
                     [id]: {
                         ...current?.evidence?.[id] ?? {},
+                        id: id,
                         rejected: !(current?.evidence?.[id]?.rejected ?? false)
                     }
                 }
@@ -70,11 +72,20 @@ const SelectionContextProvider = ({ children }) => {
                     ...current?.ghosts ?? {},
                     [id]: {
                         ...current?.ghosts?.[id] ?? {},
+                        id: id,
                         rejected: !(current?.ghosts?.[id]?.rejected ?? false)
                     }
                 }
             }
         })
+    }
+
+    const selectedEvidence = () => {
+        return Object.values(data?.evidence ?? {}).filter((e) => e.selected) ?? []
+    }
+
+    const rejectedEvidence = () => {
+        return Object.values(data?.evidence ?? {}).filter((e) => e.rejected) ?? []
     }
 
     return (
@@ -88,6 +99,8 @@ const SelectionContextProvider = ({ children }) => {
             toggleEvidenceRejected,
             isGhostRejected,
             toggleGhostRejected,
+            selectedEvidence,
+            rejectedEvidence,
         }}>
             {children}
         </SelectionContext.Provider>

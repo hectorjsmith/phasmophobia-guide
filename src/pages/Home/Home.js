@@ -1,15 +1,15 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useMemo } from 'react';
 import {SyncModal} from './SyncModal'
 import { Footer } from '../../components/Footer'
 import {TopNav} from '../../components/Header'
 import useVersionData from '../../utils/version'
 import { SyncContext } from '../../context/SyncContext';
 import { SelectionContext } from '../../context/SelectionContext';
+import { filterPossibleGhosts } from '../../utils/filtering';
 
 export const Home = ({rawEvidence, rawGhosts}) => {
-    //const {setOnSyncHandler, syncChange, connect} = useContext(SyncContext)
-    const {room, userName, isConnected, setConnected, setDisconnected} = useContext(SyncContext)
-    const {setOnChangeHandler, setDataFromSync, isEvidenceSelected, toggleEvidenceSelected } = useContext(SelectionContext)
+    const {room, userName, isConnected} = useContext(SyncContext)
+    const {data, setDataFromSync, isEvidenceSelected, toggleEvidenceSelected, selectedEvidence, rejectedEvidence } = useContext(SelectionContext)
 
     const [syncModalOpen, setSyncModalOpen] = useState(true);
     const toggleSyncModalOpen = () => {
@@ -22,6 +22,11 @@ export const Home = ({rawEvidence, rawGhosts}) => {
         console.log("sync event")
         setDataFromSync({evidence: {}, ghosts: {}})
     }
+
+    const visibleGhosts = useMemo(() => {
+        console.log("filtering ghosts") // Still gets called twice instead of once
+        return filterPossibleGhosts(selectedEvidence(), rejectedEvidence(), rawGhosts)
+    }, [data, rawGhosts])
 
     return (
     <div className="content-wrapper">
@@ -39,6 +44,10 @@ export const Home = ({rawEvidence, rawGhosts}) => {
         <br/>
         <p>Connected: {isConnected ? 'yes' : 'no'} / Room: {room} / User: {userName}</p>
         <button className='button' onClick={syncEvent}>Sync Event</button>
+        <br/>
+        {visibleGhosts && visibleGhosts.map((ghost) => {
+          return <p key={ghost.name}>Ghost: {ghost.name}</p>;
+        })}
       </div>
       </div>
       <Footer version={versionData.version} buildTime={versionData.buildTime} />

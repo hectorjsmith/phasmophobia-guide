@@ -10,10 +10,10 @@ export const LeftColumn = ({
   ghosts,
   showTips,
   toggleShowTips,
-  toggleSyncModal
+  toggleSyncModal,
 }) => {
   const sortedEvidence = useSortedEvidence(evidence)
-  
+
   const countSelectedEvidence = () => {
     return evidence.filter((e) => e.selected).length
   }
@@ -23,35 +23,35 @@ export const LeftColumn = ({
 
   const toggleSelection = (id) => {
     return () => {
-      setEvidence(current =>
-        current.map(item =>
-          item.id === id ? {...item, selected: !item.selected} : item
-        )
+      setEvidence((current) =>
+        current.map((item) =>
+          item.id === id ? { ...item, selected: !item.selected } : item,
+        ),
       )
     }
   }
 
   const toggleRejection = (id) => {
     return () => {
-      setEvidence(current =>
-        current.map(item =>
-          item.id === id ? {...item, rejected: !item.rejected} : item
-        )
+      setEvidence((current) =>
+        current.map((item) =>
+          item.id === id ? { ...item, rejected: !item.rejected } : item,
+        ),
       )
     }
   }
 
   const anyVisibleGhostWithEvidence = (ghosts, evidenceId) => {
     return ghosts.some(
-      (ghost) => ghost.visible && ghost.evidence.includes(evidenceId)
-    );
+      (ghost) => ghost.visible && ghost.evidence.includes(evidenceId),
+    )
   }
 
   let selectedEvidenceCount = countSelectedEvidence()
   let rejectedEvidenceCount = countRejectedEvidence()
   let selectionCount = selectedEvidenceCount + rejectedEvidenceCount
 
-  const {room, isConnected} = useContext(SyncContext)
+  const { room, isConnected } = useContext(SyncContext)
 
   return (
     <div>
@@ -60,20 +60,20 @@ export const LeftColumn = ({
       </h2>
 
       {sortedEvidence.map((e) => {
-          return (
-            <ObservationToggle
-              key={e.id}
-              id={e.id}
-              name={e.name}
-              icon={e.icon}
-              isSelected={e.selected}
-              toggleSelection={toggleSelection}
-              isRejected={e.rejected}
-              toggleRejection={toggleRejection}
-              isAvailable={anyVisibleGhostWithEvidence(ghosts, e.id)}
-            />
-          )
-        })}
+        return (
+          <ObservationToggle
+            key={e.id}
+            id={e.id}
+            name={e.name}
+            icon={e.icon}
+            isSelected={e.selected}
+            toggleSelection={toggleSelection}
+            isRejected={e.rejected}
+            toggleRejection={toggleRejection}
+            isAvailable={anyVisibleGhostWithEvidence(ghosts, e.id)}
+          />
+        )
+      })}
 
       <div className="buttons is-centered mt-6">
         <button
@@ -102,8 +102,7 @@ export const LeftColumn = ({
           <span className="icon is-small">
             <i
               className={
-                'fa' +
-                (isConnected ? ' fa-sync fa-spin' : ' fa-users')
+                'fa' + (isConnected ? ' fa-sync fa-spin' : ' fa-users')
               }
             />
           </span>

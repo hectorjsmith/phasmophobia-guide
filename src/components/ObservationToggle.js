@@ -1,42 +1,47 @@
 export const ObservationToggle = ({
-    id, name, icon, isSelected, toggleSelection, isRejected, toggleRejection, isAvailable
+  id,
+  name,
+  icon,
+  isSelected,
+  toggleSelection,
+  isRejected,
+  toggleRejection,
+  isAvailable,
 }) => {
-return (
+  return (
     <div className="columns is-mobile is-vcentered">
-    <div className="column is-offset-2 is-narrow">
+      <div className="column is-offset-2 is-narrow">
         <div className="buttons has-addons">
-        <button
+          <button
             className={'button' + (isRejected ? ' is-danger' : '')}
             onClick={toggleRejection(id)}
-        >
+          >
             <span className="icon is-small">
-            <i className="fa fa-times" />
+              <i className="fa fa-times" />
             </span>
-        </button>
+          </button>
 
-        <button
+          <button
             className={
-            'button' +
-            (isSelected ? ' is-success' : '') +
-            (isAvailable ? '' : ' is-dark')
+              'button' +
+              (isSelected ? ' is-success' : '') +
+              (isAvailable ? '' : ' is-dark')
             }
             onClick={toggleSelection(id)}
-        >
+          >
             <span className="icon is-small">
-            <i
+              <i
                 className={
-                'fa fa-' +
-                icon +
-                (isAvailable ? '' : ' has-text-dark')
+                  'fa fa-' + icon + (isAvailable ? '' : ' has-text-dark')
                 }
-            />
+              />
             </span>
-        </button>
+          </button>
         </div>
-    </div>
-    <div className="column is-mobile mt-1">
+      </div>
+      <div className="column is-mobile mt-1">
         <p>{name}</p>
+      </div>
     </div>
-    </div>
-)
+  )
 }

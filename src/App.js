@@ -105,7 +105,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
     [evidenceData],
   )
 
-  const {setRoom} = useContext(SyncContext)
+  const { setRoom } = useContext(SyncContext)
   return (
     <div className="content-wrapper">
       <div className="content-main content">
@@ -115,7 +115,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
             <SyncModal
               syncState={syncState}
               setSyncState={setSyncState}
-              onConnect={() =>{
+              onConnect={() => {
                 handleConnect(syncState, setSyncState, setAndSyncEvidenceData)
                 setRoom('test-room')
               }}

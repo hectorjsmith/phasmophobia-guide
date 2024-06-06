@@ -1,4 +1,4 @@
-export const Footer = ({version, buildTime}) => {
+export const Footer = ({ version, buildTime }) => {
   return (
     <footer className="footer mt-6">
       <div className="columns mx-4">
@@ -38,7 +38,7 @@ export const Footer = ({version, buildTime}) => {
   )
 }
 
-const VersionData = ({version, buildTime}) => {
+const VersionData = ({ version, buildTime }) => {
   if (
     (version === undefined || version === '') &&
     (buildTime === undefined || buildTime === '')

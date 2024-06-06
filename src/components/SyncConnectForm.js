@@ -1,34 +1,33 @@
-import { useRef, useState, useEffect } from "react";
-import { isRoomIdValid, isUserNameValid } from "../utils/validation";
+import { useRef, useState, useEffect } from 'react'
+import { isRoomIdValid, isUserNameValid } from '../utils/validation'
 
-export const SyncConnectForm = ({roomId, userName, connect}) => {
-    const userNameRef = useRef(null);
-    const roomIdRef = useRef(null);
+export const SyncConnectForm = ({ roomId, userName, connect }) => {
+  const userNameRef = useRef(null)
+  const roomIdRef = useRef(null)
 
-    const [usernameValid, setUsernameValid] = useState(isUserNameValid(userName))
-      const [roomIdValid, setRoomIdValid] = useState(isRoomIdValid(roomId))
-    
-      const onUsernameChange = (e) => {
-        const username = e.target.value
-        setUsernameValid(isUserNameValid(username))
-      }
-    
-      const onRoomIdChange = (e) => {
-        const roomId = e.target.value
-        setRoomIdValid(isRoomIdValid(roomId))
-      }
-    
-      useEffect(() => {
-        userNameRef.current.focus()
-      }, [userNameRef])
-    
+  const [usernameValid, setUsernameValid] = useState(isUserNameValid(userName))
+  const [roomIdValid, setRoomIdValid] = useState(isRoomIdValid(roomId))
 
-      const handleConnect = () => {
-        connect(roomIdRef.current.value, userNameRef.current.value)
-      }
+  const onUsernameChange = (e) => {
+    const username = e.target.value
+    setUsernameValid(isUserNameValid(username))
+  }
 
-    return (
-        <>
+  const onRoomIdChange = (e) => {
+    const roomId = e.target.value
+    setRoomIdValid(isRoomIdValid(roomId))
+  }
+
+  useEffect(() => {
+    userNameRef.current.focus()
+  }, [userNameRef])
+
+  const handleConnect = () => {
+    connect(roomIdRef.current.value, userNameRef.current.value)
+  }
+
+  return (
+    <>
       <div className="field">
         <label className="label">Username</label>
         <div className="control">
@@ -59,9 +58,7 @@ export const SyncConnectForm = ({roomId, userName, connect}) => {
             placeholder="000 000"
           />
         </div>
-        {roomIdValid || (
-          <p class="help is-danger">This room ID is invalid</p>
-        )}
+        {roomIdValid || <p class="help is-danger">This room ID is invalid</p>}
       </div>
 
       <div className="field is-grouped is-grouped-centered">
@@ -76,5 +73,5 @@ export const SyncConnectForm = ({roomId, userName, connect}) => {
         </div>
       </div>
     </>
-    )
+  )
 }

@@ -65,7 +65,11 @@ export const GhostTableRow = ({
         {sortedEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
-              <EvidenceTag name={e.name} icon={e.icon} isSelected={e.selected} />
+              <EvidenceTag
+                name={e.name}
+                icon={e.icon}
+                isSelected={e.selected}
+              />
             </div>
           )
         })}

@@ -1,27 +1,32 @@
-import { useContext } from "react";
-import { SyncConnectForm } from "../../components/SyncConnectForm";
-import { SyncContext } from "../../context/SyncContext";
-import { SyncConnectedForm } from "../../components/SyncConnectedForm";
-import { connectSync, disconnectSync } from "../../utils/sync";
-import { SelectionContext } from "../../context/SelectionContext";
+import { useContext } from 'react'
+import { SyncConnectForm } from '../../components/SyncConnectForm'
+import { SyncContext } from '../../context/SyncContext'
+import { SyncConnectedForm } from '../../components/SyncConnectedForm'
+import { connectSync, disconnectSync } from '../../utils/sync'
+import { SelectionContext } from '../../context/SelectionContext'
 
-export const SyncModal = ({
-    toggleSyncModalOpen
-}) => {
-    const {room, userName, isConnected, setConnected, setDisconnected} = useContext(SyncContext)
-    const { setOnChangeHandler, setDataFromSync } = useContext(SelectionContext)
+export const SyncModal = ({ toggleSyncModalOpen }) => {
+  const { room, userName, isConnected, setConnected, setDisconnected } =
+    useContext(SyncContext)
+  const { setOnChangeHandler, setDataFromSync } = useContext(SelectionContext)
 
-    const connect = (roomId, userName) => {
-        connectSync(setOnChangeHandler, setDataFromSync, setConnected, roomId, userName)
-        //setTimeout(() => toggleSyncModalOpen(), 750)
-    }
+  const connect = (roomId, userName) => {
+    connectSync(
+      setOnChangeHandler,
+      setDataFromSync,
+      setConnected,
+      roomId,
+      userName,
+    )
+    //setTimeout(() => toggleSyncModalOpen(), 750)
+  }
 
-    const disconnect = () => {
-        disconnectSync(setOnChangeHandler, setDisconnected)
-    }
+  const disconnect = () => {
+    disconnectSync(setOnChangeHandler, setDisconnected)
+  }
 
-    return (
-        <div className="modal is-active">
+  return (
+    <div className="modal is-active">
       <div className="modal-background" onClick={toggleSyncModalOpen} />
       <div className="modal-card">
         <header className="modal-card-head">
@@ -38,12 +43,21 @@ export const SyncModal = ({
           />
         </header>
         <section className="modal-card-body">
-            {isConnected ?
-          <SyncConnectedForm roomId={room} userName={userName} disconnect={disconnect} />
-           : <SyncConnectForm roomId={room} userName={userName} connect={connect} />
-            }
+          {isConnected ? (
+            <SyncConnectedForm
+              roomId={room}
+              userName={userName}
+              disconnect={disconnect}
+            />
+          ) : (
+            <SyncConnectForm
+              roomId={room}
+              userName={userName}
+              connect={connect}
+            />
+          )}
         </section>
       </div>
     </div>
-    )
+  )
 }

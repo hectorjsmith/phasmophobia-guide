@@ -23,11 +23,10 @@ const RenderFormBody = ({
   onConnect,
   onDisconnect,
 }) => {
-  const {room, setRoom, userName, setUserName, isConnected} = useContext(SyncContext)
+  const { room, setRoom, userName, setUserName, isConnected } =
+    useContext(SyncContext)
 
-  const [usernameValid, setUsernameValid] = useState(
-    checkUsername(userName),
-  )
+  const [usernameValid, setUsernameValid] = useState(checkUsername(userName))
   const [roomIdValid, setRoomIdValid] = useState(checkRoomId(room))
 
   const onUsernameChange = (e) => {

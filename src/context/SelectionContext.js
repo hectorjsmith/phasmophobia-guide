@@ -10,7 +10,7 @@ const SelectionContextProvider = ({ children }) => {
         if (data.source === 'local'){
             onChangeHandler(data)
         }
-    }, [data, onChangeHandler])
+    }, [data])
 
     const setDataFromSync = (newData) => {
         console.log("set data from sync", newData)

@@ -26,7 +26,7 @@ export const Home = ({rawEvidence, rawGhosts}) => {
     const visibleGhosts = useMemo(() => {
         console.log("filtering ghosts") // Still gets called twice instead of once
         return filterPossibleGhosts(selectedEvidence(), rejectedEvidence(), rawGhosts)
-    }, [data, rawGhosts])
+    }, [data])
 
     return (
     <div className="content-wrapper">

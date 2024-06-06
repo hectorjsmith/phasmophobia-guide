@@ -1,14 +1,8 @@
-import { compareStringsAsc } from '../utils/stringSort'
+import { useSortedEvidence } from '../utils/sort'
 import { EvidenceTag } from '../components/EvidenceTag'
 
 const mapEvidence = (allEvidence, ghostEvidenceIds) => {
   return allEvidence.filter((e) => ghostEvidenceIds.includes(e.id))
-}
-
-const sortEvidence = (ghostEvidence) => {
-  return ghostEvidence.sort((a, b) => {
-    return compareStringsAsc(a.name, b.name)
-  })
 }
 
 export const GhostTableRow = ({
@@ -28,6 +22,8 @@ export const GhostTableRow = ({
   const toggleRejected = () => {
     setGhostRejected(ghost, !ghost.rejected)
   }
+
+  const sortedEvidence = useSortedEvidence(ghostEvidence)
 
   return (
     <div>
@@ -66,7 +62,7 @@ export const GhostTableRow = ({
             {ghost.name}
           </p>
         </div>
-        {sortEvidence(ghostEvidence).map((e) => {
+        {sortedEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
               <EvidenceTag name={e.name} icon={e.icon} isSelected={e.selected} />

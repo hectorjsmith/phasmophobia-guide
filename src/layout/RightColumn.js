@@ -1,8 +1,9 @@
 import { GhostTableRow } from './GhostTableRow'
-import { compareStringsAsc } from '../utils/stringSort'
+import { useSortedGhosts } from '../utils/sort'
 
 export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
   const visibleGhosts = ghosts.filter((g) => g.visible)
+
   const showSuccessMessage = () => {
     if (visibleGhosts.length === 1) {
       return (
@@ -41,9 +42,7 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
     setGhostValue(ghost, 'rejected', newRejected)
   }
 
-  const sortGhosts = (a, b) => {
-    return compareStringsAsc(a.name, b.name)
-  }
+  const sortedGhosts = useSortedGhosts(visibleGhosts)
 
   const renderGhostTable = () => {
     if (visibleGhosts.length === 0) {
@@ -59,7 +58,7 @@ export const RightColumn = ({ evidence, ghosts, showTips, setGhosts }) => {
     }
     return (
       <div>
-        {visibleGhosts.sort(sortGhosts).map((ghost) => {
+        {sortedGhosts.map((ghost) => {
           return (
             <GhostTableRow
               key={ghost.name}

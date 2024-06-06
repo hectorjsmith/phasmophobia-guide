@@ -1,4 +1,4 @@
-import { compareStringsAsc } from '../utils/stringSort'
+import { useSortedEvidence } from '../utils/sort'
 import { ObservationToggle } from '../components/ObservationToggle'
 
 export const LeftColumn = ({
@@ -11,7 +11,8 @@ export const LeftColumn = ({
   toggleSyncModal,
   syncState,
 }) => {
-
+  const sortedEvidence = useSortedEvidence(evidence)
+  
   const countSelectedEvidence = () => {
     return evidence.filter((e) => e.selected).length
   }
@@ -54,9 +55,7 @@ export const LeftColumn = ({
         Observations
       </h2>
 
-      {evidence
-        .sort((a, b) => compareStringsAsc(a.name, b.name))
-        .map((e, index) => {
+      {sortedEvidence.map((e) => {
           return (
             <ObservationToggle
               key={e.id}

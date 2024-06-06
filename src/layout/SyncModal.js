@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { SyncContext } from '../context/SyncContext'
 
 const checkUsername = (username) => {
   const usernameRegex = /^[a-zA-Z0-9-_]+$/
@@ -22,10 +23,12 @@ const RenderFormBody = ({
   onConnect,
   onDisconnect,
 }) => {
+  const {room, setRoom, userName, setUserName, isConnected} = useContext(SyncContext)
+
   const [usernameValid, setUsernameValid] = useState(
-    checkUsername(syncState.userId),
+    checkUsername(userName),
   )
-  const [roomIdValid, setRoomIdValid] = useState(checkRoomId(syncState.roomId))
+  const [roomIdValid, setRoomIdValid] = useState(checkRoomId(room))
 
   const onUsernameChange = (e) => {
     const username = e.target.value
@@ -34,7 +37,7 @@ const RenderFormBody = ({
       return
     }
     setUsernameValid(true)
-    setSyncState({ ...syncState, userId: username })
+    setUserName(username)
   }
 
   const onRoomIdChange = (e) => {
@@ -44,13 +47,13 @@ const RenderFormBody = ({
       return
     }
     setRoomIdValid(true)
-    setSyncState({ ...syncState, roomId: roomId })
+    setRoom(roomId)
   }
 
   const inputRef = useRef(null)
   useEffect(() => {
     inputRef.current.focus()
-  }, [syncState.isConnected])
+  }, [isConnected])
 
   return (
     <>
@@ -60,8 +63,8 @@ const RenderFormBody = ({
           <input
             className="input"
             type="text"
-            defaultValue={syncState.userId ?? ''}
-            disabled={syncState.isConnected}
+            defaultValue={userName ?? ''}
+            disabled={isConnected}
             onChange={onUsernameChange}
             maxLength={20}
             placeholder="username"
@@ -79,8 +82,8 @@ const RenderFormBody = ({
           <input
             className="input"
             type="text"
-            defaultValue={syncState.roomId ?? ''}
-            disabled={syncState.isConnected}
+            defaultValue={room ?? ''}
+            disabled={isConnected}
             onChange={onRoomIdChange}
             placeholder="000 000"
           />
@@ -91,12 +94,12 @@ const RenderFormBody = ({
       </div>
 
       <div className="field is-grouped is-grouped-centered">
-        <div className="control" hidden={!syncState.isConnected}>
+        <div className="control" hidden={!isConnected}>
           <button className="button is-danger" onClick={onDisconnect}>
             Disconnect
           </button>
         </div>
-        <div className="control" hidden={syncState.isConnected}>
+        <div className="control" hidden={isConnected}>
           <button
             className="button is-success"
             disabled={!usernameValid || !roomIdValid}

@@ -1,4 +1,4 @@
-import { useEffect, useState, useReducer } from 'react'
+import { useEffect, useState, useReducer, useContext } from 'react'
 import { Footer } from './components/Footer'
 import { TopNav } from './components/Header'
 import { LeftColumn } from './layout/LeftColumn'
@@ -10,6 +10,7 @@ import {
   handleDisconnect,
 } from './sync/sync'
 import getVersionData from './utils/version'
+import { SyncContext } from './context/SyncContext'
 
 const mapGhosts = (rawGhosts) => {
   return rawGhosts.map((g) => {
@@ -104,6 +105,7 @@ export const App = ({ rawEvidence, rawGhosts }) => {
     [evidenceData],
   )
 
+  const {setRoom} = useContext(SyncContext)
   return (
     <div className="content-wrapper">
       <div className="content-main content">
@@ -113,9 +115,10 @@ export const App = ({ rawEvidence, rawGhosts }) => {
             <SyncModal
               syncState={syncState}
               setSyncState={setSyncState}
-              onConnect={() =>
+              onConnect={() =>{
                 handleConnect(syncState, setSyncState, setAndSyncEvidenceData)
-              }
+                setRoom('test-room')
+              }}
               onDisconnect={() => handleDisconnect(syncState, setSyncState)}
               toggleSyncModalOpen={toggleSyncModalOpen}
             />

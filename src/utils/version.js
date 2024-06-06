@@ -5,8 +5,11 @@ class VersionData {
     }
 }
 
-function getVersionData() {
-    return new VersionData(process.env.REACT_APP_VERSION, process.env.REACT_APP_BUILD_TIME)
+const useVersionData = () => {
+    return new VersionData(
+        process.env.REACT_APP_VERSION,
+         process.env.REACT_APP_BUILD_TIME
+        )
 }
 
-export default getVersionData
+export default useVersionData

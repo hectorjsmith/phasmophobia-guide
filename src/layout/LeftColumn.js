@@ -1,5 +1,7 @@
 import { useSortedEvidence } from '../utils/sort'
 import { ObservationToggle } from '../components/ObservationToggle'
+import { useContext } from 'react'
+import { SyncContext } from '../context/SyncContext'
 
 export const LeftColumn = ({
   evidence,
@@ -8,8 +10,7 @@ export const LeftColumn = ({
   ghosts,
   showTips,
   toggleShowTips,
-  toggleSyncModal,
-  syncState,
+  toggleSyncModal
 }) => {
   const sortedEvidence = useSortedEvidence(evidence)
   
@@ -49,6 +50,9 @@ export const LeftColumn = ({
   let selectedEvidenceCount = countSelectedEvidence()
   let rejectedEvidenceCount = countRejectedEvidence()
   let selectionCount = selectedEvidenceCount + rejectedEvidenceCount
+
+  const {room, isConnected} = useContext(SyncContext)
+
   return (
     <div>
       <h2 className="mb-5 has-text-centered is-size-5 is-uppercase has-letter-spacing">
@@ -91,7 +95,7 @@ export const LeftColumn = ({
           </span>
         </button>
         <button
-          className={'button' + (syncState.isConnected ? ' is-success' : '')}
+          className={'button' + (isConnected ? ' is-success' : '')}
           onClick={toggleSyncModal}
           title="Sync"
         >
@@ -99,11 +103,11 @@ export const LeftColumn = ({
             <i
               className={
                 'fa' +
-                (syncState.isConnected ? ' fa-sync fa-spin' : ' fa-users')
+                (isConnected ? ' fa-sync fa-spin' : ' fa-users')
               }
             />
           </span>
-          {syncState.isConnected ? <span>{syncState.roomId}</span> : ''}
+          {isConnected ? <span>{room}</span> : ''}
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { compareStringsAsc } from '../utils/stringSort'
-import { ObservationToggle } from './ObservationToggle'
+import { ObservationToggle } from '../components/ObservationToggle'
 
 export const LeftColumn = ({
   evidence,
@@ -11,11 +11,38 @@ export const LeftColumn = ({
   toggleSyncModal,
   syncState,
 }) => {
+
   const countSelectedEvidence = () => {
     return evidence.filter((e) => e.selected).length
   }
   const countRejectedEvidence = () => {
     return evidence.filter((e) => e.rejected).length
+  }
+
+  const toggleSelection = (id) => {
+    return () => {
+      setEvidence(current =>
+        current.map(item =>
+          item.id === id ? {...item, selected: !item.selected} : item
+        )
+      )
+    }
+  }
+
+  const toggleRejection = (id) => {
+    return () => {
+      setEvidence(current =>
+        current.map(item =>
+          item.id === id ? {...item, rejected: !item.rejected} : item
+        )
+      )
+    }
+  }
+
+  const anyVisibleGhostWithEvidence = (ghosts, evidenceId) => {
+    return ghosts.some(
+      (ghost) => ghost.visible && ghost.evidence.includes(evidenceId)
+    );
   }
 
   let selectedEvidenceCount = countSelectedEvidence()
@@ -32,13 +59,15 @@ export const LeftColumn = ({
         .map((e, index) => {
           return (
             <ObservationToggle
-              key={e.name}
-              evidence={e}
-              setEvidence={(newE) => {
-                evidence[index] = newE
-                setEvidence([...evidence])
-              }}
-              ghosts={ghosts}
+              key={e.id}
+              id={e.id}
+              name={e.name}
+              icon={e.icon}
+              isSelected={e.selected}
+              toggleSelection={toggleSelection}
+              isRejected={e.rejected}
+              toggleRejection={toggleRejection}
+              isAvailable={anyVisibleGhostWithEvidence(ghosts, e.id)}
             />
           )
         })}

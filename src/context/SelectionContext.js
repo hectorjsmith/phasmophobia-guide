@@ -2,15 +2,6 @@ import { createContext, useEffect, useState } from 'react'
 
 const SelectionContext = createContext()
 
-const getBaseData = () => {
-  return {
-    source: 'local',
-    evidence: {},
-    ghosts: {},
-    showTips: true,
-  }
-}
-
 const SelectionContextProvider = ({ children }) => {
   const [data, setData] = useState(getBaseData())
   const [onChangeHandler, setOnChangeHandler] = useState(() => () => {})
@@ -129,9 +120,9 @@ const SelectionContextProvider = ({ children }) => {
         getIsEvidenceRejected,
         toggleEvidenceRejected,
         getIsGhostRejected,
+        toggleGhostRejected,
         isTipsVisible: isTipsVisible(),
         toggleIsTipsVisible,
-        toggleGhostRejected,
         selectedEvidence: selectedEvidence(),
         rejectedEvidence: rejectedEvidence(),
         reset,
@@ -142,4 +133,13 @@ const SelectionContextProvider = ({ children }) => {
   )
 }
 
+const getBaseData = () => {
+    return {
+      source: 'local',
+      evidence: {},
+      ghosts: {},
+      showTips: true,
+    }
+  }
+  
 export { SelectionContext, SelectionContextProvider }

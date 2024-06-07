@@ -9,7 +9,6 @@ import {
 
 export const GhostListPanel = ({ ghosts, evidence }) => {
   const {
-    data,
     selectedEvidence,
     rejectedEvidence,
     getIsEvidenceSelected,
@@ -21,7 +20,7 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
   const visibleGhosts = useMemo(() => {
     console.log('filtering ghosts') // Still gets called twice instead of once
     return filterPossibleGhosts(selectedEvidence, rejectedEvidence, ghosts)
-  }, [data])
+  }, [ghosts, selectedEvidence, rejectedEvidence])
 
   return (
     <div className="has-text-centered">

@@ -10,6 +10,8 @@ const SelectionContextProvider = ({ children }) => {
     if (data.source === 'local') {
       onChangeHandler(data)
     }
+    // we don't want to re-sync data if the handler changes
+    // eslint-disable-next-line
   }, [data])
 
   const setDataFromSync = (newData) => {

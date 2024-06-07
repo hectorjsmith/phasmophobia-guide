@@ -4,6 +4,7 @@ import { Footer } from '../../components/Footer'
 import { TopNav } from '../../components/Header'
 import useVersionData from '../../utils/version'
 import { EvidenceSelectorPanel } from './EvidenceSelectorPanel'
+import { GhostListPanel } from './GhostListPanel'
 
 export const Home = ({ rawEvidence, rawGhosts }) => {
   const versionData = useVersionData()
@@ -11,15 +12,6 @@ export const Home = ({ rawEvidence, rawGhosts }) => {
   const toggleSyncModalOpen = () => {
     setSyncModalOpen((prevState) => !prevState)
   }
-
-  //   const visibleGhosts = useMemo(() => {
-  //     console.log('filtering ghosts') // Still gets called twice instead of once
-  //     return filterPossibleGhosts(
-  //       selectedEvidence(),
-  //       rejectedEvidence(),
-  //       rawGhosts,
-  //     )
-  //   }, [data])
 
   return (
     <div className="content-wrapper">
@@ -35,6 +27,7 @@ export const Home = ({ rawEvidence, rawGhosts }) => {
               ghosts={rawGhosts}
               toggleSyncModal={toggleSyncModalOpen}
             />
+            <GhostListPanel ghosts={rawGhosts} evidence={rawEvidence} />
           </div>
         </div>
       </div>

@@ -7,15 +7,13 @@ export const GhostRow = ({
   getIsEvidenceSelected,
   getIsGhostRejected,
   toggleGhostRejected,
+  getIsGhostExpanded,
+  toggleGhostExpanded,
   showTips,
 }) => {
-  const [expanded, setExpanded] = useState(false)
   const ghostEvidence = allEvidence.filter((e) => ghost.evidence.includes(e.id))
 
-  const toggleExpanded = () => {
-    setExpanded((current) => !current)
-  }
-
+  const expanded = getIsGhostExpanded(ghost.id)
   return (
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
@@ -33,7 +31,7 @@ export const GhostRow = ({
             </button>
             <button
               className={'button' + (expanded ? ' is-dark' : '')}
-              onClick={toggleExpanded}
+              onClick={() => toggleGhostExpanded(ghost.id)}
             >
               <span className="icon is-small">
                 <i

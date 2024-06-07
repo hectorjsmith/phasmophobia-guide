@@ -2,6 +2,7 @@ import { anyVisibleGhostWithEvidence } from '../../utils/filtering'
 import { useContext } from 'react'
 import { SyncContext } from '../../context/SyncContext'
 import { SelectionContext } from '../../context/SelectionContext'
+import { LocalSelectionContext } from '../../context/LocalSelectionContext'
 import {
   ObservationToggle,
   ReactiveSyncStatusButton,
@@ -20,12 +21,19 @@ export const EvidenceSelectorPanel = ({
     toggleEvidenceSelected,
     getIsEvidenceRejected,
     toggleEvidenceRejected,
-    isTipsVisible,
-    toggleIsTipsVisible,
     selectedEvidence,
     rejectedEvidence,
-    reset,
+    reset: resetGlobalSelection,
   } = useContext(SelectionContext)
+
+  const { reset: resetLocalSelection, 
+    isTipsVisible,
+    toggleIsTipsVisible, } = useContext(LocalSelectionContext)
+
+  const onReset = () => {
+    resetLocalSelection()
+    resetGlobalSelection()
+  }
 
   return (
     <>
@@ -55,7 +63,7 @@ export const EvidenceSelectorPanel = ({
       })}
 
       <div className="buttons is-centered mt-6">
-        <ResetButton reset={reset} />
+        <ResetButton reset={onReset} />
         <ToggleTipsButton
           isTipsVisible={isTipsVisible}
           toggleIsTipsVisible={toggleIsTipsVisible}

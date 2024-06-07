@@ -1,5 +1,6 @@
 import { useContext, useMemo } from 'react'
 import { SelectionContext } from '../../context/SelectionContext'
+import { LocalSelectionContext } from '../../context/LocalSelectionContext'
 import { filterPossibleGhosts } from '../../utils/filtering'
 import {
   GhostIdentifiedResult,
@@ -12,10 +13,11 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
     selectedEvidence,
     rejectedEvidence,
     getIsEvidenceSelected,
-    isTipsVisible,
     getIsGhostRejected,
     toggleGhostRejected,
   } = useContext(SelectionContext)
+
+  const { getIsGhostExpanded, toggleGhostExpanded, isTipsVisible } = useContext(LocalSelectionContext)
 
   const visibleGhosts = useMemo(() => {
     console.log('filtering ghosts') // Still gets called twice instead of once
@@ -36,6 +38,8 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
             getIsEvidenceSelected={getIsEvidenceSelected}
             getIsGhostRejected={getIsGhostRejected}
             toggleGhostRejected={toggleGhostRejected}
+            getIsGhostExpanded={getIsGhostExpanded}
+            toggleGhostExpanded={toggleGhostExpanded}
             showTips={isTipsVisible}
           />
         )

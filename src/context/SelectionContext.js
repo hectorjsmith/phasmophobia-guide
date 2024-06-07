@@ -93,20 +93,6 @@ const SelectionContextProvider = ({ children }) => {
     return Object.values(data?.evidence ?? {}).filter((e) => e.rejected) ?? []
   }
 
-  const isTipsVisible = () => {
-    return data?.showTips
-  }
-
-  const toggleIsTipsVisible = () => {
-    setData((current) => {
-      return {
-        ...current,
-        source: 'local',
-        showTips: !current?.showTips,
-      }
-    })
-  }
-
   const reset = () => {
     setData(getBaseData())
   }
@@ -123,8 +109,6 @@ const SelectionContextProvider = ({ children }) => {
         toggleEvidenceRejected,
         getIsGhostRejected,
         toggleGhostRejected,
-        isTipsVisible: isTipsVisible(),
-        toggleIsTipsVisible,
         selectedEvidence: selectedEvidence(),
         rejectedEvidence: rejectedEvidence(),
         reset,

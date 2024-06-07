@@ -6,13 +6,16 @@ import ghosts from './data/ghosts.json'
 import evidence from './data/evidence.json'
 import { SyncContextProvider } from './context/SyncContext'
 import { SelectionContextProvider } from './context/SelectionContext'
+import { LocalSelectionContextProvider } from './context/LocalSelectionContext'
 import { Home } from './pages/Home'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <SyncContextProvider>
       <SelectionContextProvider>
-        <Home rawEvidence={evidence} rawGhosts={ghosts} />
+        <LocalSelectionContextProvider>
+          <Home rawEvidence={evidence} rawGhosts={ghosts} />
+        </LocalSelectionContextProvider>
       </SelectionContextProvider>
     </SyncContextProvider>
   </React.StrictMode>,

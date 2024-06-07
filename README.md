@@ -2,45 +2,43 @@
 
 App to help identify ghosts in the Phasmophobia game.
 
-Access the app here: **[LINK](https://hectorjsmith.gitlab.io/phasmophobia-guide/)**
+Access the tool here: **[LINK](https://hectorjsmith.gitlab.io/phasmophobia-guide/)**
 
 ![App screenshot](docs/screenshot.png)
 
 ## How to use
 
-**1.** Select which evidence you have identified (or rulled out)
+**1.** ✅ Select which evidence you have identified (or excluded)
 
-![Screenshot of observations section](docs/observations.png)
+**2.** 👀 See which ghosts could match that evidence
 
-**2.** See which ghosts could match that evidence
+The table on the right will automatically update to only show ghosts that match those observations
 
-_The table on the right will automatically update to only show ghosts that match those observations_
+**3.** 🔍 Look for the missing evidence
 
-![Screenshot of ghosts section](docs/ghosts.png)
+Evidence that can't be found will be greyed out in the left panel
 
-**3.** Look for the missing evidence
+**4.** 📖 Get more information on each ghost
 
-![Screenshot of missing evidence section](docs/missingEvidence.png)
+Expand the section for each ghost to see more information
 
-_The missing evidence section allows you to rule out evidence that is incompatible_
-
-**4.** Get more information on each ghost
-
-_Click on the blue "i" next to the ghost name to get more info_
-
-![Screenshot of ghost info](docs/ghostInfo.png)
+_The "i" icon on the left side will toggle on or off some extra tips to help find ghosts 🕵️_
 
 ## Realtime Sync
 
-If you are playing with friends you can set up the tool to keep your observed evidence in sync wiyh each other. When connected any change any person makes will be automatically synced to everyone else in the same room 🙌    
+If you are playing with friends you can keep your observed evidence in sync with each other!
 
-Note that this is achieved by using [Supabase](https://supabase.com) as the backend storage and sync server. 
+While connected any change a person makes will be automatically synced to everyone else in the same room, making it easier to work together 🙌
+
+_Note that enabling this feature wll use [Supabase](https://supabase.com) as the backend storage and sync server_
 
 ## Running Locally
 
-Use the following commands to build and run the project locally. This assumes you have a working Javascript/ReactJS development environment.
+The following commands allow running the project locally.
+This assumes you have a working Javascript/ReactJS development environment.
 
-Note that while installation may require an internet connection to download dependencies, the app **is fully functional** when running locally or without an internet connection. This is because the app does not rely on any external files or data, all necessary data is available locally.
+Note that while installation may require an internet connection to download dependencies, the app functional while running offline.
+The only exception is the realtime sync feature which, by definition, requires an internet connection.
 
 **1.** `npm install`
 
@@ -52,13 +50,18 @@ This runs the app locally. Once it has started, you can access the app at [http:
 
 ## Disclaimers
 
-This project is a fun little weekend project to experiment building an app with Javascript and ReactJS. This project is in no way affiliated with the Phasmophobia game or its developers. All trademarks are the property of their respective owners.
+This is a fun project I built to experiment building an app with Javascript and ReactJS while making something useful for my friends.
+
+This project is in no way affiliated with the Phasmophobia game or its developers. All trademarks are the property of their respective owners.
 
 The font used for the page heading image is "October Crow" by Sinister Fonts ([link](https://www.dafont.com/october-crow.font)).
 
-This project also makes use of the following open-source tools:
+This project also makes use of the following tools:
 
 - [ReactJS](https://reactjs.org/)
 - [Bulma CSS](https://bulma.io/)
+- [Supabase](https://supabase.com/)
 
-The project is currently hosted using Gitlab Pages. While the app itself does not collect, process, or transmit any user information or make use of any cookies, Gitlab may have access to certain information about users of the app. Please refer to [Gitab's Privacy Policy](https://about.gitlab.com/privacy/) for more information.
+The project is currently hosted using Gitlab Pages. Please refer to [Gitab's Privacy Policy](https://about.gitlab.com/privacy/) for more information.
+
+Enabling the realtime sync feature will connect you to Supabase services, and you will fall under [their privacy policy](https://supabase.com/privacy).

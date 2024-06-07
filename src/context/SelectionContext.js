@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react'
 const SelectionContext = createContext()
 
 const getBaseData = () => {
-return {
+  return {
     source: 'local',
     evidence: {},
     ghosts: {},
@@ -31,7 +31,7 @@ const SelectionContextProvider = ({ children }) => {
   }
 
   const toggleEvidenceSelected = (id) => {
-    console.log("toggle evidence selected", id)
+    console.log('toggle evidence selected', id)
     setData((current) => {
       return {
         ...current,
@@ -53,7 +53,7 @@ const SelectionContextProvider = ({ children }) => {
   }
 
   const toggleEvidenceRejected = (id) => {
-    console.log("toggle evidence rejected", id)
+    console.log('toggle evidence rejected', id)
     setData((current) => {
       return {
         ...current,
@@ -75,7 +75,7 @@ const SelectionContextProvider = ({ children }) => {
   }
 
   const toggleGhostRejected = (id) => {
-    console.log("toggle ghost rejected", id)
+    console.log('toggle ghost rejected', id)
     setData((current) => {
       return {
         ...current,
@@ -110,7 +110,8 @@ const SelectionContextProvider = ({ children }) => {
         ...current,
         source: 'local',
         showTips: !current?.showTips,
-      }})
+      }
+    })
   }
 
   const reset = () => {

@@ -30,6 +30,12 @@ _Click on the blue "i" next to the ghost name to get more info_
 
 ![Screenshot of ghost info](docs/ghostInfo.png)
 
+## Realtime Sync
+
+If you are playing with friends you can set up the tool to keep your observed evidence in sync wiyh each other. When connected any change any person makes will be automatically synced to everyone else in the same room 🙌    
+
+Note that this is achieved by using [Supabase](https://supabase.com) as the backend storage and sync server. 
+
 ## Running Locally
 
 Use the following commands to build and run the project locally. This assumes you have a working Javascript/ReactJS development environment.

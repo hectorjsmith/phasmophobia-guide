@@ -13,3 +13,5 @@ export const TopNav = () => {
     </nav>
   )
 }
+
+export default TopNav

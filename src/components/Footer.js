@@ -62,3 +62,5 @@ const VersionData = ({ version, buildTime }) => {
     </div>
   )
 }
+
+export default Footer

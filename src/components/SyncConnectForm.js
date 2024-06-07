@@ -75,3 +75,5 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
     </>
   )
 }
+
+export default SyncConnectForm

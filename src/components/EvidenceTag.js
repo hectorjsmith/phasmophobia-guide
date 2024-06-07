@@ -10,3 +10,5 @@ export const EvidenceTag = ({ name, icon, isSelected }) => {
     </span>
   )
 }
+
+export default EvidenceTag

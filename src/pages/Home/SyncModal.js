@@ -1,7 +1,6 @@
 import { useContext } from 'react'
-import { SyncConnectForm } from '../../components/SyncConnectForm'
+import { SyncConnectForm, SyncConnectedForm } from '../../components'
 import { SyncContext } from '../../context/SyncContext'
-import { SyncConnectedForm } from '../../components/SyncConnectedForm'
 import { connectSync, disconnectSync } from '../../utils/sync'
 import { SelectionContext } from '../../context/SelectionContext'
 

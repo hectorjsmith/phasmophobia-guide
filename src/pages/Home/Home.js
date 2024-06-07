@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { SyncModal } from './SyncModal'
-import { Footer } from '../../components/Footer'
-import { TopNav } from '../../components/Header'
+import { TopNav, Footer } from '../../components'
 import useVersionData from '../../utils/version'
 import { EvidenceSelectorPanel } from './EvidenceSelectorPanel'
 import { GhostListPanel } from './GhostListPanel'

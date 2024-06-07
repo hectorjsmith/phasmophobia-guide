@@ -1,6 +1,6 @@
 import { useEffect, useState, useReducer, useContext } from 'react'
 import { Footer } from './components/Footer'
-import { TopNav } from './components/Header'
+import { TopNav } from './components/TopNav'
 import { LeftColumn } from './layout/LeftColumn'
 import { RightColumn } from './layout/RightColumn'
 import { SyncModal } from './layout/SyncModal'

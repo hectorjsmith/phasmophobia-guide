@@ -2,7 +2,7 @@ import { anyVisibleGhostWithEvidence } from '../../utils/filtering'
 import { useContext } from 'react'
 import { SyncContext } from '../../context/SyncContext'
 import { SelectionContext } from '../../context/SelectionContext'
-import { ObservationToggle } from '../../components/ObservationToggle'
+import { ObservationToggle, ReactiveSyncStatusButton } from '../../components'
 
 export const EvidenceSelectorPanel = ({
   evidence,
@@ -66,20 +66,7 @@ export const EvidenceSelectorPanel = ({
             <i className={'fa fa-info'} />
           </span>
         </button>
-        <button
-          className={'button' + (isConnected ? ' is-success' : '')}
-          onClick={toggleSyncModal}
-          title="Sync"
-        >
-          <span className="icon is-small">
-            <i
-              className={
-                'fa' + (isConnected ? ' fa-sync fa-spin' : ' fa-users')
-              }
-            />
-          </span>
-          {isConnected ? <span>{room}</span> : ''}
-        </button>
+        <ReactiveSyncStatusButton isConnected={isConnected} toggleSyncModal={toggleSyncModal} roomId={room} />
       </div>
     </div>
   )

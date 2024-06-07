@@ -45,3 +45,5 @@ export const ObservationToggle = ({
     </div>
   )
 }
+
+export default ObservationToggle

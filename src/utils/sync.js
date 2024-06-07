@@ -21,28 +21,25 @@ export const disconnectSync = (setOnChangeHandler, setDisconnected) => {
 }
 
 const syncChange = (roomId, userName) => (data) => {
-  console.log('syncing change', data)
   publishNewState(roomId, userName, data)
 }
 
 const onRawSync = (setDataFromSync) => (rawData) => {
   const data = rawData.new.state
-  console.log('on raw sync', rawData, data)
   setDataFromSync(data)
 }
 
 const onRawLoad = (setDataFromSync) => (rawData) => {
   const data = rawData.data?.[0]?.state
-  console.log('on raw load', rawData, data)
   setDataFromSync(data)
 }
 
 const publishNewState = (roomId, userName, data) => {
-  console.log('publishing new state', data)
+  const escapedRoomId = escapeRoomId(roomId)
   supabase
     .from('room_state')
     .insert({
-      room_id: roomId,
+      room_id: escapedRoomId,
       state: data,
       updated_by: userName,
     })
@@ -50,17 +47,19 @@ const publishNewState = (roomId, userName, data) => {
 }
 
 const loadCurrentRoomState = (roomId, handler) => {
+  const escapedRoomId = escapeRoomId(roomId)
   supabase
     .from('room_state')
     .select('*')
-    .eq('room_id', roomId)
+    .eq('room_id', escapedRoomId)
     .order('set_at', { ascending: false })
     .limit(1)
     .then(handler)
 }
 
 const subscribeForUpdates = (roomId, handler) => {
-  const channel = supabase.channel(roomId)
+  const escapedRoomId = escapeRoomId(roomId)
+  const channel = supabase.channel(escapedRoomId)
   channel
     .on(
       'postgres_changes',
@@ -72,3 +71,5 @@ const subscribeForUpdates = (roomId, handler) => {
     )
     .subscribe()
 }
+
+const escapeRoomId = (roomId) => roomId.replace(/\s/g, '')

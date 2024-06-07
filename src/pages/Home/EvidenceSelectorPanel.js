@@ -2,7 +2,12 @@ import { anyVisibleGhostWithEvidence } from '../../utils/filtering'
 import { useContext } from 'react'
 import { SyncContext } from '../../context/SyncContext'
 import { SelectionContext } from '../../context/SelectionContext'
-import { ObservationToggle, ReactiveSyncStatusButton, ResetButton, ToggleTipsButton } from '../../components'
+import {
+  ObservationToggle,
+  ReactiveSyncStatusButton,
+  ResetButton,
+  ToggleTipsButton,
+} from '../../components'
 
 export const EvidenceSelectorPanel = ({
   evidence,
@@ -51,8 +56,15 @@ export const EvidenceSelectorPanel = ({
 
       <div className="buttons is-centered mt-6">
         <ResetButton reset={reset} />
-        <ToggleTipsButton isTipsVisible={isTipsVisible} toggleIsTipsVisible={toggleIsTipsVisible} />
-        <ReactiveSyncStatusButton isConnected={isConnected} toggleSyncModal={toggleSyncModal} roomId={room} />
+        <ToggleTipsButton
+          isTipsVisible={isTipsVisible}
+          toggleIsTipsVisible={toggleIsTipsVisible}
+        />
+        <ReactiveSyncStatusButton
+          isConnected={isConnected}
+          toggleSyncModal={toggleSyncModal}
+          roomId={room}
+        />
       </div>
     </div>
   )

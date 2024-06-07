@@ -134,12 +134,12 @@ const SelectionContextProvider = ({ children }) => {
 }
 
 const getBaseData = () => {
-    return {
-      source: 'local',
-      evidence: {},
-      ghosts: {},
-      showTips: true,
-    }
+  return {
+    source: 'local',
+    evidence: {},
+    ghosts: {},
+    showTips: true,
   }
-  
+}
+
 export { SelectionContext, SelectionContextProvider }

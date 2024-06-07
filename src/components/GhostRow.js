@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import EvidenceTag from './EvidenceTag'
 
 export const GhostRow = ({

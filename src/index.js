@@ -1,13 +1,22 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { App } from './App'
+import ReactDOM from 'react-dom/client'
 import './index.scss'
-import './fa/scss/fork-awesome.scss'
+import './libs/fa/scss/fork-awesome.scss'
 import ghosts from './data/ghosts.json'
 import evidence from './data/evidence.json'
+import { SyncContextProvider } from './context/SyncContext'
+import { SelectionContextProvider } from './context/SelectionContext'
+import { LocalSelectionContextProvider } from './context/LocalSelectionContext'
+import { Home } from './pages/Home'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App rawEvidence={evidence} rawGhosts={ghosts} />
+    <SyncContextProvider>
+      <SelectionContextProvider>
+        <LocalSelectionContextProvider>
+          <Home rawEvidence={evidence} rawGhosts={ghosts} />
+        </LocalSelectionContextProvider>
+      </SelectionContextProvider>
+    </SyncContextProvider>
   </React.StrictMode>,
 )

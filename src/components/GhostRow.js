@@ -1,42 +1,28 @@
-import { compareStringsAsc } from '../util/stringSort'
-import { EvidenceTag } from './EvidenceTag'
+import EvidenceTag from './EvidenceTag'
 
-const mapEvidence = (allEvidence, ghostEvidenceIds) => {
-  return allEvidence.filter((e) => ghostEvidenceIds.includes(e.id))
-}
-
-const sortEvidence = (ghostEvidence) => {
-  return ghostEvidence.sort((a, b) => {
-    return compareStringsAsc(a.name, b.name)
-  })
-}
-
-export const GhostTableRow = ({
-  evidence,
+export const GhostRow = ({
   ghost,
-  setGhostExpanded,
-  setGhostRejected,
+  allEvidence,
+  getIsEvidenceSelected,
+  getIsGhostRejected,
+  toggleGhostRejected,
+  getIsGhostExpanded,
+  toggleGhostExpanded,
   showTips,
 }) => {
-  const ghostEvidence = mapEvidence(evidence, ghost.evidence)
-  const expanded = ghost.expanded
+  const ghostEvidence = allEvidence.filter((e) => ghost.evidence.includes(e.id))
 
-  const toggleExpanded = () => {
-    setGhostExpanded(ghost, !ghost.expanded)
-  }
-
-  const toggleRejected = () => {
-    setGhostRejected(ghost, !ghost.rejected)
-  }
-
+  const expanded = getIsGhostExpanded(ghost.id)
   return (
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
           <div className="buttons has-addons">
             <button
-              className={'button' + (ghost.rejected ? ' is-danger' : '')}
-              onClick={toggleRejected}
+              className={
+                'button' + (getIsGhostRejected(ghost.id) ? ' is-danger' : '')
+              }
+              onClick={() => toggleGhostRejected(ghost.id)}
             >
               <span className="icon is-small">
                 <i className="fa fa-times" />
@@ -44,7 +30,7 @@ export const GhostTableRow = ({
             </button>
             <button
               className={'button' + (expanded ? ' is-dark' : '')}
-              onClick={toggleExpanded}
+              onClick={() => toggleGhostExpanded(ghost.id)}
             >
               <span className="icon is-small">
                 <i
@@ -60,16 +46,22 @@ export const GhostTableRow = ({
           <p
             className={
               'is-uppercase has-text-weight-light has-letter-spacing' +
-              (ghost.rejected ? ' has-text-line-through has-text-danger' : '')
+              (getIsGhostRejected(ghost.id)
+                ? ' has-text-line-through has-text-danger'
+                : '')
             }
           >
             {ghost.name}
           </p>
         </div>
-        {sortEvidence(ghostEvidence).map((e) => {
+        {ghostEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
-              <EvidenceTag evidence={e} />
+              <EvidenceTag
+                name={e.name}
+                icon={e.icon}
+                isSelected={getIsEvidenceSelected(e.id)}
+              />
             </div>
           )
         })}
@@ -129,3 +121,5 @@ export const GhostTableRow = ({
     </div>
   )
 }
+
+export default GhostRow

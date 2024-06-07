@@ -1,36 +1,36 @@
 [
   {
-    "id": "dots",
+    "id": "#dots",
     "name": "D.O.T.S. Projector",
     "icon": "th"
   },
   {
-    "id": "emf",
+    "id": "#emf",
     "name": "EMF",
     "icon": "signal"
   },
   {
-    "id": "fingerprints",
+    "id": "#fingerprints",
     "name": "Fingerprints",
     "icon": "paw"
   },
   {
-    "id": "freezing",
+    "id": "#freezing",
     "name": "Freezing Temperatures",
     "icon": "thermometer-quarter"
   },
   {
-    "id": "orb",
+    "id": "#orb",
     "name": "Ghost Orb",
     "icon": "dot-circle-o"
   },
   {
-    "id": "writing",
+    "id": "#writing",
     "name": "Ghost Writing",
     "icon": "pencil-square-o"
   },
   {
-    "id": "box",
+    "id": "#box",
     "name": "Spirit Box",
     "icon": "microphone"
   }

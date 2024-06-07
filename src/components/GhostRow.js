@@ -1,10 +1,15 @@
-import EvidenceTag from "./EvidenceTag"
+import EvidenceTag from './EvidenceTag'
 
-export const GhostRow = ({ghost, allEvidence, getIsEvidenceSelected, showTips}) => {
-    const ghostEvidence = allEvidence.filter((e) => ghost.evidence.includes(e.id))
+export const GhostRow = ({
+  ghost,
+  allEvidence,
+  getIsEvidenceSelected,
+  showTips,
+}) => {
+  const ghostEvidence = allEvidence.filter((e) => ghost.evidence.includes(e.id))
 
-    return (
-        <div>
+  return (
+    <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
           {/* <div className="buttons has-addons">
@@ -105,7 +110,7 @@ export const GhostRow = ({ghost, allEvidence, getIsEvidenceSelected, showTips}) 
       </div>
       <hr className="my-3" />
     </div>
-    )
+  )
 }
 
 export default GhostRow

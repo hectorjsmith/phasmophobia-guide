@@ -1,7 +1,11 @@
 import { useContext, useMemo } from 'react'
 import { SelectionContext } from '../../context/SelectionContext'
 import { filterPossibleGhosts } from '../../utils/filtering'
-import { GhostIdentifiedResult, GhostRow, NoGhostsFoundResult } from '../../components'
+import {
+  GhostIdentifiedResult,
+  GhostRow,
+  NoGhostsFoundResult,
+} from '../../components'
 
 export const GhostListPanel = ({ ghosts, evidence }) => {
   const { data, selectedEvidence, rejectedEvidence, getIsEvidenceSelected } =
@@ -15,15 +19,17 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
   return (
     <div className="has-text-centered">
       <h2 className="mb-5 is-size-5 is-uppercase has-letter-spacing">Ghosts</h2>
-      {visibleGhosts.length === 0 ? (
-        <NoGhostsFoundResult />
-      ) : null}
-      {visibleGhosts.length === 1 ? (
-        <GhostIdentifiedResult />
-      ) : null}
+      {visibleGhosts.length === 0 ? <NoGhostsFoundResult /> : null}
+      {visibleGhosts.length === 1 ? <GhostIdentifiedResult /> : null}
       {visibleGhosts.map((ghost) => {
         return (
-            <GhostRow key={ghost.name} ghost={ghost} allEvidence={evidence} getIsEvidenceSelected={getIsEvidenceSelected} showTips={false} />
+          <GhostRow
+            key={ghost.name}
+            ghost={ghost}
+            allEvidence={evidence}
+            getIsEvidenceSelected={getIsEvidenceSelected}
+            showTips={false}
+          />
         )
       })}
     </div>

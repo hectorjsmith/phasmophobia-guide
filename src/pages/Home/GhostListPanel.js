@@ -30,7 +30,7 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
       {visibleGhosts.map((ghost) => {
         return (
           <GhostRow
-            key={ghost.name}
+            key={ghost.id}
             ghost={ghost}
             allEvidence={evidence}
             getIsEvidenceSelected={getIsEvidenceSelected}

@@ -23,9 +23,9 @@ export const GhostRow = ({
           <div className="buttons has-addons">
             <button
               className={
-                'button' + (getIsGhostRejected(ghost.name) ? ' is-danger' : '')
+                'button' + (getIsGhostRejected(ghost.id) ? ' is-danger' : '')
               }
-              onClick={() => toggleGhostRejected(ghost.name)}
+              onClick={() => toggleGhostRejected(ghost.id)}
             >
               <span className="icon is-small">
                 <i className="fa fa-times" />
@@ -49,7 +49,7 @@ export const GhostRow = ({
           <p
             className={
               'is-uppercase has-text-weight-light has-letter-spacing' +
-              (getIsGhostRejected(ghost.name)
+              (getIsGhostRejected(ghost.id)
                 ? ' has-text-line-through has-text-danger'
                 : '')
             }

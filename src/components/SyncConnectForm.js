@@ -42,7 +42,7 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
           />
         </div>
         {usernameValid || (
-          <p class="help is-danger">This username is invalid</p>
+          <p className="help is-danger">This username is invalid</p>
         )}
       </div>
 
@@ -58,7 +58,7 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
             placeholder="000 000"
           />
         </div>
-        {roomIdValid || <p class="help is-danger">This room ID is invalid</p>}
+        {roomIdValid || <p className="help is-danger">This room ID is invalid</p>}
       </div>
 
       <div className="field is-grouped is-grouped-centered">

@@ -1,21 +1,31 @@
+import { useState } from 'react'
 import EvidenceTag from './EvidenceTag'
 
 export const GhostRow = ({
   ghost,
   allEvidence,
   getIsEvidenceSelected,
+  getIsGhostRejected,
+  toggleGhostRejected,
   showTips,
 }) => {
+  const [expanded, setExpanded] = useState(false)
   const ghostEvidence = allEvidence.filter((e) => ghost.evidence.includes(e.id))
+
+  const toggleExpanded = () => {
+    setExpanded((current) => !current)
+  }
 
   return (
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
-          {/* <div className="buttons has-addons">
+          <div className="buttons has-addons">
             <button
-              className={'button' + (ghost.rejected ? ' is-danger' : '')}
-              onClick={toggleRejected}
+              className={
+                'button' + (getIsGhostRejected(ghost.name) ? ' is-danger' : '')
+              }
+              onClick={() => toggleGhostRejected(ghost.name)}
             >
               <span className="icon is-small">
                 <i className="fa fa-times" />
@@ -33,13 +43,15 @@ export const GhostRow = ({
                 />
               </span>
             </button>
-          </div> */}
+          </div>
         </div>
         <div className="column">
           <p
             className={
               'is-uppercase has-text-weight-light has-letter-spacing' +
-              (ghost.rejected ? ' has-text-line-through has-text-danger' : '')
+              (getIsGhostRejected(ghost.name)
+                ? ' has-text-line-through has-text-danger'
+                : '')
             }
           >
             {ghost.name}
@@ -58,7 +70,7 @@ export const GhostRow = ({
         })}
       </div>
       <div
-        hidden={true}
+        hidden={!expanded}
         className="mt-4 mb-5 mx-4 ghost-info-accordion-content"
       >
         <h2 className="is-size-5 is-uppercase has-letter-spacing">

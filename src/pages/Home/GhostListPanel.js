@@ -8,8 +8,15 @@ import {
 } from '../../components'
 
 export const GhostListPanel = ({ ghosts, evidence }) => {
-  const { data, selectedEvidence, rejectedEvidence, getIsEvidenceSelected } =
-    useContext(SelectionContext)
+  const {
+    data,
+    selectedEvidence,
+    rejectedEvidence,
+    getIsEvidenceSelected,
+    isTipsVisible,
+    getIsGhostRejected,
+    toggleGhostRejected,
+  } = useContext(SelectionContext)
 
   const visibleGhosts = useMemo(() => {
     console.log('filtering ghosts') // Still gets called twice instead of once
@@ -28,7 +35,9 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
             ghost={ghost}
             allEvidence={evidence}
             getIsEvidenceSelected={getIsEvidenceSelected}
-            showTips={false}
+            getIsGhostRejected={getIsGhostRejected}
+            toggleGhostRejected={toggleGhostRejected}
+            showTips={isTipsVisible}
           />
         )
       })}

@@ -26,9 +26,11 @@ export const EvidenceSelectorPanel = ({
     reset: resetGlobalSelection,
   } = useContext(SelectionContext)
 
-  const { reset: resetLocalSelection, 
+  const {
+    reset: resetLocalSelection,
     isTipsVisible,
-    toggleIsTipsVisible, } = useContext(LocalSelectionContext)
+    toggleIsTipsVisible,
+  } = useContext(LocalSelectionContext)
 
   const onReset = () => {
     resetLocalSelection()

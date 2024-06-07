@@ -17,7 +17,9 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
     toggleGhostRejected,
   } = useContext(SelectionContext)
 
-  const { getIsGhostExpanded, toggleGhostExpanded, isTipsVisible } = useContext(LocalSelectionContext)
+  const { getIsGhostExpanded, toggleGhostExpanded, isTipsVisible } = useContext(
+    LocalSelectionContext,
+  )
 
   const visibleGhosts = useMemo(() => {
     console.log('filtering ghosts') // Still gets called twice instead of once

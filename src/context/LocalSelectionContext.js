@@ -21,7 +21,7 @@ const LocalSelectionContextProvider = ({ children }) => {
   }
 
   const toggleIsTipsVisible = () => {
-    setShowTips(current => !current)
+    setShowTips((current) => !current)
   }
 
   const reset = () => {

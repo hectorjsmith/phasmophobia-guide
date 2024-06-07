@@ -26,7 +26,7 @@ const SelectionContextProvider = ({ children }) => {
     setData({ ...newData, source: 'ext' })
   }
 
-  const isEvidenceSelected = (id) => {
+  const getIsEvidenceSelected = (id) => {
     return data?.evidence?.[id]?.selected === true
   }
 
@@ -48,7 +48,7 @@ const SelectionContextProvider = ({ children }) => {
     })
   }
 
-  const isEvidenceRejected = (id) => {
+  const getIsEvidenceRejected = (id) => {
     return data?.evidence?.[id]?.rejected === true
   }
 
@@ -70,7 +70,7 @@ const SelectionContextProvider = ({ children }) => {
     })
   }
 
-  const isGhostRejected = (id) => {
+  const getIsGhostRejected = (id) => {
     return data?.ghosts?.[id]?.rejected === true
   }
 
@@ -124,16 +124,16 @@ const SelectionContextProvider = ({ children }) => {
         data,
         setDataFromSync,
         setOnChangeHandler,
-        isEvidenceSelected,
+        getIsEvidenceSelected,
         toggleEvidenceSelected,
-        isEvidenceRejected,
+        getIsEvidenceRejected,
         toggleEvidenceRejected,
-        isGhostRejected,
-        isTipsVisible,
+        getIsGhostRejected,
+        isTipsVisible: isTipsVisible(),
         toggleIsTipsVisible,
         toggleGhostRejected,
-        selectedEvidence,
-        rejectedEvidence,
+        selectedEvidence: selectedEvidence(),
+        rejectedEvidence: rejectedEvidence(),
         reset,
       }}
     >

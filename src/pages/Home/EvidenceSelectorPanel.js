@@ -11,9 +11,9 @@ export const EvidenceSelectorPanel = ({
 }) => {
   const { room, isConnected } = useContext(SyncContext)
   const {
-    isEvidenceSelected,
+    getIsEvidenceSelected,
     toggleEvidenceSelected,
-    isEvidenceRejected,
+    getIsEvidenceRejected,
     toggleEvidenceRejected,
     isTipsVisible,
     toggleIsTipsVisible,
@@ -35,14 +35,14 @@ export const EvidenceSelectorPanel = ({
             id={e.id}
             name={e.name}
             icon={e.icon}
-            isSelected={isEvidenceSelected(e.id)}
+            isSelected={getIsEvidenceSelected(e.id)}
             toggleSelection={() => toggleEvidenceSelected(e.id)}
-            isRejected={isEvidenceRejected(e.id)}
+            isRejected={getIsEvidenceRejected(e.id)}
             toggleRejection={() => toggleEvidenceRejected(e.id)}
             isAvailable={anyVisibleGhostWithEvidence(
               ghosts,
-              selectedEvidence(),
-              rejectedEvidence(),
+              selectedEvidence,
+              rejectedEvidence,
               e.id,
             )}
           />
@@ -58,7 +58,7 @@ export const EvidenceSelectorPanel = ({
           reset
         </button>
         <button
-          className={'button' + (isTipsVisible() ? ' is-info' : '')}
+          className={'button' + (isTipsVisible ? ' is-info' : '')}
           onClick={toggleIsTipsVisible}
           title="Show Tips"
         >

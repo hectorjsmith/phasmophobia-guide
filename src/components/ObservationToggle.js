@@ -14,7 +14,7 @@ export const ObservationToggle = ({
         <div className="buttons has-addons">
           <button
             className={'button' + (isRejected ? ' is-danger' : '')}
-            onClick={toggleRejection(id)}
+            onClick={() => toggleRejection(id)}
           >
             <span className="icon is-small">
               <i className="fa fa-times" />
@@ -27,7 +27,7 @@ export const ObservationToggle = ({
               (isSelected ? ' is-success' : '') +
               (isAvailable ? '' : ' is-dark')
             }
-            onClick={toggleSelection(id)}
+            onClick={() => toggleSelection(id)}
           >
             <span className="icon is-small">
               <i

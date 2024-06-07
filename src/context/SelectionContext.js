@@ -2,12 +2,17 @@ import { createContext, useEffect, useState } from 'react'
 
 const SelectionContext = createContext()
 
-const SelectionContextProvider = ({ children }) => {
-  const [data, setData] = useState({
+const getBaseData = () => {
+return {
     source: 'local',
     evidence: {},
     ghosts: {},
-  })
+    showTips: true,
+  }
+}
+
+const SelectionContextProvider = ({ children }) => {
+  const [data, setData] = useState(getBaseData())
   const [onChangeHandler, setOnChangeHandler] = useState(() => () => {})
 
   useEffect(() => {
@@ -26,6 +31,7 @@ const SelectionContextProvider = ({ children }) => {
   }
 
   const toggleEvidenceSelected = (id) => {
+    console.log("toggle evidence selected", id)
     setData((current) => {
       return {
         ...current,
@@ -47,6 +53,7 @@ const SelectionContextProvider = ({ children }) => {
   }
 
   const toggleEvidenceRejected = (id) => {
+    console.log("toggle evidence rejected", id)
     setData((current) => {
       return {
         ...current,
@@ -68,6 +75,7 @@ const SelectionContextProvider = ({ children }) => {
   }
 
   const toggleGhostRejected = (id) => {
+    console.log("toggle ghost rejected", id)
     setData((current) => {
       return {
         ...current,
@@ -92,6 +100,23 @@ const SelectionContextProvider = ({ children }) => {
     return Object.values(data?.evidence ?? {}).filter((e) => e.rejected) ?? []
   }
 
+  const isTipsVisible = () => {
+    return data?.showTips
+  }
+
+  const toggleIsTipsVisible = () => {
+    setData((current) => {
+      return {
+        ...current,
+        source: 'local',
+        showTips: !current?.showTips,
+      }})
+  }
+
+  const reset = () => {
+    setData(getBaseData())
+  }
+
   return (
     <SelectionContext.Provider
       value={{
@@ -103,9 +128,12 @@ const SelectionContextProvider = ({ children }) => {
         isEvidenceRejected,
         toggleEvidenceRejected,
         isGhostRejected,
+        isTipsVisible,
+        toggleIsTipsVisible,
         toggleGhostRejected,
         selectedEvidence,
         rejectedEvidence,
+        reset,
       }}
     >
       {children}

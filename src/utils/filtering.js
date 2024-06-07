@@ -22,3 +22,9 @@ export const filterPossibleGhosts = (
     isGhostPossible(ghost, selectedEvidence, rejectedEvidence),
   )
 }
+
+export const anyVisibleGhostWithEvidence = (ghosts, selectedEvidence, rejectedEvidence, evidenceId) => {
+    return ghosts.some(
+      (ghost) => isGhostPossible(ghost, selectedEvidence, rejectedEvidence) && ghost.evidence.includes(evidenceId),
+    )
+  }

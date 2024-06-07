@@ -28,7 +28,7 @@ export const EvidenceSelectorPanel = ({
   } = useContext(SelectionContext)
 
   return (
-    <div>
+    <>
       <h2 className="mb-5 has-text-centered is-size-5 is-uppercase has-letter-spacing">
         Observations
       </h2>
@@ -66,6 +66,6 @@ export const EvidenceSelectorPanel = ({
           roomId={room}
         />
       </div>
-    </div>
+    </>
   )
 }

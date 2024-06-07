@@ -21,12 +21,16 @@ export const Home = ({ rawEvidence, rawGhosts }) => {
             <SyncModal toggleSyncModalOpen={toggleSyncModalOpen} />
           )}
           <div className="columns">
+            <div className='column is-4'>
             <EvidenceSelectorPanel
               evidence={rawEvidence}
               ghosts={rawGhosts}
               toggleSyncModal={toggleSyncModalOpen}
             />
+            </div>
+            <div className='column is-8'>                
             <GhostListPanel ghosts={rawGhosts} evidence={rawEvidence} />
+            </div>
           </div>
         </div>
       </div>

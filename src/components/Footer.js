@@ -3,27 +3,27 @@ export const Footer = ({ version, buildTime }) => {
     <footer className="footer mt-6">
       <div className="columns mx-4">
         <div className="column is-half">
-          <p className="heading">
+          <p className="mb-2">
             <a
-              className="has-text-white has-hover-text-link-dark"
+              className="has-text-white is-uppercase is-size-7"
               target="_blank"
               rel="noreferrer"
               href="https://gitlab.com/hectorjsmith/phasmophobia-guide"
             >
-              <span className="icon">
+              <span className="icon mr-3">
                 <i className="fa fa-gitlab" />
               </span>
               Code on Gitlab
             </a>
           </p>
-          <p className="heading">
+          <p>
             <a
-              className="has-text-white has-hover-text-link-dark"
+              className="has-text-white is-uppercase is-size-7"
               target="_blank"
               rel="noreferrer"
               href="https://umami.is/"
             >
-              <span className="icon">
+              <span className="icon mr-3">
                 <i className="fa fa-line-chart" />
               </span>
               Analytics by Umami
@@ -47,15 +47,15 @@ const VersionData = ({ version, buildTime }) => {
   }
   return (
     <div className="has-text-right">
-      <p className="heading">
+      <p className="has-text-white is-uppercase is-size-7">
         {version}
-        <span className="icon">
+        <span className="icon ml-3">
           <i className="fa fa-code" />
         </span>
       </p>
-      <p className="heading">
+      <p className="has-text-white is-uppercase is-size-7">
         Built on {buildTime}
-        <span className="icon">
+        <span className="icon ml-3">
           <i className="fa fa-calendar" />
         </span>
       </p>

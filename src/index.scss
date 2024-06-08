@@ -36,6 +36,10 @@ li::marker {
   background: transparent;
 }
 
+.tag.has-border {
+  border: 2px solid var(--bulma-dark);
+}
+
 .has-pointer-on-hover:hover {
   cursor: pointer;
 }

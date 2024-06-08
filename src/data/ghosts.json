@@ -48,6 +48,7 @@
       "Deogen constantly sense the living. You can run but you can't hide."
     ],
     "tips": [
+      "The Spirit Box evidence will always be present on any difficulty level.",
       "The simplest way to identify a Deogen by its behavior is for players to stand in a room that is comfortably big enough to kite the ghost in, but would be less likely for it to enter by being more distant from the favourite room. Make sure that everyone's electronics are turned off as well to prevent the ghost from being naturally led to the room. If the ghost sounds very fast as it rushes directly to where players are located before slowing down as it gets close, then it is a Deogen.",
       "A more advanced version of this strategy, applicable to larger maps, is to have players hiding across several different locations, each with varying distances to the ghost room. As the Deogen targets whoever is closest to it when it hunts, the player nearest to the ghost will be targeted; this player will also \"manage\" the ghost for the rest of the hunt. Provided players do not accidentally trap themselves in a tight space with no way out, surviving a slowed Deogen is almost trivial as it is virtually impossible for it to catch up to its targets so long as they keep moving."
     ]
@@ -64,6 +65,7 @@
       "A Goryo will usually only show itself on camera if are no people nearby"
     ],
     "tips": [
+      "The D.O.T.S. evidence will always be present on any difficulty level.",
       "If D.O.T.S. evidence is visible without a camera, it's not a Goryo.",
       "Goryo will only give D.O.T.S. if you are far enough away. If you notice it when observing from far away but don't get any while close, it's a Goryo.",
       "If D.O.T.S. evidence is visible in the camera's screen, but invisible in direct view, the ghost is likely to be a Goryo.",
@@ -82,7 +84,7 @@
       "Lower temperatures allow the Hantu to move at faster speeds"
     ],
     "tips": [
-      "On Nightmare difficulty, a Hantu will always have Freezing Temperatures as one of its two pieces of evidence.",
+      "The Freezing Temperature evidence will always be present on any difficulty level.",
       "While it's in a ghost room during a hunt, it will have freezing breath coming out of its mouth. If you notice this, it's a Hantu. This is hard to observe though.",
       "Leave the breaker turned on for a while, then listen for its speed during a hunt. If it is faster in colder rooms (usually, but not always the favourite room), and slower than a normal ghost in a warm room, then it is a Hantu.",
       "Leave the breaker turned on for a while, then loop the ghost around a large piece of furniture in a warm room during a hunt, carrying Smudge Sticks to avoid death. If the ghost does not speed up quickly with line-of-sight (within ~10 seconds), then it is likely a Hantu."
@@ -136,6 +138,7 @@
     ],
     "strengths": ["The weaker their victims, the stronger the Moroi becomes."],
     "tips": [
+      "The Spirit Box evidence will always be present on any difficulty level.",
       "1) Consume sanity pills until your sanity is as high as possible. You must have at least one sanity pill left over. 2) Hold a lit candle and enter the investigation area. Obtain another response throught the spirit box or parabolic microphone. Once this is done, stay in the investigation area for at least 30 seconds (or enough to drop your sanity by 5-10% as if you were cursed). Ensure that the ghost does not perform a ghost event on yourself by staying on another floor or far away. 3) Exit the investigation area and attempt to consume a sanity pill. If you can consume a pill, then you were likely cursed and the ghost is likely a Moroi.",
       "Pay attention to the ghost's speed instead. Listen for the ghost's speed over multiple hunts, with average sanity lowering; a ghost that speeds up over the course of multiple hunts as average sanity lowers could be a Moroi."
     ]
@@ -168,10 +171,11 @@
       "When interacting with the environment, an Obake will rarely leave a trace"
     ],
     "tips": [
+      "The Fingerprints evidence will always be present on any difficulty level.",
+      "There is a ~16.7% chance to create a unique handprint/fingerprint pattern: 1) A six-fingered handprint instead of the usual five fingers. 2) Two fingerprints on a light switch instead of one. 3) Five fingerprints on keyboards and Prison cell doors instead of four.",
       "If the ghost touches a surface and leaves no fingerprints, then later leaves fingerprints on another surface, or vice versa, this usually points to the ghost being an Obake.",
       "During a hunt, the Obake will, at least once, shapeshift into another ghost form (before turning back to its original form). Each flicker has a 6.66% chance of shapeshifting.",
-      "Obake has a chance for it's fingerprints to disappear very quickly. If you notice that sometimes fingerprints disappear after 1 minute and sometimes after 2 minutes, it's an Obake.",
-      "When creating handprints or fingerprints, there is a one-sixth (~16.7%) chance for the Obake to create a unique handprint/fingerprint pattern: 1) A six-fingered handprint instead of the usual five fingers. 2) Two fingerprints on a light switch instead of one. 3) Five fingerprints on keyboards and Prison cell doors instead of four."
+      "Obake has a chance for it's fingerprints to disappear very quickly. If you notice that sometimes fingerprints disappear after 1 minute and sometimes after 2 minutes, it's an Obake."
     ]
   },
   {
@@ -345,7 +349,8 @@
     ],
     "strengths": ["We're unsure what this ghost is capable of. Be careful."],
     "tips": [
-      "The Mimic always has ghost orbs. If you get two pieces of evidence in addition to ghost orbs, it's a Mimic."
+      "The Ghost Orb evidence will always be present on any difficulty level.",
+      "If you get two pieces of evidence in addition to ghost orbs, it's a Mimic."
     ]
   },
   {

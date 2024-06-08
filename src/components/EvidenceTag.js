@@ -1,7 +1,7 @@
 export const EvidenceTag = ({ name, icon, isSelected }) => {
   return (
     <span
-      className={'tag is-medium' + (isSelected ? ' is-success' : ' is-black')}
+      className={'tag is-medium' + (isSelected ? ' is-success' : ' is-transparent')}
       title={name}
     >
       <span className="icon">

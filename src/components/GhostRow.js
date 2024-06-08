@@ -13,6 +13,9 @@ export const GhostRow = ({
   showTips,
 }) => {
   const ghostEvidence = allEvidence.filter((e) => ghost.evidence.includes(e.id))
+  const isGhostForcedEvidence = (evidenceId) => {
+    return showTips && ghost.forcedEvidence.includes(evidenceId)
+  }
 
   const expanded = getIsGhostExpanded(ghost.id)
   return (
@@ -42,6 +45,7 @@ export const GhostRow = ({
                   icon={e.icon}
                   isSelected={getIsEvidenceSelected(e.id)}
                   toggleEvidenceSelected={() => toggleEvidenceSelected(e.id)}
+                  isForced={isGhostForcedEvidence(e.id)}
                 />
               ) : (
                 <EvidenceTag
@@ -49,6 +53,7 @@ export const GhostRow = ({
                   icon={e.icon}
                   isSelected={getIsEvidenceSelected(e.id)}
                   toggleEvidenceSelected={() => toggleEvidenceSelected(e.id)}
+                  isForced={isGhostForcedEvidence(e.id)}
                 />
               )}
             </div>

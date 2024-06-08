@@ -16,42 +16,35 @@ export const GhostRow = ({
   const expanded = getIsGhostExpanded(ghost.id)
   return (
     <div>
-      <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
+      <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline is-justify-content-end">
         <div className="column is-narrow">
-          <button
-            className={'button is-text no-underline' + (expanded ? ' is-dark' : '')}
-            onClick={() => toggleGhostExpanded(ghost.id)}
-          >
-            <span className="icon is-small">
-              <i
-                className={
-                  'fa' + (expanded ? ' fa-chevron-up' : ' fa-chevron-down')
-                }
-              />
-            </span>
-          </button>
+          <GhostExpanderButton ghost={ghost} isExpanded={expanded} toggleGhostExpanded={toggleGhostExpanded} />
         </div>
         <div className="column">
           <InteractiveGhostNameHeader ghost={ghost} toggleGhostRejected={toggleGhostRejected} getIsGhostRejected={getIsGhostRejected} />
         </div>
-        {!expanded && ghostEvidence.map((e) => {
+        {ghostEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
-              <EvidenceTag
+              {expanded ?
+               <EvidenceTagFull name={e.name} icon={e.icon} isSelected={getIsEvidenceSelected(e.id)} /> :
+               <EvidenceTag
                 name={e.name}
                 icon={e.icon}
                 isSelected={getIsEvidenceSelected(e.id)}
               />
+          }
             </div>
           )
         })}
+        
       </div>
       <div
         hidden={!expanded}
         className="mt-4 mb-5 mx-4 has-border-left-dark"
       >
-        <div className='columns is-centered'>
-        {ghostEvidence.map((e) => {
+        <div className='columns is-justify-content-end is-multiline is-mobile'>
+        {/* {ghostEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
               <EvidenceTagFull
@@ -61,7 +54,7 @@ export const GhostRow = ({
               />
             </div>
           )
-        })}
+        })} */}
           
         </div>
         <p className="mt-4">{ghost.description}</p>
@@ -126,15 +119,36 @@ const InteractiveGhostNameHeader = ({
     <p
             onClick={() => toggleGhostRejected(ghost.id)}
             className={
-              'has-text-left ml-6 is-uppercase has-text-weight-light has-letter-spacing has-pointer-on-hover hover-parent'
+              'has-text-left is-uppercase has-text-weight-light has-letter-spacing has-pointer-on-hover hover-parent'
             }
           >
             <span className={(isRejected
                 ? ' has-text-line-through has-text-danger'
                 : '')}>{ghost.name}</span>
-            <span className={'ml-3 is-size-7 is-visible-on-hover' + (isRejected ? '' : ' has-text-danger')}>
+            <span className={'is-hidden-mobile ml-3 is-size-7 is-visible-on-hover' + (isRejected ? '' : ' has-text-danger')}>
               {isRejected ? '(include)' : '(exclude)' }
             </span>
           </p>
+  )
+}
+
+const GhostExpanderButton = ({
+  ghost,
+  isExpanded,
+  toggleGhostExpanded,
+}) => {
+  return (
+    <button
+            className={'button is-text no-underline' + (isExpanded ? ' is-dark' : '')}
+            onClick={() => toggleGhostExpanded(ghost.id)}
+          >
+            <span className="icon is-small">
+              <i
+                className={
+                  'fa' + (isExpanded ? ' fa-chevron-up' : ' fa-chevron-down')
+                }
+              />
+            </span>
+          </button>
   )
 }

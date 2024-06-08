@@ -55,3 +55,7 @@ li::marker {
 .no-underline {
   text-decoration: none !important;
 }
+
+.tag.is-transparent.is-forced-evidence {
+  box-shadow: 0 2px 0 var(--bulma-success);
+}

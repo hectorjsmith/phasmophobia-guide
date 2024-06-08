@@ -3,12 +3,14 @@ export const EvidenceTag = ({
   icon,
   isSelected,
   toggleEvidenceSelected,
+  isForced,
 }) => {
   return (
     <span
       className={
         'tag is-medium has-pointer-on-hover' +
-        (isSelected ? ' is-success' : ' is-transparent')
+        (isSelected ? ' is-success' : ' is-transparent') +
+        (isForced ? ' is-forced-evidence' : '')
       }
       onClick={toggleEvidenceSelected}
       title={name}

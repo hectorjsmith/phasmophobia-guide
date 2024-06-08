@@ -5,6 +5,7 @@ export const GhostRow = ({
   ghost,
   allEvidence,
   getIsEvidenceSelected,
+  toggleEvidenceSelected,
   getIsGhostRejected,
   toggleGhostRejected,
   getIsGhostExpanded,
@@ -39,12 +40,14 @@ export const GhostRow = ({
                   name={e.name}
                   icon={e.icon}
                   isSelected={getIsEvidenceSelected(e.id)}
+                  toggleEvidenceSelected={() => toggleEvidenceSelected(e.id)}
                 />
               ) : (
                 <EvidenceTag
                   name={e.name}
                   icon={e.icon}
                   isSelected={getIsEvidenceSelected(e.id)}
+                  toggleEvidenceSelected={() => toggleEvidenceSelected(e.id)}
                 />
               )}
             </div>

@@ -63,14 +63,14 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
         )}
       </div>
       <div className="control pt-4">
-          <button
-            className="button is-success"
-            disabled={!(usernameValid && roomIdValid)}
-            onClick={handleConnect}
-          >
-            Connect
-          </button>
-        </div>
+        <button
+          className="button is-success"
+          disabled={!(usernameValid && roomIdValid)}
+          onClick={handleConnect}
+        >
+          Connect
+        </button>
+      </div>
     </>
   )
 }

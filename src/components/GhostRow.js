@@ -1,4 +1,5 @@
 import EvidenceTag from './EvidenceTag'
+import EvidenceTagFull from './EvidenceTagFull'
 
 export const GhostRow = ({
   ghost,
@@ -18,7 +19,7 @@ export const GhostRow = ({
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
           <div className="buttons has-addons">
-            <button
+            {/* <button
               className={
                 'button' + (getIsGhostRejected(ghost.id) ? ' is-danger' : '')
               }
@@ -27,7 +28,7 @@ export const GhostRow = ({
               <span className="icon is-small">
                 <i className="fa fa-times" />
               </span>
-            </button>
+            </button> */}
             <button
               className={'button' + (expanded ? ' is-dark' : '')}
               onClick={() => toggleGhostExpanded(ghost.id)}
@@ -43,18 +44,9 @@ export const GhostRow = ({
           </div>
         </div>
         <div className="column">
-          <p
-            className={
-              'is-uppercase has-text-weight-light has-letter-spacing' +
-              (getIsGhostRejected(ghost.id)
-                ? ' has-text-line-through has-text-danger'
-                : '')
-            }
-          >
-            {ghost.name}
-          </p>
+          <InteractiveGhostNameHeader ghost={ghost} toggleGhostRejected={toggleGhostRejected} getIsGhostRejected={getIsGhostRejected} />
         </div>
-        {ghostEvidence.map((e) => {
+        {!expanded && ghostEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
               <EvidenceTag
@@ -68,12 +60,23 @@ export const GhostRow = ({
       </div>
       <div
         hidden={!expanded}
-        className="mt-4 mb-5 mx-4 ghost-info-accordion-content"
+        className="mt-4 mb-5 mx-4 has-border-left-dark"
       >
-        <h2 className="is-size-5 is-uppercase has-letter-spacing">
-          Description
-        </h2>
-        <p className="ml-4">{ghost.description}</p>
+        <div className='columns is-centered'>
+        {ghostEvidence.map((e) => {
+          return (
+            <div key={e.id} className="column is-narrow">
+              <EvidenceTagFull
+                name={e.name}
+                icon={e.icon}
+                isSelected={getIsEvidenceSelected(e.id)}
+              />
+            </div>
+          )
+        })}
+          
+        </div>
+        <p className="mt-4">{ghost.description}</p>
         <div className="my-5 ml-4 columns is-mobile is-vcentered is-multiline">
           <div className="column is-6-mobile">
             <h2 className="is-size-6 is-uppercase has-letter-spacing">
@@ -123,3 +126,27 @@ export const GhostRow = ({
 }
 
 export default GhostRow
+
+const InteractiveGhostNameHeader = ({
+  ghost,
+  toggleGhostRejected,
+  getIsGhostRejected,
+}) => {
+  const isRejected = getIsGhostRejected(ghost.id)
+
+  return (
+    <p
+            onClick={() => toggleGhostRejected(ghost.id)}
+            className={
+              'has-text-left ml-6 is-uppercase has-text-weight-light has-letter-spacing has-pointer-on-hover hover-parent'
+            }
+          >
+            <span className={(isRejected
+                ? ' has-text-line-through has-text-danger'
+                : '')}>{ghost.name}</span>
+            <span className={'ml-3 is-size-7 is-visible-on-hover' + (isRejected ? '' : ' has-text-danger')}>
+              {isRejected ? '(include)' : '(exclude)' }
+            </span>
+          </p>
+  )
+}

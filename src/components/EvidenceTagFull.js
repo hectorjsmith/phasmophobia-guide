@@ -1,4 +1,10 @@
-export const EvidenceTagFull = ({ name, longName, icon, isSelected, toggleEvidenceSelected }) => {
+export const EvidenceTagFull = ({
+  name,
+  longName,
+  icon,
+  isSelected,
+  toggleEvidenceSelected,
+}) => {
   return (
     <span
       className={

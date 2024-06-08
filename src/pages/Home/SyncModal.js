@@ -29,14 +29,14 @@ export const SyncModal = ({ toggleSyncModalOpen }) => {
       <div className="modal-background" onClick={toggleSyncModalOpen} />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title is-uppercase has-letter-spacing">
+          <p className="modal-card-title is-uppercase has-letter-spacing mb-0">
             <span className="icon mr-3">
               <i className="fa fa-users" />
             </span>
             Realtime Sync
           </p>
           <button
-            className="delete"
+            className="delete p-4"
             aria-label="close"
             onClick={toggleSyncModalOpen}
           />

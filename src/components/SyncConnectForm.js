@@ -29,7 +29,7 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
   return (
     <>
       <div className="field">
-        <label className="label">Username</label>
+        <label className="label">Name</label>
         <div className="control">
           <input
             ref={userNameRef}
@@ -38,11 +38,11 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
             defaultValue={userName ?? ''}
             onChange={onUsernameChange}
             maxLength={20}
-            placeholder="username"
+            placeholder="player1"
           />
         </div>
         {usernameValid || (
-          <p className="help is-danger">This username is invalid</p>
+          <p className="help is-danger">This name is invalid</p>
         )}
       </div>
 
@@ -62,17 +62,14 @@ export const SyncConnectForm = ({ roomId, userName, connect }) => {
           <p className="help is-danger">This room ID is invalid</p>
         )}
       </div>
-
-      <div className="field is-grouped is-grouped-centered">
-        <div className="control">
-          <button
-            className="button is-success"
-            disabled={!(usernameValid && roomIdValid)}
-            onClick={handleConnect}
-          >
-            Connect
-          </button>
-        </div>
+      <div className="control pt-4">
+        <button
+          className="button is-success"
+          disabled={!(usernameValid && roomIdValid)}
+          onClick={handleConnect}
+        >
+          Connect
+        </button>
       </div>
     </>
   )

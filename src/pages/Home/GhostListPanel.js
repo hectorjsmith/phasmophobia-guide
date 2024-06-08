@@ -13,6 +13,7 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
     selectedEvidence,
     rejectedEvidence,
     getIsEvidenceSelected,
+    toggleEvidenceSelected,
     getIsGhostRejected,
     toggleGhostRejected,
   } = useContext(SelectionContext)
@@ -38,6 +39,7 @@ export const GhostListPanel = ({ ghosts, evidence }) => {
             ghost={ghost}
             allEvidence={evidence}
             getIsEvidenceSelected={getIsEvidenceSelected}
+            toggleEvidenceSelected={toggleEvidenceSelected}
             getIsGhostRejected={getIsGhostRejected}
             toggleGhostRejected={toggleGhostRejected}
             getIsGhostExpanded={getIsGhostExpanded}

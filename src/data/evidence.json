@@ -1,7 +1,7 @@
 [
   {
     "id": "#dots",
-    "name": "D.O.T.S. Projector",
+    "name": "D.O.T.S.",
     "icon": "th"
   },
   {
@@ -11,22 +11,22 @@
   },
   {
     "id": "#fingerprints",
-    "name": "Fingerprints",
+    "name": "UV",
     "icon": "paw"
   },
   {
     "id": "#freezing",
-    "name": "Freezing Temperatures",
+    "name": "Freezing",
     "icon": "thermometer-quarter"
   },
   {
     "id": "#orb",
-    "name": "Ghost Orb",
+    "name": "Orb",
     "icon": "dot-circle-o"
   },
   {
     "id": "#writing",
-    "name": "Ghost Writing",
+    "name": "Writing",
     "icon": "pencil-square-o"
   },
   {

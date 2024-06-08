@@ -49,6 +49,7 @@ export const EvidenceSelectorPanel = ({
             key={e.id}
             id={e.id}
             name={e.name}
+            longName={e.longName}
             icon={e.icon}
             isSelected={getIsEvidenceSelected(e.id)}
             toggleSelection={() => toggleEvidenceSelected(e.id)}

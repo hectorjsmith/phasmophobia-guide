@@ -47,7 +47,7 @@ const VersionData = ({ version, buildTime }) => {
   }
   return (
     <div className="has-text-right">
-      <p className="has-text-white is-uppercase is-size-7">
+      <p className="has-text-white is-uppercase is-size-7 mb-2">
         {version}
         <span className="icon ml-3">
           <i className="fa fa-code" />

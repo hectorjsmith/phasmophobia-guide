@@ -1,6 +1,7 @@
 export const ObservationToggle = ({
   id,
   name,
+  longName,
   icon,
   isSelected,
   toggleSelection,
@@ -39,7 +40,7 @@ export const ObservationToggle = ({
           </button>
         </div>
       </div>
-      <div className="column is-mobile mt-1">
+      <div className="column is-mobile mt-1" title={longName}>
         <p>{name}</p>
       </div>
     </div>

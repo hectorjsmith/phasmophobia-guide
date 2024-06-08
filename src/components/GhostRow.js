@@ -37,12 +37,13 @@ export const GhostRow = ({
               {expanded ? (
                 <EvidenceTagFull
                   name={e.name}
+                  longName={e.longName}
                   icon={e.icon}
                   isSelected={getIsEvidenceSelected(e.id)}
                 />
               ) : (
                 <EvidenceTag
-                  name={e.name}
+                  name={e.longName}
                   icon={e.icon}
                   isSelected={getIsEvidenceSelected(e.id)}
                 />

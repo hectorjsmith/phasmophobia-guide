@@ -23,15 +23,35 @@ footer {
   flex: 1;
 }
 
-.ghost-info-accordion-content {
+.has-border-left-dark {
   border-left: 3px solid var(--bulma-dark);
   margin-left: 2.6rem !important;
 }
 
 li::marker {
-  color: var(--bulma-primary);
+  color: var(--bulma-success);
 }
 
 .tag.is-transparent {
   background: transparent;
+}
+
+.tag.has-border {
+  border: 2px solid var(--bulma-dark);
+}
+
+.has-pointer-on-hover:hover {
+  cursor: pointer;
+}
+
+.is-visible-on-hover {
+  visibility: hidden;
+}
+
+.hover-parent:hover .is-visible-on-hover {
+  visibility: visible;
+}
+
+.no-underline {
+  text-decoration: none !important;
 }

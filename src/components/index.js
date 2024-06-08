@@ -1,4 +1,5 @@
 export { default as EvidenceTag } from './EvidenceTag'
+export { default as EvidenceTagFull } from './EvidenceTagFull'
 export { default as ReactiveSyncStatusButton } from './ReactiveSyncStatusButton'
 export { default as TopNav } from './TopNav'
 export { default as Footer } from './Footer'

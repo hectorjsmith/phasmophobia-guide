@@ -1,4 +1,5 @@
 import EvidenceTag from './EvidenceTag'
+import EvidenceTagFull from './EvidenceTagFull'
 
 export const GhostRow = ({
   ghost,
@@ -15,66 +16,48 @@ export const GhostRow = ({
   const expanded = getIsGhostExpanded(ghost.id)
   return (
     <div>
-      <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
+      <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline is-justify-content-end">
         <div className="column is-narrow">
-          <div className="buttons has-addons">
-            <button
-              className={
-                'button' + (getIsGhostRejected(ghost.id) ? ' is-danger' : '')
-              }
-              onClick={() => toggleGhostRejected(ghost.id)}
-            >
-              <span className="icon is-small">
-                <i className="fa fa-times" />
-              </span>
-            </button>
-            <button
-              className={'button' + (expanded ? ' is-dark' : '')}
-              onClick={() => toggleGhostExpanded(ghost.id)}
-            >
-              <span className="icon is-small">
-                <i
-                  className={
-                    'fa' + (expanded ? ' fa-chevron-up' : ' fa-chevron-down')
-                  }
-                />
-              </span>
-            </button>
-          </div>
+          <GhostExpanderButton
+            ghost={ghost}
+            isExpanded={expanded}
+            toggleGhostExpanded={toggleGhostExpanded}
+          />
         </div>
         <div className="column">
-          <p
-            className={
-              'is-uppercase has-text-weight-light has-letter-spacing' +
-              (getIsGhostRejected(ghost.id)
-                ? ' has-text-line-through has-text-danger'
-                : '')
-            }
-          >
-            {ghost.name}
-          </p>
+          <InteractiveGhostNameHeader
+            ghost={ghost}
+            toggleGhostRejected={toggleGhostRejected}
+            getIsGhostRejected={getIsGhostRejected}
+          />
         </div>
         {ghostEvidence.map((e) => {
           return (
             <div key={e.id} className="column is-narrow">
-              <EvidenceTag
-                name={e.name}
-                icon={e.icon}
-                isSelected={getIsEvidenceSelected(e.id)}
-              />
+              {expanded ? (
+                <EvidenceTagFull
+                  name={e.name}
+                  icon={e.icon}
+                  isSelected={getIsEvidenceSelected(e.id)}
+                />
+              ) : (
+                <EvidenceTag
+                  name={e.name}
+                  icon={e.icon}
+                  isSelected={getIsEvidenceSelected(e.id)}
+                />
+              )}
             </div>
           )
         })}
       </div>
       <div
         hidden={!expanded}
-        className="mt-4 mb-5 mx-4 ghost-info-accordion-content"
+        className="mt-4 mb-5 mx-5 pl-4 has-border-left-dark has-text-left"
       >
-        <h2 className="is-size-5 is-uppercase has-letter-spacing">
-          Description
-        </h2>
-        <p className="ml-4">{ghost.description}</p>
-        <div className="my-5 ml-4 columns is-mobile is-vcentered is-multiline">
+        <p className="mt-4 has-text-centered-tablet">{ghost.description}</p>
+
+        <div className="my-4 columns is-mobile is-vcentered is-multiline">
           <div className="column is-6-mobile">
             <h2 className="is-size-6 is-uppercase has-letter-spacing">
               Strengths
@@ -97,7 +80,7 @@ export const GhostRow = ({
               <h2 className="is-size-6 is-uppercase has-letter-spacing">
                 Tips
               </h2>
-              <ol className="ml-0 is-lower-alpha">
+              <ol className="ml-4 is-lower-alpha">
                 {ghost.tips?.map((w) => {
                   return <li key={w}>{w}</li>
                 })}
@@ -106,15 +89,15 @@ export const GhostRow = ({
           )}
         </div>
         <a
-          className="button is-outlined is-info mb-4"
+          className="button is-outlined is-info mb-3 is-lowercase"
           href={ghost.wikiUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <span className="icon mr-3">
+          <span className="icon mr-2">
             <i className="fa fa-book" />
           </span>
-          wiki
+          link to wiki
         </a>
       </div>
       <hr className="my-3" />
@@ -123,3 +106,51 @@ export const GhostRow = ({
 }
 
 export default GhostRow
+
+const InteractiveGhostNameHeader = ({
+  ghost,
+  toggleGhostRejected,
+  getIsGhostRejected,
+}) => {
+  const isRejected = getIsGhostRejected(ghost.id)
+
+  return (
+    <p
+      onClick={() => toggleGhostRejected(ghost.id)}
+      className={
+        'has-text-left is-uppercase has-text-weight-light has-letter-spacing has-pointer-on-hover hover-parent'
+      }
+    >
+      <span
+        className={isRejected ? ' has-text-line-through has-text-danger' : ''}
+      >
+        {ghost.name}
+      </span>
+      <span
+        className={
+          'is-hidden-mobile ml-3 is-size-7 is-visible-on-hover' +
+          (isRejected ? '' : ' has-text-danger')
+        }
+      >
+        {isRejected ? '(include)' : '(exclude)'}
+      </span>
+    </p>
+  )
+}
+
+const GhostExpanderButton = ({ ghost, isExpanded, toggleGhostExpanded }) => {
+  return (
+    <button
+      className={'button is-text no-underline' + (isExpanded ? ' is-dark' : '')}
+      onClick={() => toggleGhostExpanded(ghost.id)}
+    >
+      <span className="icon is-small">
+        <i
+          className={
+            'fa' + (isExpanded ? ' fa-chevron-up' : ' fa-chevron-down')
+          }
+        />
+      </span>
+    </button>
+  )
+}

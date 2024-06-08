@@ -41,24 +41,11 @@ export const GhostRow = ({
       </div>
       <div
         hidden={!expanded}
-        className="mt-4 mb-5 mx-4 has-border-left-dark"
+        className="mt-4 mb-5 mx-5 pl-4 has-border-left-dark has-text-left"
       >
-        <div className='columns is-justify-content-end is-multiline is-mobile'>
-        {/* {ghostEvidence.map((e) => {
-          return (
-            <div key={e.id} className="column is-narrow">
-              <EvidenceTagFull
-                name={e.name}
-                icon={e.icon}
-                isSelected={getIsEvidenceSelected(e.id)}
-              />
-            </div>
-          )
-        })} */}
-          
-        </div>
-        <p className="mt-4">{ghost.description}</p>
-        <div className="my-5 ml-4 columns is-mobile is-vcentered is-multiline">
+        <p className="mt-4 has-text-centered-tablet">{ghost.description}</p>
+      
+        <div className="my-4 columns is-mobile is-vcentered is-multiline">
           <div className="column is-6-mobile">
             <h2 className="is-size-6 is-uppercase has-letter-spacing">
               Strengths
@@ -81,7 +68,7 @@ export const GhostRow = ({
               <h2 className="is-size-6 is-uppercase has-letter-spacing">
                 Tips
               </h2>
-              <ol className="ml-0 is-lower-alpha">
+              <ol className="ml-4 is-lower-alpha">
                 {ghost.tips?.map((w) => {
                   return <li key={w}>{w}</li>
                 })}
@@ -90,15 +77,15 @@ export const GhostRow = ({
           )}
         </div>
         <a
-          className="button is-outlined is-info mb-4"
+          className="button is-outlined is-info mb-3 is-lowercase"
           href={ghost.wikiUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <span className="icon mr-3">
+          <span className="icon mr-2">
             <i className="fa fa-book" />
           </span>
-          wiki
+          link to wiki
         </a>
       </div>
       <hr className="my-3" />

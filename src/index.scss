@@ -47,3 +47,7 @@ li::marker {
 .hover-parent:hover .is-visible-on-hover {
   visibility: visible;
 }
+
+.no-underline {
+  text-decoration: none !important;
+}

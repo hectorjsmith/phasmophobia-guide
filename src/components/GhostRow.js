@@ -18,30 +18,18 @@ export const GhostRow = ({
     <div>
       <div className="mx-3 my-0 columns is-mobile is-vcentered is-multiline">
         <div className="column is-narrow">
-          <div className="buttons has-addons">
-            {/* <button
-              className={
-                'button' + (getIsGhostRejected(ghost.id) ? ' is-danger' : '')
-              }
-              onClick={() => toggleGhostRejected(ghost.id)}
-            >
-              <span className="icon is-small">
-                <i className="fa fa-times" />
-              </span>
-            </button> */}
-            <button
-              className={'button' + (expanded ? ' is-dark' : '')}
-              onClick={() => toggleGhostExpanded(ghost.id)}
-            >
-              <span className="icon is-small">
-                <i
-                  className={
-                    'fa' + (expanded ? ' fa-chevron-up' : ' fa-chevron-down')
-                  }
-                />
-              </span>
-            </button>
-          </div>
+          <button
+            className={'button is-text no-underline' + (expanded ? ' is-dark' : '')}
+            onClick={() => toggleGhostExpanded(ghost.id)}
+          >
+            <span className="icon is-small">
+              <i
+                className={
+                  'fa' + (expanded ? ' fa-chevron-up' : ' fa-chevron-down')
+                }
+              />
+            </span>
+          </button>
         </div>
         <div className="column">
           <InteractiveGhostNameHeader ghost={ghost} toggleGhostRejected={toggleGhostRejected} getIsGhostRejected={getIsGhostRejected} />

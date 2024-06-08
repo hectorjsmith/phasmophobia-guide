@@ -2,8 +2,7 @@
 @use '../node_modules/bulma/css/bulma.min.css';
 
 footer {
-  background-color: black !important;
-  padding: 1rem 2rem !important;
+  padding: 2.5rem 5rem !important;
 }
 
 .has-text-line-through {
@@ -31,4 +30,8 @@ footer {
 
 li::marker {
   color: var(--bulma-primary);
+}
+
+.tag.is-transparent {
+  background: transparent;
 }

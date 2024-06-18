@@ -71,11 +71,13 @@ export const EvidenceSelectorPanel = ({
           isTipsVisible={isTipsVisible}
           toggleIsTipsVisible={toggleIsTipsVisible}
         />
-        {isSyncFeatureEnabled && <ReactiveSyncStatusButton
-          isConnected={isConnected}
-          toggleSyncModal={toggleSyncModal}
-          roomId={room}
-        />}
+        {isSyncFeatureEnabled && (
+          <ReactiveSyncStatusButton
+            isConnected={isConnected}
+            toggleSyncModal={toggleSyncModal}
+            roomId={room}
+          />
+        )}
       </div>
     </>
   )

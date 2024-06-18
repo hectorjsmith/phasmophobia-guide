@@ -15,7 +15,7 @@ export const EvidenceSelectorPanel = ({
   ghosts,
   toggleSyncModal,
 }) => {
-  const { room, isConnected } = useContext(SyncContext)
+  const { isSyncFeatureEnabled, room, isConnected } = useContext(SyncContext)
   const {
     getIsEvidenceSelected,
     toggleEvidenceSelected,
@@ -71,11 +71,13 @@ export const EvidenceSelectorPanel = ({
           isTipsVisible={isTipsVisible}
           toggleIsTipsVisible={toggleIsTipsVisible}
         />
-        <ReactiveSyncStatusButton
-          isConnected={isConnected}
-          toggleSyncModal={toggleSyncModal}
-          roomId={room}
-        />
+        {isSyncFeatureEnabled && (
+          <ReactiveSyncStatusButton
+            isConnected={isConnected}
+            toggleSyncModal={toggleSyncModal}
+            roomId={room}
+          />
+        )}
       </div>
     </>
   )

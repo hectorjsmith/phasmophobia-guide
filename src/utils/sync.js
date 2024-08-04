@@ -36,16 +36,20 @@ const onRawLoad = (setDataFromSync) => (rawData) => {
 
 const publishNewState = (roomId, userName, data) => {
   const escapedRoomId = escapeRoomId(roomId)
-  api.collection('room_state').create({
-    room_id: escapedRoomId,
-    state: data,
-    updated_by: userName,
-  }).then(() => console.log('published new state to pocketbase', data))
+  api
+    .collection('room_state')
+    .create({
+      room_id: escapedRoomId,
+      state: data,
+      updated_by: userName,
+    })
+    .then(() => console.log('published new state to pocketbase', data))
 }
 
 const loadCurrentRoomState = (roomId, handler) => {
   const escapedRoomId = escapeRoomId(roomId)
-  api.collection('room_state')
+  api
+    .collection('room_state')
     .getFirstListItem(`room_id="${escapedRoomId}"`, { sort: '-created' })
     .then((data) => {
       console.log('current room state from pocketbase', data)
@@ -55,8 +59,7 @@ const loadCurrentRoomState = (roomId, handler) => {
 
 const subscribeForUpdates = (roomId, handler) => {
   const escapedRoomId = escapeRoomId(roomId)
-  api.collection('room_state')
-  .subscribe('*', (event) => {
+  api.collection('room_state').subscribe('*', (event) => {
     if (event.record.roomId !== escapedRoomId) return
     console.log('room state changes from pocketbase', event)
     handler(event)

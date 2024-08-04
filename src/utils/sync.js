@@ -55,7 +55,7 @@ const loadCurrentRoomState = (roomId, handler) => {
       console.log('current room state from pocketbase', data)
       handler(data)
     })
-    .catch((err) => console.log("api error", err))
+    .catch((err) => console.log('api error', err))
 }
 
 const subscribeForUpdates = (roomId, handler) => {

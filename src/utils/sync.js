@@ -61,7 +61,8 @@ const loadCurrentRoomState = (roomId, handler) => {
 const subscribeForUpdates = (roomId, handler) => {
   const escapedRoomId = escapeRoomId(roomId)
   api.collection('room_state').subscribe('*', (event) => {
-    if (event.action !== 'create' || event.record.room_id !== escapedRoomId) return
+    if (event.action !== 'create' || event.record.room_id !== escapedRoomId)
+      return
     console.log('room state changes from pocketbase', event)
     handler(event)
   })

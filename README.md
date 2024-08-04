@@ -30,7 +30,7 @@ If you are playing with friends you can keep your observed evidence in sync with
 
 While connected any change a person makes will be automatically synced to everyone else in the same room, making it easier to work together 🙌
 
-_Note that enabling this feature wll use [Supabase](https://supabase.com) as the backend storage and sync server_
+_Note that enabling this feature wll use a [Pocketbase](https://pocketbase.io/) instance as the backend storage and sync server_
 
 ## Running Locally
 
@@ -60,8 +60,6 @@ This project also makes use of the following tools:
 
 - [ReactJS](https://reactjs.org/)
 - [Bulma CSS](https://bulma.io/)
-- [Supabase](https://supabase.com/)
+- [Pocketbase](https://pocketbase.io/)
 
 The project is currently hosted using Gitlab Pages. Please refer to [Gitab's Privacy Policy](https://about.gitlab.com/privacy/) for more information.
-
-Enabling the realtime sync feature will connect you to Supabase services, and you will fall under [their privacy policy](https://supabase.com/privacy).

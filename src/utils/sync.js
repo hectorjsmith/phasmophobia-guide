@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { api } from './pocketbase'
 
 export const connectSync = (
   setOnChangeHandler,
@@ -25,51 +25,42 @@ const syncChange = (roomId, userName) => (data) => {
 }
 
 const onRawSync = (setDataFromSync) => (rawData) => {
-  const data = rawData.new.state
+  const data = rawData.record.state
   setDataFromSync(data)
 }
 
 const onRawLoad = (setDataFromSync) => (rawData) => {
-  const data = rawData.data?.[0]?.state
+  const data = rawData.state
   setDataFromSync(data)
 }
 
 const publishNewState = (roomId, userName, data) => {
   const escapedRoomId = escapeRoomId(roomId)
-  supabase
-    .from('room_state')
-    .insert({
-      room_id: escapedRoomId,
-      state: data,
-      updated_by: userName,
-    })
-    .then(() => console.log('published new state', data))
+  api.collection('room_state').create({
+    room_id: escapedRoomId,
+    state: data,
+    updated_by: userName,
+  }).then(() => console.log('published new state to pocketbase', data))
 }
 
 const loadCurrentRoomState = (roomId, handler) => {
   const escapedRoomId = escapeRoomId(roomId)
-  supabase
-    .from('room_state')
-    .select('*')
-    .eq('room_id', escapedRoomId)
-    .order('set_at', { ascending: false })
-    .limit(1)
-    .then(handler)
+  api.collection('room_state')
+    .getFirstListItem(`room_id="${escapedRoomId}"`, { sort: '-created' })
+    .then((data) => {
+      console.log('current room state from pocketbase', data)
+      handler(data)
+    })
 }
 
 const subscribeForUpdates = (roomId, handler) => {
   const escapedRoomId = escapeRoomId(roomId)
-  const channel = supabase.channel(escapedRoomId)
-  channel
-    .on(
-      'postgres_changes',
-      {
-        event: 'INSERT',
-        schema: 'public',
-      },
-      handler,
-    )
-    .subscribe()
+  api.collection('room_state')
+  .subscribe('*', (event) => {
+    if (event.record.roomId !== escapedRoomId) return
+    console.log('room state changes from pocketbase', event)
+    handler(event)
+  })
 }
 
 const escapeRoomId = (roomId) => roomId.replace(/\s/g, '')

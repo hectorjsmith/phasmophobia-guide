@@ -25,9 +25,8 @@
     <script>
       function _redirect() {
         var x =
-          location.hostname.search(
-            'hectorjsmith.gitlab.io/phasmophobia-guide',
-          ) != -1
+          location.href.search('hectorjsmith.gitlab.io/phasmophobia-guide') !=
+          -1
             ? true
             : false
         if (x) location.href = 'https://phasmoguide.hjs.dev/'

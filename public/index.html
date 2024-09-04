@@ -23,11 +23,16 @@
       src="%REACT_APP_ANALYTICS_SRC%"
     ></script>
     <script>
-      function _redirect(){
-        var x = location.hostname.search("hectorjsmith.gitlab.io/phasmophobia-guide") != -1 ? true : false;
-        if(x) location.href = "https://phasmoguide.hjs.dev/";
+      function _redirect() {
+        var x =
+          location.hostname.search(
+            'hectorjsmith.gitlab.io/phasmophobia-guide',
+          ) != -1
+            ? true
+            : false
+        if (x) location.href = 'https://phasmoguide.hjs.dev/'
       }
-      _redirect();
+      _redirect()
     </script>
   </body>
 </html>
